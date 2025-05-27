@@ -1,16 +1,8 @@
-# vrblocks
+# vrblocks (Add splash)
 UNT Senior Capstone Project. VR Block Programming video game.
 
-**The Garbanzo Boys**
 
-- Tyler Braun
-- Malcolm Case
-- Dawson Finklea
-- Johnathon Lawton
-- Kevin Pham
-
-
-# Project Outline
+## About
 
 This project is intended as an educational tool to teach fundamental programming skills through the medium of Virtual Reality.
 
@@ -67,3 +59,18 @@ After downloading the APK for the project, open SideQuest, and plug in your head
 
 Click on the icon labeled "Install APK from file on computer" and select the APK.
 
+## Screenshots
+
+ADD ME
+
+## Development (Link GitHub accounts)
+
+**The Garbanzo Boys**
+
+- Tyler Braun
+- Malcolm Case
+- Dawson Finklea
+- Johnathon Lawton
+- Kevin Pham
+
+## Contact Us
