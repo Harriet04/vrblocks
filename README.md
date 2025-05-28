@@ -1,15 +1,16 @@
 # vrblocks (Add splash)
-UNT Senior Capstone Project. VR Block Programming video game.
 
+[About](#about) | [Documentation](#documentation) | [Installation](#installation) | [Screenshots](#screenshots) | [Development](#development) | [Contact Us](#contact-us)
 
 ## About
 
 This project is intended as an educational tool to teach fundamental programming skills through the medium of Virtual Reality.
 
-The project takes inspiration from existing educational tools like Blockly and Scratch, while extending the metaphor of block-based
-programming to the third dimension.
+It draws inspiration from tools like Blockly and Scratch, while extending the metaphor of block-based programming to a fully 3D environment.
 
-## Principals
+The project began as our [development groups's](#development) senior capstone project at UNT. Since then, we've continued development at a slower but steady pace.
+
+### Principals
 
 The project should be progressive, introducing simple constructs and functionality, and using them to build grandually more complex algorithms to achieve specific goals.
 
@@ -63,14 +64,22 @@ Click on the icon labeled "Install APK from file on computer" and select the APK
 
 ADD ME
 
-## Development (Link GitHub accounts)
+## Development
 
-**The Garbanzo Boys**
+### The Garbanzo Boys Development Team 
 
-- Tyler Braun
-- Malcolm Case
-- Dawson Finklea
-- Johnathon Lawton
-- Kevin Pham
+- [Tyler Braun](https://github.com/TyTheRockstar)
+- [Malcolm Case](https://github.com/malcolmcase97)
+- [Dawson Finklea](https://github.com/reckoncrafter)
+- [Johnathon Lawton](https://github.com/J1aw)
+- [Kevin Pham](https://github.com/KevinFham)
+
+### Other Contributors
+
+- None Yet!!
 
 ## Contact Us
+
+If you have any questions about the project, or if you're interested in contributing, feel free to reach out!
+
+📧 Email: [malcolm.case.97@gmail.com](mailto:malcolm.case.97@gmail.com)
