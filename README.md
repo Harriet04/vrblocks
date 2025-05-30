@@ -1,23 +1,16 @@
-# vrblocks
-UNT Senior Capstone Project. VR Block Programming video game.
+<img src="Images/vrblocks_banner_1920x600.png" alt="VR Blocks Banner Image" width="1200" />
 
-**The Garbanzo Boys**
+[About](#about) | [Documentation](#documentation) | [Installation](#installation) | [Screenshots](#screenshots) | [Development](#development) | [Contact Us](#contact-us)
 
-- Tyler Braun
-- Malcolm Case
-- Dawson Finklea
-- Johnathon Lawton
-- Kevin Pham
-
-
-# Project Outline
+## About
 
 This project is intended as an educational tool to teach fundamental programming skills through the medium of Virtual Reality.
 
-The project takes inspiration from existing educational tools like Blockly and Scratch, while extending the metaphor of block-based
-programming to the third dimension.
+It draws inspiration from tools like Blockly and Scratch, while extending the metaphor of block-based programming to a fully 3D environment.
 
-## Principals
+The project began as our [development groups's](#development) senior capstone project at UNT. Since then, we've continued development at a slower but steady pace.
+
+### Principals
 
 The project should be progressive, introducing simple constructs and functionality, and using them to build grandually more complex algorithms to achieve specific goals.
 
@@ -67,3 +60,32 @@ After downloading the APK for the project, open SideQuest, and plug in your head
 
 Click on the icon labeled "Install APK from file on computer" and select the APK.
 
+## Screenshots
+
+![Turtle jumping screenshot](Images/vrblocks_jump_screenshot.png)
+
+![Turtle moving in loop screenshot](Images/vrblocks_loop_screenshot.png)
+
+![Image of level completion screen](Images/vrblocks_victory_screenshot.png)
+
+Note: All screenshots were captured using a Meta Quest 2 headset connected via PC VR through Unity. They reflect a pre-release build current as of May 29, 2025.
+
+## Development
+
+### The Garbanzo Boys Development Team 
+
+- [Tyler Braun](https://github.com/TyTheRockstar)
+- [Malcolm Case](https://github.com/malcolmcase97)
+- [Dawson Finklea](https://github.com/reckoncrafter)
+- [Johnathon Lawton](https://github.com/J1aw)
+- [Kevin Pham](https://github.com/KevinFham)
+
+### Other Contributors
+
+- None Yet!!
+
+## Contact Us
+
+If you have any questions about the project, or if you're interested in contributing, feel free to reach out!
+
+📧 Email: [malcolm.case.97@gmail.com](mailto:malcolm.case.97@gmail.com)
