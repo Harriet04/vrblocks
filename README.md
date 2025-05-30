@@ -1,4 +1,4 @@
-# vrblocks (Add splash)
+<img src="Images/vrblocks_banner_1920x600.png" alt="VR Blocks Banner Image" width="1200" />
 
 [About](#about) | [Documentation](#documentation) | [Installation](#installation) | [Screenshots](#screenshots) | [Development](#development) | [Contact Us](#contact-us)
 
@@ -62,7 +62,13 @@ Click on the icon labeled "Install APK from file on computer" and select the APK
 
 ## Screenshots
 
-ADD ME
+![Turtle jumping screenshot](Images\vrblocks_jump_screenshot.png)
+
+![Turtle moving in loop screenshot](Images\vrblocks_loop_screenshot.png)
+
+![Image of level completion screen](Images\vrblocks_victory_screenshot.png)
+
+Note: All screenshots were captured using a Meta Quest 2 headset connected via PC VR through Unity. They reflect a pre-release build current as of May 29, 2025.
 
 ## Development
 
