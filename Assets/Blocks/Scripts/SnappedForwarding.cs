@@ -175,7 +175,6 @@ public class SnappedForwarding : MonoBehaviour
             rb.useGravity = false;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            rb.transform.rotation = Quaternion.Euler(0, 0, 0);
             rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
         else if (hasSnapped)
@@ -184,7 +183,6 @@ public class SnappedForwarding : MonoBehaviour
             rb.useGravity = false;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            rb.transform.rotation = Quaternion.Euler(0, 0, 0);
             // No changes to rb.constraints
         }
         else if (canSnap && !hasSnapped)
@@ -199,7 +197,6 @@ public class SnappedForwarding : MonoBehaviour
             rb.useGravity = false;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            rb.transform.rotation = Quaternion.Euler(0, 0, 0);
             rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
 
@@ -227,10 +224,6 @@ public class SnappedForwarding : MonoBehaviour
                     // Update position to match the X and Z of the parent block
                     Vector3 parentPosition = otherRbParent.transform.position;
                     rb.transform.position = new Vector3(parentPosition.x, rb.transform.position.y, parentPosition.z);
-
-                    // Reset rotation to 0
-                    rb.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    //Debug.Log($"Physics Update: Position/Rotation reset");
 
                     // Update position to match the X and Z of the parent block, realign SnapPointTop with SnapPointBottom
                     Transform snapPointTop = rb.transform.Find("SnapPointTop");
