@@ -134,7 +134,7 @@ public class BlockSnapping : MonoBehaviour
         topRb.constraints = RigidbodyConstraints.None;
         bottomRb.constraints = RigidbodyConstraints.None;
 
-        // Reset X and Z rotations for both blocks IF blocks are NOT wires
+        // Reset X and Z rotations for both blocks IF blocks are NOT wires (Redundant? Remove on cleanup)
         if (!block1.name.Contains("Wire"))
         {
             block1.transform.rotation = Quaternion.Euler(0, block1.transform.rotation.eulerAngles.y, 0);
