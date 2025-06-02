@@ -664,9 +664,10 @@ public class BlockSnapping : MonoBehaviour
             new Vector2(playerPosition.x, playerPosition.z),
             new Vector2(parentPosition.x, parentPosition.z)
         );
+        radius = Mathf.Max(radius, 2f); // Minimum 2
 
         // Calculate new position on circular arc for this block
-        Vector3 adjustedPosition = GetCircularOffset(playerPosition, parentToPlayer, radius, adjustPositionX, 15f); // Adjust the float number to modify distance between columns!!!
+        Vector3 adjustedPosition = GetCircularOffset(playerPosition, parentToPlayer, radius, adjustPositionX, 20f); // Adjust the float number to modify distance between columns!!!
 
         // Apply y-offset to maintain block stack
         adjustedPosition.y = initialRootBlockPosition.y + (adjustPositionY * yBlockOffset);
