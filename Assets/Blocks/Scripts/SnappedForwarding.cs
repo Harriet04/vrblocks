@@ -77,6 +77,8 @@ public class SnappedForwarding : MonoBehaviour
     {
         Debug.Log($"IsLoopedBlock called: thisBlock.connectedBody = {thisBlock?.name ?? "null"}, otherBlock = {otherBlock?.name ?? "null"}");
 
+        bool iteratedOnce = false;
+
         if (thisBlock == null)
         {
             return false;
@@ -91,6 +93,11 @@ public class SnappedForwarding : MonoBehaviour
                 return true;
             }
 
+            if (currentBlock == otherBlock && iteratedOnce == true)
+            {
+                return true;
+            }
+
             SnappedForwarding snappedForwarding = currentBlock.GetComponentInChildren<SnappedForwarding>();
             if (snappedForwarding != null && snappedForwarding.ConnectedBlock != null)
             {
@@ -100,6 +107,8 @@ public class SnappedForwarding : MonoBehaviour
             {
                 break;
             }
+
+            iteratedOnce = true;
         }
 
         return false;
