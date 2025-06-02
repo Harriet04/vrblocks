@@ -20,8 +20,9 @@ public class WireLine : MonoBehaviour
         Vector3 p0 = startPoint.position;
         Vector3 p3 = endPoint.position;
 
-        Vector3 dir = (p3 - p0).normalized;
-        Vector3 offsetX = new Vector3(0.25f, 0, 0); // 0.5 in X
+        Vector3 dir = (p3 - p0).normalized; // Unused now?
+        float midX = (p3.x - p0.x) / 2f;
+        Vector3 offsetX = new Vector3(midX, 0, 0); // 0.5 in X
         Vector3 offsetY = new Vector3(0, 1.0f, 0); // 1.0 in Y
 
         Vector3 p1 = p0 + offsetX;
