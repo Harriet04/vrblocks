@@ -660,10 +660,13 @@ public class BlockSnapping : MonoBehaviour
         parentToPlayer.y = 0;
 
         // Radius of circular arc (distance from root to player)
-        float radius = Vector3.Distance(playerPosition, parentPosition);
+        float radius = Vector2.Distance(
+            new Vector2(playerPosition.x, playerPosition.z),
+            new Vector2(parentPosition.x, parentPosition.z)
+        );
 
         // Calculate new position on circular arc for this block
-        Vector3 adjustedPosition = GetCircularOffset(playerPosition, parentToPlayer, radius, adjustPositionX, 10f); // Adjust the float number to modify distance between columns!!!
+        Vector3 adjustedPosition = GetCircularOffset(playerPosition, parentToPlayer, radius, adjustPositionX, 15f); // Adjust the float number to modify distance between columns!!!
 
         // Apply y-offset to maintain block stack
         adjustedPosition.y = initialRootBlockPosition.y + (adjustPositionY * yBlockOffset);
