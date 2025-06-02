@@ -20,9 +20,11 @@ public class WireLine : MonoBehaviour
         Vector3 p0 = startPoint.position;
         Vector3 p3 = endPoint.position;
 
-        Vector3 dir = (p3 - p0).normalized;
-        Vector3 offsetX = new Vector3(0.25f, 0, 0); // 0.5 in X
-        Vector3 offsetY = new Vector3(0, 1.0f, 0); // 1.0 in Y
+        Vector3 dir = (p3 - p0).normalized; // Unused now?
+        float midX = (p3.x - p0.x) / 2f;
+        float midZ = (p3.z - p0.z) / 2f;
+        Vector3 offsetX = new Vector3(midX, 0, midZ); // Move to midpoint (along x and z-axes) between two blocks
+        Vector3 offsetY = new Vector3(0, 1.0f, 0); // Move to y-axis of child block
 
         Vector3 p1 = p0 + offsetX;
         Vector3 p2 = p1 + offsetY;
