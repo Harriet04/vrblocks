@@ -633,10 +633,11 @@ public class ExecutionDirector : MonoBehaviour
         GrabFunctionsInScene();
 
         int blocksAllQueues = mainBlockList.Count;
-        foreach(var fbl in functionBlockLists)
-        {
-            blocksAllQueues += fbl.Value.Count;
-        }
+        // Commented out because we only want to count the main queue blocks.
+        // foreach(var fbl in functionBlockLists)
+        // {
+        //     blocksAllQueues += fbl.Value.Count;
+        // }
         handBoundUI.SetBlockCount(blocksAllQueues);
     }
 
