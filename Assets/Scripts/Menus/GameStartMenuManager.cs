@@ -13,6 +13,7 @@ public class GameStartMenu : MonoBehaviour
     public GameObject startMenu;
     public GameObject options;
     public GameObject levelSelector;
+    public GameObject modeSelector;
 
     [Header("Start Menu Buttons")]
     public Button playGameButton;
