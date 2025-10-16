@@ -1,0 +1,45 @@
+{
+    "name": "KeyboardControls",
+    "maps": [
+        {
+            "name": "KeybordMain",
+            "id": "27edc7cf-c59a-4295-bd50-cb5da200ada9",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "b3e9b031-1ed2-4c52-90b8-39ad87bd058c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ac7a8d6e-653c-4c75-bd1e-3d30079d892f",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0fe1a1e-c228-4ce9-b095-6f3509d4c0e4",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
