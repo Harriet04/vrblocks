@@ -10,8 +10,9 @@ public class ModeSelectMenu : MonoBehaviour
     public Button LevelButton;
 
     // GameObjects
-    public GameObject SandboxMode;
-    public GameObject LevelMode;
+    public GameObject SandboxModeView;
+    public GameObject LevelModeView;
+    public GameObject LevelSelector;
 
     public float AnimSpeed = 0.3f;
 
@@ -44,6 +45,7 @@ public class ModeSelectMenu : MonoBehaviour
     public void OpenLevelSelectMenu()
     {
         if (!Enabled) { return; }
+        LevelSelector.LeanScale(Vector3.one, AnimSpeed).setEaseInOutCubic();
         DisableMenu();
     }
     
@@ -61,8 +63,8 @@ public class ModeSelectMenu : MonoBehaviour
     {
         //SandboxButton.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
         //LevelButton.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
-        SandboxMode.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
-        LevelMode.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
+        SandboxModeView.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
+        LevelModeView.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
     }
 
     public void EnableMenu()
