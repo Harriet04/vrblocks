@@ -31,6 +31,8 @@ public class GameStartMenu : MonoBehaviour
             options.LeanScale(Vector3.zero, 0f);
             levelSelector.SetActive(true);
             levelSelector.LeanScale(Vector3.zero, 0f);
+            modeSelector.SetActive(true);
+            modeSelector.LeanScale(Vector3.zero, 0f);
             SceneTransitionStates.SetGameStart(false);
         }
         else{                                                                       //TODO: For non-level returns to the main menu, create more conditional branches from here
@@ -39,8 +41,10 @@ public class GameStartMenu : MonoBehaviour
             options.SetActive(true);
             options.LeanScale(Vector3.zero, 0f);
             levelSelector.SetActive(true);
+            modeSelector.SetActive(true);
+            modeSelector.LeanScale(Vector3.zero, 0f);
         }
-        playGameButton.onClick.AddListener(EnableLevelSelectorMenu);
+        playGameButton.onClick.AddListener(EnableGameModeSelectorMenu);
         optionsButton.onClick.AddListener(EnableOptionsMenu);
         quitButton.onClick.AddListener(QuitGame);
 
@@ -58,22 +62,36 @@ public class GameStartMenu : MonoBehaviour
         }
     }
 
+
+    public void EnableGameModeSelectorMenu()
+    {
+        modeSelector.LeanScale(Vector3.one, animationSpeed).setEaseInOutCubic();
+
+        startMenu.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+        options.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+        levelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+
+    }
+
     public void EnableStartMenu(){
         startMenu.LeanScale(Vector3.one, animationSpeed).setEaseInOutCubic();
         options.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         levelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+        modeSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
     }
 
     public void EnableOptionsMenu(){
         startMenu.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         options.LeanScale(Vector3.one, animationSpeed).setEaseInOutCubic();
         levelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+        modeSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
     }
 
     public void EnableLevelSelectorMenu(){
         startMenu.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         options.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         levelSelector.LeanScale(Vector3.one, animationSpeed).setEaseInOutCubic();
+        modeSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
     } 
 
     public void QuitGame(){

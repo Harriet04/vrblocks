@@ -16,9 +16,6 @@ public class ModeSelectMenu : MonoBehaviour
 
     public float AnimSpeed = 0.3f;
 
-    //Initially Disabled
-    private bool Enabled = false;
-
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +24,7 @@ public class ModeSelectMenu : MonoBehaviour
         SandboxButton.onClick.AddListener(OpenSandboxMenu);
 
 
-        LevelButton.onClick.AddListener(() =>
-        {
-            //Get Level Manager
-            //Open That UI
-            //Close This UI
-        }
-        );
+        LevelButton.onClick.AddListener(OpenLevelSelectMenu);
     }
 
     // Update is called once per frame
@@ -44,7 +35,6 @@ public class ModeSelectMenu : MonoBehaviour
 
     public void OpenLevelSelectMenu()
     {
-        if (!Enabled) { return; }
         LevelSelector.LeanScale(Vector3.one, AnimSpeed).setEaseInOutCubic();
         DisableMenu();
     }
@@ -61,21 +51,17 @@ public class ModeSelectMenu : MonoBehaviour
     // If elements are originally scaled differently, this will maintain thier original scale.
     private void SetRelativeScale(Vector3 Scale)
     {
-        //SandboxButton.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
-        //LevelButton.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
-        SandboxModeView.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
-        LevelModeView.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
+        //Scale the game object this script is applied to
+        gameObject.LeanScale(Scale, AnimSpeed).setEaseInOutCubic();
     }
 
     public void EnableMenu()
     {
         SetRelativeScale(Vector3.one);
-        Enabled = true;
     }
 
     public void DisableMenu()
     {
         SetRelativeScale(Vector3.zero);
-        Enabled = false;
     }
 }
