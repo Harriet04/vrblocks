@@ -42,7 +42,7 @@ public class ModeSelectMenu : MonoBehaviour
     public void OpenSandboxMenu()
     {
         //Sandbox not active, play error sound
-
+        //Perhaps a sub-menu of previously created levels. Otherwise just load the mode and close this UI
         //DisableMenu();
     }
 
