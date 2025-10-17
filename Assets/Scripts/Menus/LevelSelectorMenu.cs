@@ -18,6 +18,8 @@ public class LevelSelectorMenu : MonoBehaviour
     public GameObject rightLevelView;
 
     private int selectedLevelIndex = SceneTransitionStates.GetSelectedLevel();
+    private int MinLevel = 0;
+    private int MaxLevel = 16;
     private Sprite[] levelThumbnails;
     private string[] levelTitles;
 
@@ -94,6 +96,14 @@ public class LevelSelectorMenu : MonoBehaviour
         UpdateDisplayView();
     }
 
+    public void SetMinMaxLevel(int minLevel, int maxLevel)
+    {
+        MinLevel = minLevel;
+        MaxLevel = maxLevel;
+        selectedLevelIndex = minLevel;
+        UpdateDisplayView();
+    }
+
     public void GoToLevel()
     {
         SceneTransitionManager.singleton.GoToSceneAsync(selectedLevelIndex, LoadSceneBy.LevelStatesManagerArrayOrder);
@@ -147,7 +157,7 @@ public class LevelSelectorMenu : MonoBehaviour
     {
 
         // For error handling, show nothing if there are no levels
-        if (levelThumbnails.Length > 0)
+        if (levelThumbnails.Length > MinLevel)
         {
             middleLevelView.SetActive(true);
             Image mThumbnail = middleLevelView.transform.Find("LevelThumbnail").GetComponent<Image>();
@@ -161,7 +171,7 @@ public class LevelSelectorMenu : MonoBehaviour
         }
 
         // Display Left View
-        if (selectedLevelIndex > 0)
+        if (selectedLevelIndex > MinLevel && levelThumbnails.Length>selectedLevelIndex-1)
         {
             leftNavigateButton.gameObject.SetActive(true);
             Image lThumbnail = leftLevelView.transform.Find("LevelThumbnail").GetComponent<Image>();
@@ -176,7 +186,7 @@ public class LevelSelectorMenu : MonoBehaviour
         }
 
         // Display Right View
-        if (selectedLevelIndex < levelThumbnails.Length - 1)
+        if (selectedLevelIndex < levelThumbnails.Length - 1 && selectedLevelIndex<MaxLevel)
         {
             rightNavigateButton.gameObject.SetActive(true);
             Image rThumbnail = rightLevelView.transform.Find("LevelThumbnail").GetComponent<Image>();
