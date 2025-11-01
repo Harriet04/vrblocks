@@ -16,6 +16,7 @@ TagManager:
   - MenuUIToggle
   - MiniMap
   - StartBlock
+  - Interactable
   layers:
   - Default
   - TransparentFX
