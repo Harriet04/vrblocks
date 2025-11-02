@@ -18,6 +18,8 @@ TagManager:
   - StartBlock
   - moveForward
   - startQueue
+  - rotateLeft
+  - rotateRight
   layers:
   - Default
   - TransparentFX
