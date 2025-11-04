@@ -14,6 +14,9 @@ public class PlacementSystem : MonoBehaviour
     private Grid grid;
 
     [SerializeField]
+    private Vector3 minVal, maxVal;
+
+    [SerializeField]
     GameObject PlacementObject, UnsnappedObject, Hand;
 
     [SerializeField]
@@ -39,11 +42,17 @@ public class PlacementSystem : MonoBehaviour
         //Sphere should be roughly CastDistance away from the hand. We'll snap that position to the 3D grid.
         //The forward vector on the hand mesh is facing backwards, that's why I'm subtracting.
         Vector3 LoosePosition = Hand.transform.position - Hand.transform.forward*CastDistance;
+        //clamping to grid
+        Vector3 clampedPosition = new Vector3(
+            Mathf.Clamp(LoosePosition.x, minVal.x, maxVal.x),
+            Mathf.Clamp(LoosePosition.y, minVal.y, maxVal.y),
+            Mathf.Clamp(LoosePosition.z, minVal.z, maxVal.z)
+            );
         //WorldToCell floors rather than rounds, so add half a cell
-        Vector3Int SnappedCell = grid.WorldToCell(LoosePosition+grid.cellSize*0.5f);
+        Vector3Int SnappedCell = grid.WorldToCell(clampedPosition + grid.cellSize*0.5f);
         Vector3 SnappedPosition = grid.CellToWorld(SnappedCell);
         PlacementObject.transform.position = SnappedPosition;
-        UnsnappedObject.transform.position = LoosePosition;
+        UnsnappedObject.transform.position = clampedPosition;
 
     }
 }
