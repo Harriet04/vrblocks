@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private Vector2 CastDistanceRange;
     private float CastDistance = 0.0f;
+    [SerializeField]
+    private float PushSensitivity = 0.2f; //How much to push by per second of having an input held
+
+    public InputActionProperty PushInput;
+    public InputActionProperty PullInput;
 
     private void Start()
     {
@@ -29,6 +35,7 @@ public class PlacementSystem : MonoBehaviour
         //We'll want to handle controller events to to push/pull this distance.
         CastDistance += CastDistanceRange.x;
     }
+
 
     private void Update()
     {
@@ -39,9 +46,22 @@ public class PlacementSystem : MonoBehaviour
         cellIndicator.transform.position = grid.CellToWorld(gridPosition);
         */
 
-        //Sphere should be roughly CastDistance away from the hand. We'll snap that position to the 3D grid.
-        //The forward vector on the hand mesh is facing backwards, that's why I'm subtracting.
-        Vector3 LoosePosition = Hand.transform.position - Hand.transform.forward*CastDistance;
+        //Push/pull the block if these are triggered
+        if (PushInput.action.ReadValue<float>() > 0.5)
+        {
+            Debug.Log("Push");
+            CastDistance += PushSensitivity * Time.deltaTime;
+        }
+        if (PullInput.action.ReadValue<float>() > 0.5)
+        {
+            Debug.Log("Pull");
+            CastDistance -= PushSensitivity * Time.deltaTime;
+        }
+        CastDistance = Mathf.Clamp(CastDistance,CastDistanceRange.x,CastDistanceRange.y);
+
+            //Sphere should be roughly CastDistance away from the hand. We'll snap that position to the 3D grid.
+            //The forward vector on the hand mesh is facing backwards, that's why I'm subtracting.
+            Vector3 LoosePosition = Hand.transform.position - Hand.transform.forward * CastDistance;
         //clamping to grid
         Vector3 clampedPosition = new Vector3(
             Mathf.Clamp(LoosePosition.x, minVal.x, maxVal.x),

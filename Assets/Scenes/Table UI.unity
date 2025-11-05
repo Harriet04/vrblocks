@@ -2205,7 +2205,32 @@ MonoBehaviour:
   PlacementObject: {fileID: 2051191817}
   UnsnappedObject: {fileID: 1300544757}
   Hand: {fileID: 94565447}
-  CastDistanceRange: {x: 1, y: 3}
+  CastDistanceRange: {x: 0.5, y: 3}
+  PushSensitivity: 1
+  PushInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Push Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: db402f57-cfa0-41e9-a23a-d10e63cecdc2
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  PullInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pull Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 8946c9e1-2f3a-4aa5-a469-58117f2e184f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -3059995133750637719, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1255022708
 GameObject:
   m_ObjectHideFlags: 0
