@@ -83,7 +83,7 @@ public class ButtonFollowVisual : MonoBehaviour
         }
         else// calls reset function
         {
-            visualTarget.localPosition = Vector3.Lerp(visualTarget.localPosition,  initalLocalPos, Time.deltaTime*resetSpeed)
+            visualTarget.localPosition = Vector3.Lerp(visualTarget.localPosition, initalLocalPos, Time.deltaTime * resetSpeed);
         }
     }
 }
