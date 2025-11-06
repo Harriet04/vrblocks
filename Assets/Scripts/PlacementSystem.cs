@@ -18,7 +18,7 @@ public class PlacementSystem : MonoBehaviour
     private Vector3 minVal, maxVal;
 
     [SerializeField]
-    GameObject PlacementObject, UnsnappedObject, Hand;
+    GameObject HoverObject, UnsnappedObject, Hand;
 
     [SerializeField]
     private Vector2 CastDistanceRange;
@@ -28,7 +28,26 @@ public class PlacementSystem : MonoBehaviour
 
     public InputActionProperty PushInput;
     public InputActionProperty PullInput;
+    public InputActionProperty PlaceInput;
+    public InputActionProperty DeleteInput;
 
+    //object to be placed into grid on input
+    public GameObject PlacementObject;
+    //struct for placing new objects into managing vector
+    public struct LevelObject
+    {
+        public GameObject obj;
+        public Vector3 pos;
+
+        public LevelObject(GameObject o, Vector3 v)
+        {
+            obj = o;
+            pos = v;
+        }
+    }
+    //vector to hold all objects in grid
+    private List<LevelObject> levelObjects = new List<LevelObject>();
+    private int levelObjectsSize = 0;
     private void Start()
     {
         //Set CastDistance to the minimum cast value
@@ -57,11 +76,11 @@ public class PlacementSystem : MonoBehaviour
             Debug.Log("Pull");
             CastDistance -= PushSensitivity * Time.deltaTime;
         }
-        CastDistance = Mathf.Clamp(CastDistance,CastDistanceRange.x,CastDistanceRange.y);
+        CastDistance = Mathf.Clamp(CastDistance, CastDistanceRange.x, CastDistanceRange.y);
 
-            //Sphere should be roughly CastDistance away from the hand. We'll snap that position to the 3D grid.
-            //The forward vector on the hand mesh is facing backwards, that's why I'm subtracting.
-            Vector3 LoosePosition = Hand.transform.position - Hand.transform.forward * CastDistance;
+        //Sphere should be roughly CastDistance away from the hand. We'll snap that position to the 3D grid.
+        //The forward vector on the hand mesh is facing backwards, that's why I'm subtracting.
+        Vector3 LoosePosition = Hand.transform.position - Hand.transform.forward * CastDistance;
         //clamping to grid
         Vector3 clampedPosition = new Vector3(
             Mathf.Clamp(LoosePosition.x, minVal.x, maxVal.x),
@@ -69,10 +88,59 @@ public class PlacementSystem : MonoBehaviour
             Mathf.Clamp(LoosePosition.z, minVal.z, maxVal.z)
             );
         //WorldToCell floors rather than rounds, so add half a cell
-        Vector3Int SnappedCell = grid.WorldToCell(clampedPosition + grid.cellSize*0.5f);
+        Vector3Int SnappedCell = grid.WorldToCell(clampedPosition + grid.cellSize * 0.5f);
         Vector3 SnappedPosition = grid.CellToWorld(SnappedCell);
-        PlacementObject.transform.position = SnappedPosition;
+        HoverObject.transform.position = SnappedPosition;
         UnsnappedObject.transform.position = clampedPosition;
 
+
+        //if place block input has been pressed, call place block function.
+        if (PlaceInput.action.ReadValue<float>() > 0.5)
+        {
+            Debug.Log("Place Object");
+            PlaceObject(SnappedPosition);
+        }
+
+        //if delete block input has been pressed
+        if (DeleteInput.action.ReadValue<float>() > 0.5)
+        {
+            Debug.Log("Delete Object");
+            DeleteObject(SnappedPosition);
+        }
+    }
+
+    //check to make sure an object is not already in the position, then place object
+    void PlaceObject(Vector3 posv)
+    {
+        bool canPlace = true;
+        foreach (LevelObject temp in levelObjects)
+        {
+            if (temp.pos.x == posv.x && temp.pos.y == posv.y && temp.pos.z == posv.z)
+            {
+                canPlace = false;
+            }
+        }
+        if (canPlace)
+        {
+            LevelObject temp = new LevelObject(Instantiate(PlacementObject, posv, Quaternion.Euler(0, 0, 0)), posv);
+            levelObjects.Add(temp);
+            levelObjectsSize += 1;
+        }
+    }
+    
+    //delete object at given position
+    void DeleteObject(Vector3 posv)
+    {
+        foreach (LevelObject temp in levelObjects)
+        {
+            if(temp.pos.x == posv.x && temp.pos.y == posv.y && temp.pos.z == posv.z)
+            {
+                Debug.Log("block deleted");
+                Destroy(temp.obj);
+                levelObjects.Remove(temp);
+                levelObjectsSize -= 1;
+                continue;
+            }
+        }
     }
 }
