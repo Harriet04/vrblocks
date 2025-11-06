@@ -348,7 +348,7 @@ Transform:
   m_GameObject: {fileID: 136738452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8, y: 1.5, z: 1}
+  m_LocalPosition: {x: 0.25, y: 0.25, z: 0.25}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2200,9 +2200,9 @@ MonoBehaviour:
   cellIndicator: {fileID: 219779115}
   gridtracking: {fileID: 1188179655}
   grid: {fileID: 1854591313}
-  minVal: {x: 12, y: 2.5, z: -2.5}
-  maxVal: {x: 15.5, y: 7.5, z: 1}
-  PlacementObject: {fileID: 2051191817}
+  minVal: {x: 1, y: 1, z: 1}
+  maxVal: {x: 8, y: 8, z: 8}
+  HoverObject: {fileID: 219779115}
   UnsnappedObject: {fileID: 1300544757}
   Hand: {fileID: 94565447}
   CastDistanceRange: {x: 0.5, y: 3}
@@ -2231,6 +2231,31 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -3059995133750637719, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  PlaceInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Place Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 202c9ec8-607e-424b-a83b-b4b4f3d1b00a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -4201894270441249665, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
+  DeleteInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Delete Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 6d4bd3c9-80c9-4870-acef-0d7ddb7c4b4e
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5188782311186578770, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
+  PlacementObject: {fileID: 2844158347067402648, guid: 040b808da240c4b54a6a4135c497a5ec, type: 3}
 --- !u!1 &1255022708
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,7 +3323,7 @@ Transform:
   m_GameObject: {fileID: 1681219954}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.27, y: -0.67, z: -1.37}
+  m_LocalPosition: {x: -4.44, y: 0.75, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4008,7 +4033,7 @@ Transform:
   m_GameObject: {fileID: 1854591311}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: -0.25, z: -0.25}
+  m_LocalPosition: {x: -2, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

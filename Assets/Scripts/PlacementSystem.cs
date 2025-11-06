@@ -15,7 +15,7 @@ public class PlacementSystem : MonoBehaviour
     private Grid grid;
 
     [SerializeField]
-    private Vector3 minVal, maxVal;
+    private Vector3Int minVal, maxVal;
 
     [SerializeField]
     GameObject HoverObject, UnsnappedObject, Hand;
@@ -82,16 +82,21 @@ public class PlacementSystem : MonoBehaviour
         //The forward vector on the hand mesh is facing backwards, that's why I'm subtracting.
         Vector3 LoosePosition = Hand.transform.position - Hand.transform.forward * CastDistance;
         //clamping to grid
-        Vector3 clampedPosition = new Vector3(
+        /*Vector3 clampedPosition = new Vector3(
             Mathf.Clamp(LoosePosition.x, minVal.x, maxVal.x),
             Mathf.Clamp(LoosePosition.y, minVal.y, maxVal.y),
             Mathf.Clamp(LoosePosition.z, minVal.z, maxVal.z)
-            );
+            );*/
         //WorldToCell floors rather than rounds, so add half a cell
-        Vector3Int SnappedCell = grid.WorldToCell(clampedPosition + grid.cellSize * 0.5f);
+        Vector3Int SnappedCell = grid.WorldToCell(LoosePosition + grid.cellSize * 0.5f);
+        //Clamp the Cell Position
+        SnappedCell.x = Mathf.Clamp(SnappedCell.x, minVal.x, maxVal.x);
+        SnappedCell.y = Mathf.Clamp(SnappedCell.y, minVal.y, maxVal.y);
+        SnappedCell.z = Mathf.Clamp(SnappedCell.z, minVal.z, maxVal.z);
+
         Vector3 SnappedPosition = grid.CellToWorld(SnappedCell);
         HoverObject.transform.position = SnappedPosition;
-        UnsnappedObject.transform.position = clampedPosition;
+        UnsnappedObject.transform.position = LoosePosition;
 
 
         //if place block input has been pressed, call place block function.
