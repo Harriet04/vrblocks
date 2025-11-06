@@ -489,9 +489,10 @@ GameObject:
   - component: {fileID: 5193952577149159851}
   - component: {fileID: 5898737590057607060}
   - component: {fileID: 4549401912873908559}
+  - component: {fileID: 9093934722404541842}
   m_Layer: 0
   m_Name: Interactable
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -526,7 +527,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -696,7 +697,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualTarget: {fileID: 5704170293448868553}
   localAxis: {x: 0, y: -1, z: 0}
+  resetSpeed: 5
+  followAngleTreshold: 0
   isFollowing: 0
+--- !u!114 &9093934722404541842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6219390975030029935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d4448680329a1418ffd46d908fed2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadTime: 1
+  onPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnReleased:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7563543646215303119
 GameObject:
   m_ObjectHideFlags: 0
