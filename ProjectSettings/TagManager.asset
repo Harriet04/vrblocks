@@ -16,6 +16,13 @@ TagManager:
   - MenuUIToggle
   - MiniMap
   - StartBlock
+  - Button
+  - moveForward
+  - startQueue
+  - rotateLeft
+  - rotateRight
+  - jump
+  - if
   layers:
   - Default
   - TransparentFX
