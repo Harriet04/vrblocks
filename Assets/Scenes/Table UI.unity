@@ -349,7 +349,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8, y: 1.5, z: 1}
-  m_LocalScale: {x: 0.393935, y: 0.393935, z: 0.393935}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1681219955}
@@ -2200,8 +2200,8 @@ MonoBehaviour:
   cellIndicator: {fileID: 219779115}
   gridtracking: {fileID: 1188179655}
   grid: {fileID: 1854591313}
-  minVal: {x: 11, y: 0, z: -2}
-  maxVal: {x: 15, y: 8, z: 2}
+  minVal: {x: 12, y: 2.5, z: -2.5}
+  maxVal: {x: 15.5, y: 7.5, z: 1}
   PlacementObject: {fileID: 2051191817}
   UnsnappedObject: {fileID: 1300544757}
   Hand: {fileID: 94565447}
