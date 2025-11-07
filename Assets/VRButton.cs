@@ -47,7 +47,7 @@ public class VRButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((visualTarget.localPosition - initalLocalPos).sqrMagnitude < 0)
+        if ((visualTarget.localPosition - initalLocalPos).sqrMagnitude > 0)
         {
             onPressed.Invoke();
             Debug.Log("VR Button Pressed");
