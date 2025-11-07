@@ -9,6 +9,9 @@ public class VRButton : MonoBehaviour
 
     private bool _deadTimeActive = false; // Bool for button lock state
 
+    private Vector3 initalLocalPos;// position refrence
+    public Transform visualTarget;
+
     public UnityEvent onPressed, OnReleased;//public events for editor functions
 
     private void OnTriggerEnter(Collider other) // checks if button has entered Pressed and sets onPressed
@@ -38,12 +41,16 @@ public class VRButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        initalLocalPos = visualTarget.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if ((visualTarget.localPosition - initalLocalPos).sqrMagnitude < 0)
+        {
+            onPressed.Invoke();
+            Debug.Log("VR Button Pressed");
+        }
     }
 }
