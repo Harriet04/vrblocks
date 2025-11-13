@@ -4621,6 +4621,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5521336260826798716, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623290239108848666, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6801820706865977547, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4660,6 +4668,10 @@ PrefabInstance:
     - target: {fileID: 6801820706865977547, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518829969673121704, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8297278869765511259, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: xrRig
