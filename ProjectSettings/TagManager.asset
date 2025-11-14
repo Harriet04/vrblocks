@@ -23,6 +23,7 @@ TagManager:
   - jump
   - if
   - else
+  - while
   layers:
   - Default
   - TransparentFX
