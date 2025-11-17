@@ -24,6 +24,7 @@ TagManager:
   - if
   - else
   - while
+  - condition
   layers:
   - Default
   - TransparentFX
