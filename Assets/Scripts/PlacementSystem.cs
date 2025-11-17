@@ -30,19 +30,23 @@ public class PlacementSystem : MonoBehaviour
     public InputActionProperty PullInput;
     public InputActionProperty PlaceInput;
     public InputActionProperty DeleteInput;
+    public InputActionProperty CycleInput;
 
     //object to be placed into grid on input
-    public GameObject PlacementObject;
+    public List<GameObject> PlacementObjects = new List<GameObject>();
+    private int CycleCounter = 0;
     //struct for placing new objects into managing vector
     public struct LevelObject
     {
         public GameObject obj;
         public Vector3 pos;
 
-        public LevelObject(GameObject o, Vector3 v)
+        public int type;
+        public LevelObject(GameObject o, Vector3 v, int t)
         {
             obj = o;
             pos = v;
+            type = t;
         }
     }
     //vector to hold all objects in grid
@@ -112,9 +116,26 @@ public class PlacementSystem : MonoBehaviour
             Debug.Log("Delete Object");
             DeleteObject(SnappedPosition);
         }
+
+        //cycle through available objects to place
+        if(CycleInput.action.WasPressedThisFrame())
+        {
+            Debug.Log("Cycle Objects");
+            if (CycleCounter+1 == PlacementObjects.Count)
+            {
+                CycleCounter = 0;
+            }
+            else
+            {
+                CycleCounter += 1;
+            }
+        }
     }
 
     //check to make sure an object is not already in the position, then place object
+    public Transform scaleFactor;
+    private bool isTurtle = false;
+    private bool isFlag = false;
     void PlaceObject(Vector3 posv)
     {
         bool canPlace = true;
@@ -127,12 +148,50 @@ public class PlacementSystem : MonoBehaviour
         }
         if (canPlace)
         {
-            LevelObject temp = new LevelObject(Instantiate(PlacementObject, posv, Quaternion.Euler(0, 0, 0)), posv);
+            LevelObject temp = new LevelObject(Instantiate(PlacementObjects[CycleCounter], posv, Quaternion.Euler(0, 0, 0)), posv, CycleCounter);
+            temp.obj.transform.localScale = new Vector3(scaleFactor.localScale.x/2, scaleFactor.localScale.y/2, scaleFactor.localScale.z/2);   //match scale of parent grid when placing
+            temp.obj.transform.rotation = scaleFactor.transform.rotation;   //match rotation of parent grid when placing
             levelObjects.Add(temp);
             levelObjectsSize += 1;
+
+            if (temp.type == 2 && isTurtle == false)    //remove old turtle if new one is placed
+            {
+                isTurtle = true;
+            }
+            else if (temp.type == 2 && isTurtle == true)
+            {
+                foreach(LevelObject t in levelObjects)
+                {
+                    if(t.type == 2)
+                    {
+                        Destroy(t.obj);
+                        levelObjects.Remove(t);
+                        levelObjectsSize-=1;
+                        continue;
+                    }
+                }
+            }
+
+            if (temp.type == 3 && isFlag == false)    //remove old flag if new one is placed
+            {
+                isFlag = true;
+            }
+            else if (temp.type == 3 && isFlag == true)
+            {
+                foreach(LevelObject t in levelObjects)
+                {
+                    if(t.type == 3)
+                    {
+                        Destroy(t.obj);
+                        levelObjects.Remove(t);
+                        levelObjectsSize-=1;
+                        continue;
+                    }
+                }
+            }
         }
     }
-    
+
     //delete object at given position
     void DeleteObject(Vector3 posv)
     {
