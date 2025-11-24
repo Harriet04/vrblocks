@@ -92,7 +92,8 @@ public class PlacementSystem : MonoBehaviour
             Mathf.Clamp(LoosePosition.z, minVal.z, maxVal.z)
             );*/
         //WorldToCell floors rather than rounds, so add half a cell
-        Vector3Int SnappedCell = grid.WorldToCell(LoosePosition + grid.cellSize * 0.5f);
+        //lossyscale is the absolute scale of the grid
+        Vector3Int SnappedCell = grid.WorldToCell(LoosePosition + Vector3.Scale(grid.cellSize,grid.transform.lossyScale) * 0.5f);
         //Clamp the Cell Position
         SnappedCell.x = Mathf.Clamp(SnappedCell.x, minVal.x, maxVal.x);
         SnappedCell.y = Mathf.Clamp(SnappedCell.y, minVal.y, maxVal.y);
