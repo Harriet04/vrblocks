@@ -4608,6 +4608,9 @@ MonoBehaviour:
   TestLevel: {fileID: 11400000, guid: 30c92f8a06ad94ff6817a0427b4eff21, type: 2}
   PlacementObjects:
   - {fileID: 2844158347067402648, guid: 040b808da240c4b54a6a4135c497a5ec, type: 3}
+  - {fileID: 0}
+  - {fileID: 3548398643600602396, guid: f1ee4ab51e4d2b3a189cf3881dbf2ae0, type: 3}
+  - {fileID: 5145861100388396173, guid: 400fef76ef71943d48f3221445efd519, type: 3}
   Grid: {fileID: 996554644}
 --- !u!1 &516522197
 GameObject:
