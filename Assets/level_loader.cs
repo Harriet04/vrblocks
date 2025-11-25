@@ -28,7 +28,7 @@ public class level_loader : MonoBehaviour
         //load terrain blocks
         foreach (Vector3 Point in Level.spawnPoints)
         {
-            Vector3Int GridCoord = Vector3Int.RoundToInt(Point);
+            Vector3Int GridCoord = Vector3Int.RoundToInt(Point) + Level.offsetSpawnPoints;
             Vector3 SpawnCoords = Grid.CellToWorld(GridCoord);
             GameObject NewObj = Instantiate(PlacementObjects[0], SpawnCoords, Quaternion.identity);
             NewObj.transform.localScale = Grid.transform.lossyScale*0.5f;
@@ -38,16 +38,16 @@ public class level_loader : MonoBehaviour
 
         //load flag
         {
-            Vector3Int GridCoord = Vector3Int.RoundToInt(Level.goalSpawnPoint);
-            Vector3 SpawnCoords = Grid.CellToWorld(GridCoord);
+            Vector3Int GridCoord = Vector3Int.RoundToInt(Level.goalSpawnPoint) + Level.offsetSpawnPoints;
+            Vector3 SpawnCoords = Grid.CellToWorld(GridCoord)+Level.goalPositionOffset*Grid.transform.lossyScale.x;
             GameObject NewObj = Instantiate(PlacementObjects[2], SpawnCoords, Quaternion.identity);
             NewObj.transform.localScale = Grid.transform.lossyScale * 0.5f;
             ActiveGameObjects.Add(NewObj);
         }
-
+        
         //load turtle
         {
-            Vector3Int GridCoord = Vector3Int.RoundToInt(Level.turtleSpawnPoint);
+            Vector3Int GridCoord = Vector3Int.RoundToInt(Level.turtleSpawnPoint) + Level.offsetSpawnPoints;
             Vector3 SpawnCoords = Grid.CellToWorld(GridCoord);
             GameObject NewObj = Instantiate(PlacementObjects[3], SpawnCoords, Quaternion.identity);
             NewObj.transform.localScale = Grid.transform.lossyScale * 0.5f;
