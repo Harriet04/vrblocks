@@ -12,7 +12,7 @@ public class VRButton : MonoBehaviour
     private Vector3 initalLocalPos;// position refrence
     public Transform visualTarget;
 
-    public UnityEvent onPressed, OnReleased;//public events for editor functions
+    public UnityEvent onPressed, OnReleased;//public events for editor functions 
 
     private void OnTriggerEnter(Collider other) // checks if button has entered Pressed and sets onPressed
     {
@@ -51,7 +51,8 @@ public class VRButton : MonoBehaviour
         {
             onPressed.Invoke();
             Debug.Log("VR Button Pressed");
-            Debug.Log((visualTarget.localPosition - initalLocalPos).sqrMagnitude);
+
+            //Debug.Log((visualTarget.localPosition - initalLocalPos).sqrMagnitude);
         }
     }
 }
