@@ -2,6 +2,8 @@
  Level Selector + animations
 */
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +18,9 @@ public class LevelSelectorMenu : MonoBehaviour
     public GameObject middleLevelView;
     public GameObject leftLevelView;
     public GameObject rightLevelView;
+    public level_loader LevelLoader;
+    public bool LoadIntoCurrentScene = false;
+    public List<MapBlockScriptableObject> levelData;
 
     private int selectedLevelIndex = SceneTransitionStates.GetSelectedLevel();
     private int MinLevel = 0;
@@ -106,9 +111,20 @@ public class LevelSelectorMenu : MonoBehaviour
 
     public void GoToLevel()
     {
-        SceneTransitionManager.singleton.GoToSceneAsync(selectedLevelIndex, LoadSceneBy.LevelStatesManagerArrayOrder);
-        // SceneTransitionManager.singleton.GoToSceneAsync(selectedLevelIndex, LoadSceneBy.BuildSettingsOrder);
-        SceneTransitionStates.SetSelectedLevel(selectedLevelIndex);
+        //Load into the levelLoader
+        if (LoadIntoCurrentScene)
+        {
+            if(levelData.Count>selectedLevelIndex)
+            {
+                LevelLoader.LoadLevel(levelData[selectedLevelIndex]);
+            }
+        }
+        else
+        {
+            SceneTransitionManager.singleton.GoToSceneAsync(selectedLevelIndex, LoadSceneBy.LevelStatesManagerArrayOrder);
+            // SceneTransitionManager.singleton.GoToSceneAsync(selectedLevelIndex, LoadSceneBy.BuildSettingsOrder);
+            SceneTransitionStates.SetSelectedLevel(selectedLevelIndex);
+        }
     }
 
     public void AnimateNavigateLeft()
