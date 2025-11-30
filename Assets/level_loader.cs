@@ -35,7 +35,7 @@ public class level_loader : MonoBehaviour
     private List<GameObject> ActiveGameObjects = new List<GameObject>();
     void Start()
     {
-        LoadLevel(TestLevel);
+        //LoadLevel(TestLevel);
     }
 
     // Update is called once per frame

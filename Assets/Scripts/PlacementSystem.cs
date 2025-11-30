@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -207,5 +208,21 @@ public class PlacementSystem : MonoBehaviour
                 continue;
             }
         }
+    }
+    void OnDisable()
+    {
+        //Claer objects
+        foreach (LevelObject temp in levelObjects)
+        {
+            Destroy(temp.obj);
+        }
+        levelObjects.Clear();
+        HoverObject.transform.position = Vector3.zero;
+        UnsnappedObject.transform.position = Vector3.zero;
+        
+    }
+    private void OnEnable()
+    {
+        
     }
 }
