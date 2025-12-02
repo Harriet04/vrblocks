@@ -50,7 +50,7 @@ public class PlacementSystem : MonoBehaviour
         }
     }
     //vector to hold all objects in grid
-    private List<LevelObject> levelObjects = new List<LevelObject>();
+    public List<LevelObject> levelObjects = new List<LevelObject>();
     private int levelObjectsSize = 0;
     private void Start()
     {
@@ -190,6 +190,13 @@ public class PlacementSystem : MonoBehaviour
                 }
             }
         }
+    }
+
+    //Save objects in their positions
+
+    public List<LevelObject> getList()
+    {
+        return levelObjects;
     }
 
     //delete object at given position
