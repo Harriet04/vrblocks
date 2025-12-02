@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -92,7 +93,8 @@ public class PlacementSystem : MonoBehaviour
             Mathf.Clamp(LoosePosition.z, minVal.z, maxVal.z)
             );*/
         //WorldToCell floors rather than rounds, so add half a cell
-        Vector3Int SnappedCell = grid.WorldToCell(LoosePosition + grid.cellSize * 0.5f);
+        //lossyscale is the absolute scale of the grid
+        Vector3Int SnappedCell = grid.WorldToCell(LoosePosition + Vector3.Scale(grid.cellSize,grid.transform.lossyScale) * 0.5f);
         //Clamp the Cell Position
         SnappedCell.x = Mathf.Clamp(SnappedCell.x, minVal.x, maxVal.x);
         SnappedCell.y = Mathf.Clamp(SnappedCell.y, minVal.y, maxVal.y);
@@ -213,5 +215,21 @@ public class PlacementSystem : MonoBehaviour
                 continue;
             }
         }
+    }
+    void OnDisable()
+    {
+        //Claer objects
+        foreach (LevelObject temp in levelObjects)
+        {
+            Destroy(temp.obj);
+        }
+        levelObjects.Clear();
+        HoverObject.transform.position = Vector3.zero;
+        UnsnappedObject.transform.position = Vector3.zero;
+        
+    }
+    private void OnEnable()
+    {
+        
     }
 }
