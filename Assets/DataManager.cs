@@ -7,64 +7,41 @@ using static PlacementSystem;
 
 public class DataManager : MonoBehaviour
 {
-    //ScriptableObject newScriptableObject = ScriptableObject.CreateInstance(typeof(MapBlockScriptableObject));
+    
     ScriptableObject newScriptableObject;
-    // Start is called before the first frame update
     List<LevelObject> objects = new List<LevelObject>();
     public ScriptableObject scriptableObject;
-    PlacementSystem s1;
+    PlacementSystem s1 = new PlacementSystem();
 
-    /*void Start()
-    {
-        
-        //New game
-
-        //lod game
-    }
-    /*public void AccessObjectList()
-    {
-        PlacementSystem sourceInstance = new PlacementSystem();
-        List<LevelObject> accessedObjects = sourceInstance.LevelObjects;
-
-        foreach (LevelObject obj in accessedObjects) {
-
-    }*/
-
-    // Update is called once per frame
+    // Start is called before the first frame update
     public void Start()
     {
-        //save game
-        //objects = PlacementSystem.getList();
-        s1 = GetComponent<PlacementSystem>();
-        //newScriptableObject = Instantiate(scriptableObject);
-
-        MapBlockScriptableObject scriptReference = (MapBlockScriptableObject)scriptableObject;
-        //newScriptableObject = (MapBlockScriptableObject.Instantiate);     .GetComponent<MapBlockScriptableObject>();
-        MapBlockScriptableObject dummyObject = ScriptableObject.CreateInstance<MapBlockScriptableObject>();
-        //newScriptableObject.SetDirty();
-        //scriptReference.name = "newMap";
-        dummyObject.name = "DummyName";
-        //newScriptableObject.animationSpeed = 4;
-        //newScriptableObject.blockPrefabName = "MapBlock";
-        //newScriptableObject.blockScale = new Vector3(0.5f,0.5f,0.5f);
-        //newScriptableObject.goalPositionOffset = ;
-        //newScriptableObject.goalPrefabName = "GoalFlag";
-        //newScriptableObject.goalRotation = ;
-        //newScriptableObject.goalScale = new Vector3(0.3f, 0.3f, 0.3f);
-
-        dummyObject.goalSpawnPoint = new Vector3(0, 1, 0);
-        //newScriptableObject.movementDuration = ;
-        dummyObject.spawnPoints = new Vector3[2];
-        dummyObject.spawnPoints[0] = new Vector3(0,0,0);
-        dummyObject.spawnPoints[1] = new Vector3(-1,0,0);
-        //newScriptableObject.turtlePrefabName = "Turtle";
-        //newScriptableObject.turtleRotation = 0;
-        dummyObject.turtleSpawnPoint = new Vector3(-1, 1, 0);
-        /*int count = 0;
+        //The list is taken from the PlacementSystem script
+        objects = s1.getList();
         
+        //An instance of the scriptable object is created for editing
+        MapBlockScriptableObject scriptReference = (MapBlockScriptableObject)scriptableObject;
+        MapBlockScriptableObject dummyObject = ScriptableObject.CreateInstance<MapBlockScriptableObject>();
+        
+        //NEED TO get other names so multiple saves can be created
+        dummyObject.name = "DummyName";
+        
+        //A count is innitialized to track how many blocks have been placed
+        int count = 0;
+
         //NEED TO check that there is a turtle and flag present, and fail if not
-        dummyObject.spawnPoints = new Vector3[4];// This is assuming that there is a flag and a turtle
-        foreach (LevelObject temp in s1.levelObjects) 
+
+        //The amount of items in the list is recorded two messages are sent to check if the value is consistant
+        MonoBehaviour.print(s1.getListSize());
+        int listSize = s1.getListSize();
+        MonoBehaviour.print(listSize);
+        //The amount of block spawn points is extrapilated 
+        dummyObject.spawnPoints = new Vector3[listSize - 2];// This is assuming that there is a flag and a turtle, thus minus 2 as they are not recorded as blocks
+        //A check to ensure that the program has not failed based on null values
+        MonoBehaviour.print("CheckPoint");
+        
+        //The assigning of positions based on the type of block
+        foreach (LevelObject temp in objects) 
         {
             if (temp.type == 2)
             {
@@ -76,13 +53,15 @@ public class DataManager : MonoBehaviour
             }
             else
             {
-                dummyObject.spawnPoints[0] = new Vector3(temp.pos.x, temp.pos.y, temp.pos.z);
+                dummyObject.spawnPoints[count] = new Vector3(temp.pos.x, temp.pos.y, temp.pos.z);
                 count = count + 1;
             }
-        }*/
-     //    newScriptableObject = scriptReference;
-        AssetDatabase.CreateAsset(dummyObject, "Assets/Map/MapLayouts/" + dummyObject.name + ".asset");
+        }
         
+        //The asset is created and saved to the system
+        AssetDatabase.CreateAsset(dummyObject, "Assets/Map/MapLayouts/" + dummyObject.name + ".asset");
         AssetDatabase.SaveAssets();
+
+        //NEED TO clear the table -> traverse and call deleteObject
     }
 }

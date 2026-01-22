@@ -51,8 +51,8 @@ public class PlacementSystem : MonoBehaviour
         }
     }
     //vector to hold all objects in grid
-    public List<LevelObject> levelObjects = new List<LevelObject>();
-    private int levelObjectsSize = 0;
+    public static List<LevelObject> levelObjects = new List<LevelObject>(); //changed to static for outside access
+    public static int levelObjectsSize = 0;  //changed to static for outside access
     private void Start()
     {
         //Set CastDistance to the minimum cast value
@@ -192,12 +192,20 @@ public class PlacementSystem : MonoBehaviour
                 }
             }
         }
+        MonoBehaviour.print(levelObjectsSize);
     }
 
     //Save objects in their positions
 
+    public int getListSize()
+    {
+        MonoBehaviour.print("save - system - size");
+        MonoBehaviour.print(levelObjectsSize);
+        return levelObjectsSize;
+    }
     public List<LevelObject> getList()
     {
+        MonoBehaviour.print("save - system - list");
         return levelObjects;
     }
 
