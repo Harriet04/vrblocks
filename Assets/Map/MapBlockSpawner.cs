@@ -17,7 +17,7 @@ public class MapBlockSpawnerMenu : Editor
         {
             if (mapBlockSpawner.transform.childCount == 0)
             {
-                mapBlockSpawner.SpawnEntities();
+                mapBlockSpawner.SpawnEntities(mapBlockSpawner.testMapValues);
             }
             else
             {
@@ -38,7 +38,7 @@ public class MapBlockSpawner : MonoBehaviour
     public GameObject mapBlock;
     public GameObject goalObject;
     public TurtleMovement turtle;
-    public MapBlockScriptableObject mapValues;
+    public MapBlockScriptableObject testMapValues;
 
     private readonly DetectTurtle detectTurtle = new();
 
@@ -47,15 +47,16 @@ public class MapBlockSpawner : MonoBehaviour
         // delete children to spawn again
         if (transform.childCount == 0)
         {
-            SpawnEntities();
+            SpawnEntities(testMapValues);
         }
         else
         {
             detectTurtle.FindTurtle();
         }
     }
-    public void SpawnEntities()
+    public void SpawnEntities(MapBlockScriptableObject mapValues)
     {
+        ClearMap();
         Vector3 startPositionOffset = mapValues.blockScale / 2;
 
         GameObject? currentEntity = null;
@@ -75,7 +76,7 @@ public class MapBlockSpawner : MonoBehaviour
         GameObject generatedGoalObject = Instantiate(goalObject, goalCoords, Quaternion.Euler(mapValues.goalRotation));
         generatedGoalObject.transform.SetParent(gameObject.transform, false);
         generatedGoalObject.transform.localScale = mapValues.goalScale;
-        generatedGoalObject.transform.position += mapValues.goalPositionOffset;
+        generatedGoalObject.transform.position += Vector3.Scale(mapValues.goalPositionOffset, mapValues.blockScale/2);
         generatedGoalObject.name = mapValues.goalPrefabName;
 
         Vector3 turtleCoords = startPositionOffset + Vector3.Scale(mapValues.turtleSpawnPoint, mapValues.blockScale);

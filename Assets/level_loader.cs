@@ -27,6 +27,7 @@ public class LevelLoaderMenu : Editor
 public class level_loader : MonoBehaviour
 {
     // Start is called before the first frame update
+    public MapBlockSpawner MapSpawner;
     public MapBlockScriptableObject TestLevel;
     public List<GameObject> PlacementObjects = new List<GameObject>();
     public Grid Grid;
@@ -46,8 +47,11 @@ public class level_loader : MonoBehaviour
 
     public void LoadLevel(MapBlockScriptableObject Level)
     {
-        clearLevel(); //Don't want multiple levels to stack on top of each other
+        MapSpawner.ClearMap();
+        //clearLevel(); //Don't want multiple levels to stack on top of each other
 
+        MapSpawner.SpawnEntities(Level);
+        /*
         //load terrain blocks
         foreach (Vector3 Point in Level.spawnPoints)
         {
@@ -76,18 +80,19 @@ public class level_loader : MonoBehaviour
             Vector3Int GridCoord = Vector3Int.RoundToInt(Level.turtleSpawnPoint) + Level.offsetSpawnPoints;
             Vector3 SpawnCoords = Grid.CellToWorld(GridCoord);
             GameObject NewObj = Instantiate(PlacementObjects[3], SpawnCoords, Quaternion.identity);
-            NewObj.transform.localScale = Grid.transform.lossyScale * 0.5f;
+            NewObj.transform.localScale = Grid.transform.lossyScale * 1.0f;
             ActiveGameObjects.Add(NewObj);
             NewObj.transform.SetParent(this.gameObject.transform);
-        }
+        }*/
     }
 
     public void clearLevel()
     {
-        foreach (GameObject NewObj in ActiveGameObjects)
+        MapSpawner.ClearMap();
+        /*foreach (GameObject NewObj in ActiveGameObjects)
         {
             DestroyImmediate(NewObj);
         }
-        ActiveGameObjects.Clear();
+        ActiveGameObjects.Clear();*/
     }
 }
