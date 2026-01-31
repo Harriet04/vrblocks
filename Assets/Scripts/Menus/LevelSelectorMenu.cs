@@ -5,8 +5,45 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
+
+[CustomEditor(typeof(LevelSelectorMenu))]
+public class LevelSelectorGUI : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        LevelSelectorMenu LevelSelector = (LevelSelectorMenu)target;
+
+        if (GUILayout.Button("Propagate Dev Levels"))
+        {
+           AutoFillLevels(LevelSelector);
+        }
+    }
+    private void AutoFillLevels(LevelSelectorMenu menu)
+    {
+        string[] guids = AssetDatabase.FindAssets(
+            "t:MapBlockScriptableObject",
+            new[] { menu.devLevelsPath }
+        );
+
+        menu.levelData.Clear();
+
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            var level = AssetDatabase.LoadAssetAtPath<MapBlockScriptableObject>(path);
+            if (level != null)
+                menu.levelData.Add(level);
+        }
+
+        // Mark dirty so Unity saves the change
+        EditorUtility.SetDirty(menu);
+    }
+}
 
 public class LevelSelectorMenu : MonoBehaviour
 {
@@ -20,6 +57,7 @@ public class LevelSelectorMenu : MonoBehaviour
     public GameObject rightLevelView;
     public level_loader LevelLoader;
     public bool LoadIntoCurrentScene = false;
+    public string devLevelsPath = "Assets/Map/MapLayouts";
     public List<MapBlockScriptableObject> levelData;
 
     private int selectedLevelIndex = SceneTransitionStates.GetSelectedLevel();
