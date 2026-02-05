@@ -13,7 +13,7 @@ public class PlacementSystem : MonoBehaviour
     private GridTracking gridtracking;
 
     [SerializeField]
-    private Grid grid;
+    public Grid grid;
 
     [SerializeField]
     private Vector3Int minVal, maxVal;

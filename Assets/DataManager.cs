@@ -11,7 +11,7 @@ public class DataManager : MonoBehaviour
     ScriptableObject newScriptableObject;
     List<LevelObject> objects = new List<LevelObject>();
     public ScriptableObject scriptableObject;
-    PlacementSystem s1 = new PlacementSystem();
+    public PlacementSystem s1;
 
     // Start is called before the first frame update
     public void OnEnable()
@@ -70,15 +70,15 @@ public class DataManager : MonoBehaviour
         {
             if (temp.type == 2)
             {
-                dummyObject.turtleSpawnPoint = new Vector3(temp.pos.x, temp.pos.y, temp.pos.z);
+                dummyObject.turtleSpawnPoint = (Vector3)s1.grid.WorldToCell(temp.pos);
             }
             else if (temp.type == 3)
             {
-                dummyObject.goalSpawnPoint = new Vector3(temp.pos.x, temp.pos.y, temp.pos.z);
+                dummyObject.goalSpawnPoint = (Vector3)s1.grid.WorldToCell(temp.pos);
             }
             else
             {
-                dummyObject.spawnPoints[count] = new Vector3(temp.pos.x, temp.pos.y, temp.pos.z);
+                dummyObject.spawnPoints[count] = (Vector3)s1.grid.WorldToCell(temp.pos);
                 count = count + 1;
             }
         }
