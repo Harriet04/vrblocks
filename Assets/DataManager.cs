@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
     PlacementSystem s1 = new PlacementSystem();
 
     // Start is called before the first frame update
-    public void Start()
+    public void OnEnable()
     {
         //The list is taken from the PlacementSystem script
         objects = s1.getList();
@@ -30,7 +30,23 @@ public class DataManager : MonoBehaviour
         int count = 0;
 
         //NEED TO check that there is a turtle and flag present, and fail if not
-
+        bool turtleExists = false, goalExists=false;
+        foreach (LevelObject temp in objects)
+        {
+            if (temp.type == 2)
+            {
+                turtleExists=true;
+            }
+            else if (temp.type == 3)
+            {
+                goalExists=true;
+            }
+        }
+        if (!turtleExists || !goalExists)
+        {
+            MonoBehaviour.print("Save Failed");
+            return;
+        }
         //The amount of items in the list is recorded two messages are sent to check if the value is consistant
         MonoBehaviour.print(s1.getListSize());
         int listSize = s1.getListSize();
@@ -40,6 +56,15 @@ public class DataManager : MonoBehaviour
         //A check to ensure that the program has not failed based on null values
         MonoBehaviour.print("CheckPoint");
         
+        //Set default values
+        dummyObject.blockPrefabName = "MapBlock";
+        dummyObject.blockScale = new Vector3((float)0.5, (float)0.5, (float)0.5);
+        dummyObject.turtlePrefabName = "Turtle";
+        dummyObject.movementDuration = 1;
+        dummyObject.animationSpeed = 4;
+        dummyObject.goalPrefabName = "GoalFlag";
+        dummyObject.goalScale = new Vector3((float)0.3, (float)0.3, (float)0.3);
+
         //The assigning of positions based on the type of block
         foreach (LevelObject temp in objects) 
         {
