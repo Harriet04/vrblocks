@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.OpenXR.Input;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     GameObject HoverObject, UnsnappedObject, Hand;
 
+    int HoverObjectIndex = -1;
+
     [SerializeField]
     private Vector2 CastDistanceRange;
     private float CastDistance = 0.0f;
@@ -32,6 +35,8 @@ public class PlacementSystem : MonoBehaviour
     public InputActionProperty PlaceInput;
     public InputActionProperty DeleteInput;
     public InputActionProperty CycleInput;
+
+    public Vector3 goalPositionOffset;
 
     //object to be placed into grid on input
     public List<GameObject> PlacementObjects = new List<GameObject>();
@@ -101,6 +106,18 @@ public class PlacementSystem : MonoBehaviour
         SnappedCell.z = Mathf.Clamp(SnappedCell.z, minVal.z, maxVal.z);
 
         Vector3 SnappedPosition = grid.CellToWorld(SnappedCell);
+
+        //Change HoverObject to the object that is selected
+        if(HoverObject == null || HoverObjectIndex != CycleCounter)
+        {
+            if(HoverObject != null) { Destroy(HoverObject);  }
+            HoverObject = Instantiate(PlacementObjects[CycleCounter], SnappedPosition, Quaternion.Euler(0, 0, 0));
+            HoverObject.transform.localScale = new Vector3(scaleFactor.localScale.x / 2, scaleFactor.localScale.y / 2, scaleFactor.localScale.z / 2);   //match scale of parent grid when placing
+            HoverObject.transform.rotation = scaleFactor.transform.rotation;   //match rotation of parent grid when placing
+            HoverObjectIndex = CycleCounter;
+        }
+
+
         HoverObject.transform.position = SnappedPosition;
         UnsnappedObject.transform.position = LoosePosition;
 
@@ -156,15 +173,15 @@ public class PlacementSystem : MonoBehaviour
             levelObjects.Add(temp);
             levelObjectsSize += 1;
 
-            if (temp.type == 2 && isTurtle == false)    //remove old turtle if new one is placed
+            if (temp.type == 1 && isTurtle == false)    //remove old turtle if new one is placed
             {
                 isTurtle = true;
             }
-            else if (temp.type == 2 && isTurtle == true)
+            else if (temp.type == 1 && isTurtle == true)
             {
                 foreach(LevelObject t in levelObjects)
                 {
-                    if(t.type == 2)
+                    if(t.type == 1)
                     {
                         Destroy(t.obj);
                         levelObjects.Remove(t);
@@ -174,15 +191,15 @@ public class PlacementSystem : MonoBehaviour
                 }
             }
 
-            if (temp.type == 3 && isFlag == false)    //remove old flag if new one is placed
+            if (temp.type == 2 && isFlag == false)    //remove old flag if new one is placed
             {
                 isFlag = true;
             }
-            else if (temp.type == 3 && isFlag == true)
+            else if (temp.type == 2 && isFlag == true)
             {
                 foreach(LevelObject t in levelObjects)
                 {
-                    if(t.type == 3)
+                    if(t.type == 2)
                     {
                         Destroy(t.obj);
                         levelObjects.Remove(t);

@@ -33,11 +33,11 @@ public class DataManager : MonoBehaviour
         bool turtleExists = false, goalExists=false;
         foreach (LevelObject temp in objects)
         {
-            if (temp.type == 2)
+            if (temp.type == 1)
             {
                 turtleExists=true;
             }
-            else if (temp.type == 3)
+            else if (temp.type == 2)
             {
                 goalExists=true;
             }
@@ -68,11 +68,11 @@ public class DataManager : MonoBehaviour
         //The assigning of positions based on the type of block
         foreach (LevelObject temp in objects) 
         {
-            if (temp.type == 2)
+            if (temp.type == 1)
             {
                 dummyObject.turtleSpawnPoint = (Vector3)s1.grid.WorldToCell(temp.pos);
             }
-            else if (temp.type == 3)
+            else if (temp.type == 2)
             {
                 dummyObject.goalSpawnPoint = (Vector3)s1.grid.WorldToCell(temp.pos);
             }
