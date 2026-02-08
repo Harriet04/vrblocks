@@ -76,7 +76,7 @@ public class MapBlockSpawner : MonoBehaviour
         GameObject generatedGoalObject = Instantiate(goalObject, goalCoords, Quaternion.Euler(mapValues.goalRotation));
         generatedGoalObject.transform.SetParent(gameObject.transform, false);
         generatedGoalObject.transform.localScale = mapValues.goalScale;
-        generatedGoalObject.transform.position += Vector3.Scale(mapValues.goalPositionOffset, mapValues.blockScale/2);
+        //generatedGoalObject.transform.position += Vector3.Scale(mapValues.goalPositionOffset, mapValues.blockScale/2);
         generatedGoalObject.name = mapValues.goalPrefabName;
 
         Vector3 turtleCoords = startPositionOffset + Vector3.Scale(mapValues.turtleSpawnPoint, mapValues.blockScale);
