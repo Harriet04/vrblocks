@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class DataManager : MonoBehaviour
     List<LevelObject> objects = new List<LevelObject>();
     public ScriptableObject scriptableObject;
     public PlacementSystem s1;
+    public ScreenshotCapturer screenshotCapturer;
 
     // Start is called before the first frame update
     public void OnEnable()
@@ -88,5 +90,27 @@ public class DataManager : MonoBehaviour
         AssetDatabase.SaveAssets();
 
         //NEED TO clear the table -> traverse and call deleteObject
+
+
+        //Add Thumbnail to folder
+        Texture2D tex = screenshotCapturer.CaptureFromCamera();
+        byte[] png = tex.EncodeToPNG();
+
+
+
+        string myPath;
+        //If it's a player-made level, use this path
+        if (false) { myPath = Application.persistentDataPath; }
+        //Else, it's a developer-made level
+        else { myPath = "Assets/LevelData/Thumbnails/"; }
+
+
+        File.WriteAllBytes(
+            Path.Combine(myPath, dummyObject.name + ".png"),
+            png
+        );
+
+        //if this is a developer texture, refresh the AssetDatabase so it appears sooner
+        if (true) { AssetDatabase.Refresh(); }
     }
 }
