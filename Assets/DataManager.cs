@@ -91,7 +91,13 @@ public class DataManager : MonoBehaviour
 
         //NEED TO clear the table -> traverse and call deleteObject
 
+        CreateMetaData(dummyObject.name,true);
 
+        
+    }
+
+    public void CreateMetaData(string name, bool developerMode)
+    {
         //Add Thumbnail to folder
         Texture2D tex = screenshotCapturer.CaptureFromCamera();
         byte[] png = tex.EncodeToPNG();
@@ -100,17 +106,48 @@ public class DataManager : MonoBehaviour
 
         string myPath;
         //If it's a player-made level, use this path
-        if (false) { myPath = Application.persistentDataPath; }
+        if (developerMode) { myPath = "Assets/LevelData/Thumbnails/"; }
         //Else, it's a developer-made level
-        else { myPath = "Assets/LevelData/Thumbnails/"; }
+        else { myPath = Application.persistentDataPath; }
 
+        string assetPath = Path.Combine(myPath, name + ".png");
 
         File.WriteAllBytes(
-            Path.Combine(myPath, dummyObject.name + ".png"),
+            assetPath,
             png
         );
 
-        //if this is a developer texture, refresh the AssetDatabase so it appears sooner
-        if (true) { AssetDatabase.Refresh(); }
+
+        //Convert it to sprite
+        AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+
+        TextureImporter importer =
+            (TextureImporter)AssetImporter.GetAtPath(assetPath);
+
+        importer.textureType = TextureImporterType.Sprite;
+        importer.spriteImportMode = SpriteImportMode.Single;
+        importer.spritePixelsPerUnit = 100;
+        importer.mipmapEnabled = false;
+        importer.alphaIsTransparency = true;
+
+        importer.SaveAndReimport();
+        AssetDatabase.Refresh();
+
+
+
+        //Create the Metadata
+        LevelMetadataScriptableObject data= ScriptableObject.CreateInstance<LevelMetadataScriptableObject>();
+
+        data.levelThumbnail = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath); ;
+        data.displayName = name;
+
+        //This only works in editor; we'll need a separate pipeline for players
+        AssetDatabase.CreateAsset(data, "Assets/LevelData/MetaData/" + name + ".asset");
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+
+        //Clean-up texture
+        Destroy(tex);
+        Destroy(data);
     }
 }
