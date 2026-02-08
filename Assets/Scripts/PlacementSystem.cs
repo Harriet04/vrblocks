@@ -37,6 +37,7 @@ public class PlacementSystem : MonoBehaviour
     public InputActionProperty CycleInput;
 
     public Vector3 goalPositionOffset;
+    public Material HoverMaterial;
 
     //object to be placed into grid on input
     public List<GameObject> PlacementObjects = new List<GameObject>();
@@ -115,10 +116,19 @@ public class PlacementSystem : MonoBehaviour
             HoverObject.transform.localScale = new Vector3(scaleFactor.localScale.x / 2, scaleFactor.localScale.y / 2, scaleFactor.localScale.z / 2);   //match scale of parent grid when placing
             HoverObject.transform.rotation = scaleFactor.transform.rotation;   //match rotation of parent grid when placing
             HoverObjectIndex = CycleCounter;
+
+            //Set the highlight material on all of this GameObject's meshes.
+            if (HoverMaterial != null)
+            {
+                foreach (Renderer r in HoverObject.GetComponentsInChildren<Renderer>(true))
+                {
+                    r.sharedMaterial = HoverMaterial;
+                }
+            }
         }
 
 
-        HoverObject.transform.position = SnappedPosition;
+            HoverObject.transform.position = SnappedPosition;
         UnsnappedObject.transform.position = LoosePosition;
 
 

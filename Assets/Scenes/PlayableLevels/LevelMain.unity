@@ -19486,6 +19486,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -851591506940895311, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
   goalPositionOffset: {x: 0, y: 0, z: 0}
+  HoverMaterial: {fileID: 2100000, guid: b9f992e82c2bb5e41a89042664f6fb5d, type: 2}
   PlacementObjects:
   - {fileID: 2844158347067402648, guid: 040b808da240c4b54a6a4135c497a5ec, type: 3}
   - {fileID: 5145861100388396173, guid: 400fef76ef71943d48f3221445efd519, type: 3}
