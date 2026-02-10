@@ -2,7 +2,10 @@
  Level Selector + animations
 */
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using TMPro;
 using UnityEditor;
@@ -10,20 +13,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
-[CustomEditor(typeof(LevelSelectorMenu))]
-public class LevelSelectorGUI : Editor
+[CustomEditor(typeof(UserLevelMenu))]
+public class UserLevelSelectorGUI : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-        LevelSelectorMenu LevelSelector = (LevelSelectorMenu)target;
+        UserLevelMenu LevelSelector = (UserLevelMenu)target;
 
         if (GUILayout.Button("Propagate Dev Levels"))
         {
-           AutoFillLevels(LevelSelector);
+            AutoFillLevels(LevelSelector);
         }
     }
-    private void AutoFillLevels(LevelSelectorMenu menu)
+    private void AutoFillLevels(UserLevelMenu menu)
     {
         string[] guids = AssetDatabase.FindAssets(
             "t:MapBlockScriptableObject",
@@ -45,7 +48,7 @@ public class LevelSelectorGUI : Editor
     }
 }
 
-public class LevelSelectorMenu : MonoBehaviour
+public class UserLevelMenu : MonoBehaviour
 {
     public Button playLevelButton;
     public Button leftNavigateButton;
@@ -96,15 +99,14 @@ public class LevelSelectorMenu : MonoBehaviour
 
     void Start()
     {
-      
         LevelMetadataScriptableObject[] levelMetadataScriptables = GameObject.Find("/LevelStatesManager").GetComponent<LevelStatesManager>().levelMetadataScriptables;
         levelThumbnails = new Sprite[levelMetadataScriptables.Length];
         levelTitles = new string[levelMetadataScriptables.Length];
-        for(int i = 0; i < levelMetadataScriptables.Length; i++)
+        for (int i = 0; i < levelMetadataScriptables.Length; i++)
         {
             levelThumbnails[i] = levelMetadataScriptables[i].levelThumbnail;
         }
-        for(int i = 0; i < levelMetadataScriptables.Length; i++)
+        for (int i = 0; i < levelMetadataScriptables.Length; i++)
         {
             levelTitles[i] = levelMetadataScriptables[i].displayName;
         }
@@ -126,12 +128,42 @@ public class LevelSelectorMenu : MonoBehaviour
         UpdateDisplayView();
     }
 
-    private void Update()
+    private void Update() //all mono prints have been comented to provide a less cluttered console at runtime (they are all just checkpoints for testing)
     {
-        string path = "Assets/Map/SandboxLevels/";
-        var level = AssetDatabase.LoadAssetAtPath<MapBlockScriptableObject>(path);
-        if (level != null)
-            levelData.Add(level);
+        //MonoBehaviour.print("Updating user level list");
+        string path = "Assets/Map/SandboxLevels/"; //initial path to follow (could possibly be improved by taking the dev input path?)
+        
+        string[] fileEntries = Directory.GetFiles(path);//This is gettting the scriptable object files and metadata from the specified path
+        //Only adding the level asset data, the metat dat needs to go elsewhere (I don't know where the level selector metatdata is taken from, but it needs to be routed there)
+        List<MapBlockScriptableObject> levelList = new List<MapBlockScriptableObject>();
+        foreach (string entry in fileEntries)
+        {
+            //MonoBehaviour.print(entry);
+            if (entry.EndsWith(".meta")) { /*MonoBehaviour.print("metadata skipped"); */}
+            else {
+                //MonoBehaviour.print("Adding scriptable object");
+                levelList.Add(AssetDatabase.LoadAssetAtPath<MapBlockScriptableObject>(entry));
+            }
+                
+        }
+        //This makes sure the collection was successfull
+            if (levelList != null)
+        {
+            //MonoBehaviour.print("list=! null");
+            //MonoBehaviour.print(levelList.Count());
+            
+            //check the list before adding new values so there aren't infinate
+            foreach (MapBlockScriptableObject level in levelList)
+            {
+                //MonoBehaviour.print(level.name);
+                if (!levelData.Contains(level))
+                {
+                    //MonoBehaviour.print("level not found, AddingNewEventArgs to list");
+                    levelData.Add(level);//This method clears them after session ends, but will reload them on each start up
+                }
+                else { /*MonoBehaviour.print("Level found, skipping"); */}
+            }
+        }
     }
 
     public void SetMinMaxLevel(int minLevel, int maxLevel)
@@ -147,7 +179,7 @@ public class LevelSelectorMenu : MonoBehaviour
         //Load into the levelLoader
         if (LoadIntoCurrentScene)
         {
-            if(levelData.Count>selectedLevelIndex)
+            if (levelData.Count > selectedLevelIndex)
             {
                 LevelLoader.LoadLevel(levelData[selectedLevelIndex]);
             }
@@ -220,7 +252,7 @@ public class LevelSelectorMenu : MonoBehaviour
         }
 
         // Display Left View
-        if (selectedLevelIndex > MinLevel && levelThumbnails.Length>selectedLevelIndex-1)
+        if (selectedLevelIndex > MinLevel && levelThumbnails.Length > selectedLevelIndex - 1)
         {
             leftNavigateButton.gameObject.SetActive(true);
             Image lThumbnail = leftLevelView.transform.Find("LevelThumbnail").GetComponent<Image>();
@@ -235,13 +267,13 @@ public class LevelSelectorMenu : MonoBehaviour
         }
 
         // Display Right View
-        if (selectedLevelIndex < levelThumbnails.Length - 1 && selectedLevelIndex<MaxLevel)
+        if (selectedLevelIndex < levelThumbnails.Length - 1 && selectedLevelIndex < MaxLevel)
         {
             rightNavigateButton.gameObject.SetActive(true);
             Image rThumbnail = rightLevelView.transform.Find("LevelThumbnail").GetComponent<Image>();
             rThumbnail.sprite = levelThumbnails[selectedLevelIndex + 1];
             TextMeshProUGUI rTextMesh = rightLevelView.transform.Find("LevelTitleText").GetComponent<TextMeshProUGUI>();
-            rTextMesh.text = levelTitles[selectedLevelIndex + 1];  
+            rTextMesh.text = levelTitles[selectedLevelIndex + 1];
         }
         else
         {

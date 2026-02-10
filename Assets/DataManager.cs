@@ -26,7 +26,7 @@ public class DataManager : MonoBehaviour
         MapBlockScriptableObject dummyObject = ScriptableObject.CreateInstance<MapBlockScriptableObject>();
         
         //NEED TO get other names so multiple saves can be created
-        dummyObject.name = "DummyName";
+        dummyObject.name = "UserLevel" + Time.time;
         
         //A count is innitialized to track how many blocks have been placed
         int count = 0;
@@ -86,7 +86,7 @@ public class DataManager : MonoBehaviour
         }
         
         //The asset is created and saved to the system
-        AssetDatabase.CreateAsset(dummyObject, "Assets/Map/MapLayouts/" + dummyObject.name + ".asset");
+        AssetDatabase.CreateAsset(dummyObject, "Assets/Map/SandboxLevels/" + dummyObject.name + ".asset");
         AssetDatabase.SaveAssets();
 
         //NEED TO clear the table -> traverse and call deleteObject

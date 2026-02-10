@@ -14,6 +14,7 @@ public class GameStartMenu : MonoBehaviour
     public GameObject options;
     public GameObject levelSelector;
     public GameObject modeSelector;
+    public GameObject UserLevelSelector;
     public GameObject categorySelector;
 
     [Header("Start Menu Buttons")]
@@ -34,6 +35,8 @@ public class GameStartMenu : MonoBehaviour
             levelSelector.LeanScale(Vector3.zero, 0f);
             modeSelector.SetActive(true);
             modeSelector.LeanScale(Vector3.zero, 0f);
+            UserLevelSelector.SetActive(true);
+            UserLevelSelector.LeanScale(Vector3.zero, 0f);
             categorySelector.SetActive(true);
             categorySelector.LeanScale(Vector3.zero, 0f);
             SceneTransitionStates.SetGameStart(false);
@@ -44,6 +47,7 @@ public class GameStartMenu : MonoBehaviour
             options.SetActive(true);
             options.LeanScale(Vector3.zero, 0f);
             levelSelector.SetActive(true);
+            UserLevelSelector.SetActive(true);
             modeSelector.SetActive(true);
             modeSelector.LeanScale(Vector3.zero, 0f);
             categorySelector.SetActive(true);
@@ -75,6 +79,7 @@ public class GameStartMenu : MonoBehaviour
         startMenu.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         options.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         levelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+        UserLevelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         categorySelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
 
     }
@@ -83,6 +88,7 @@ public class GameStartMenu : MonoBehaviour
         startMenu.LeanScale(Vector3.one, animationSpeed).setEaseInOutCubic();
         options.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         levelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+        UserLevelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         modeSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         categorySelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
     }
@@ -91,6 +97,7 @@ public class GameStartMenu : MonoBehaviour
         startMenu.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         options.LeanScale(Vector3.one, animationSpeed).setEaseInOutCubic();
         levelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+        UserLevelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         modeSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         categorySelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
     }
@@ -99,6 +106,7 @@ public class GameStartMenu : MonoBehaviour
         startMenu.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         options.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         levelSelector.LeanScale(Vector3.one, animationSpeed).setEaseInOutCubic();
+        UserLevelSelector.LeanScale(Vector3.one, animationSpeed).setEaseInOutCubic();
         modeSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
     } 
 
