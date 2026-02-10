@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class VRButton : MonoBehaviour
 {
-    public float deadTime = 1.0f; //Time to prevent button activation after press
+    public float deadTime = 1.0f; //Time to prevent button activation after press in frame?
 
     private bool _deadTimeActive = false; // Bool for button lock state
 
