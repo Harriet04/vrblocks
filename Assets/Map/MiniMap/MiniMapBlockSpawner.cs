@@ -83,7 +83,7 @@ public class MiniMapBlockSpawner : MonoBehaviour
 
         for (int i = 0; i < mapValues.spawnPoints.Length; i++)
         {
-            Vector3 coords = startPositionOffset + Vector3.Scale(mapValues.spawnPoints[i], mapValues.blockScale);
+            Vector3 coords = startPositionOffset + Vector3.Scale(mapValues.spawnPoints[i]+mapValues.offsetSpawnPoints, mapValues.blockScale);
             GameObject currentEntity = Instantiate(mapBlock, coords, Quaternion.identity);
 
             currentEntity.transform.SetParent(gameObject.transform, false);
@@ -95,7 +95,7 @@ public class MiniMapBlockSpawner : MonoBehaviour
         }
 
         // Goal Sphere
-        Vector3 goalCoords = startPositionOffset + Vector3.Scale(mapValues.goalSpawnPoint, mapValues.blockScale);
+        Vector3 goalCoords = startPositionOffset + Vector3.Scale(mapValues.goalSpawnPoint + mapValues.offsetSpawnPoints, mapValues.blockScale);
         GameObject generatedGoalObject = Instantiate(goalObject, goalCoords, Quaternion.Euler(mapValues.goalRotation));
         generatedGoalObject.transform.SetParent(gameObject.transform, false);
         generatedGoalObject.transform.localScale = mapValues.goalScale;
@@ -107,7 +107,7 @@ public class MiniMapBlockSpawner : MonoBehaviour
 
         // Turtle
         Vector3 turtlePositionOffset = new Vector3(0, -0.2f, 0);
-        Vector3 turtleCoords = startPositionOffset + turtlePositionOffset + Vector3.Scale(mapValues.turtleSpawnPoint, mapValues.blockScale);
+        Vector3 turtleCoords = startPositionOffset + turtlePositionOffset + Vector3.Scale(mapValues.turtleSpawnPoint + mapValues.offsetSpawnPoints, mapValues.blockScale);
         TurtleMovement turtleEntity = Instantiate(turtle, turtleCoords, Quaternion.Euler(0, mapValues.turtleRotation, 0));
         turtleEntity.transform.SetParent(gameObject.transform, false);
         turtleEntity.name = mapValues.turtlePrefabName;

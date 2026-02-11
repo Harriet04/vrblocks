@@ -62,7 +62,7 @@ public class MapBlockSpawner : MonoBehaviour
         GameObject? currentEntity = null;
         for (int i = 0; i < mapValues.spawnPoints.Length; i++)
         {
-            Vector3 coords = startPositionOffset + Vector3.Scale(mapValues.spawnPoints[i], mapValues.blockScale);
+            Vector3 coords = startPositionOffset + Vector3.Scale(mapValues.spawnPoints[i] + mapValues.offsetSpawnPoints, mapValues.blockScale);
             currentEntity = Instantiate(mapBlock, coords, Quaternion.identity);
 
             currentEntity.transform.SetParent(gameObject.transform, false);
@@ -72,14 +72,14 @@ public class MapBlockSpawner : MonoBehaviour
         }
 
         // Triggerable Goal
-        Vector3 goalCoords = startPositionOffset + Vector3.Scale(mapValues.goalSpawnPoint, mapValues.blockScale);
+        Vector3 goalCoords = startPositionOffset + Vector3.Scale(mapValues.goalSpawnPoint + mapValues.offsetSpawnPoints, mapValues.blockScale);
         GameObject generatedGoalObject = Instantiate(goalObject, goalCoords, Quaternion.Euler(mapValues.goalRotation));
         generatedGoalObject.transform.SetParent(gameObject.transform, false);
         generatedGoalObject.transform.localScale = mapValues.goalScale;
         //generatedGoalObject.transform.position += Vector3.Scale(mapValues.goalPositionOffset, mapValues.blockScale/2);
         generatedGoalObject.name = mapValues.goalPrefabName;
 
-        Vector3 turtleCoords = startPositionOffset + Vector3.Scale(mapValues.turtleSpawnPoint, mapValues.blockScale);
+        Vector3 turtleCoords = startPositionOffset + Vector3.Scale(mapValues.turtleSpawnPoint + mapValues.offsetSpawnPoints, mapValues.blockScale);
         TurtleMovement turtleEntity = Instantiate(turtle, turtleCoords, Quaternion.Euler(0, mapValues.turtleRotation, 0));
 
         turtleEntity.transform.SetParent(gameObject.transform, false);
