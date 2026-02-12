@@ -22,9 +22,8 @@ MonoBehaviour:
   goalPrefabName: GoalFlag
   goalSpawnPoint: {x: 4, y: 2, z: 7}
   goalScale: {x: 0.3, y: 0.3, z: 0.3}
-  goalPositionOffset: {x: 0, y: -0.35, z: 0}
   goalRotation: {x: 0, y: -90, z: 0}
-  offsetSpawnPoints: {x: 0, y: 0, z: 0}
+  offsetSpawnPoints: {x: -5, y: -1, z: -5}
   spawnPoints:
   - {x: 4, y: 1, z: 3}
   - {x: 4, y: 1, z: 4}
