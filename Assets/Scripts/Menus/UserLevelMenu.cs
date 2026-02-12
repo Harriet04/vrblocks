@@ -282,15 +282,16 @@ public class UserLevelMenu : MonoBehaviour
         }
 
         // Display Locked Level Button
-        if (LevelStates.getIsLockedLevel(selectedLevelIndex))
+        //No user levels should be locked, I need to work on metat data next sprint
+        /*if (LevelStates.getIsLockedLevel(selectedLevelIndex))
         {
             playLevelButton.gameObject.SetActive(false);
             lockedLevelButton.gameObject.SetActive(true);
         }
         else
-        {
+        {*/
             playLevelButton.gameObject.SetActive(true);
             lockedLevelButton.gameObject.SetActive(false);
-        }
+        //}
     }
 }
