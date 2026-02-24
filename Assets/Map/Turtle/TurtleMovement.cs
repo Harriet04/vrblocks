@@ -324,7 +324,7 @@ public class TurtleMovement : MonoBehaviour
         Reset();
     }
 
-    public void Fail(Action? failAction = null)
+    public void Fail(Action? failAction = null)                                        //DEBUGGING -- Function currently being triggered
     {
         if (!canFail)
         {

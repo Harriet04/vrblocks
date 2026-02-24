@@ -22,7 +22,7 @@ public class ExecutionDirector : MonoBehaviour
     public HandBoundUIHandler handBoundUI;
 
     // maintains a list of the blocks under Block (StartQueue)
-    public List<GameObject> mainBlockList = new List<GameObject>();
+    public List<GameObject> mainBlockList = new List<GameObject>();                                         //
 
     // Function IDs map to separate lists of blocks under their respective Function Definition blocks.
     private Dictionary<int, List<GameObject>> functionBlockLists = new Dictionary<int, List<GameObject>>();
@@ -60,7 +60,7 @@ public class ExecutionDirector : MonoBehaviour
         StartCoroutine(RepeatLoop(0.5f));
 
         // disable start button
-        if(mainBlockList.Count > 0){
+        if(mainBlockList.Count > 0){ 
             startButton.GetComponent<StartButton>().SetEnabled(false);
             startButton.GetComponent<XRSimpleInteractable>().selectEntered.RemoveAllListeners();
         }
@@ -355,7 +355,7 @@ public class ExecutionDirector : MonoBehaviour
             {
                 // no more code
                 ContinueLoopEvent.RemoveAllListeners();
-                turtleMovement.Fail();
+                turtleMovement.Fail();                                         //DEBUGGING Failpoint is being triggered here issue could be in the "List" game object since it is the source of Count
             }
             return;
         }
