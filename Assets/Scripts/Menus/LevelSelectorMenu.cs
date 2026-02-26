@@ -47,6 +47,7 @@ public class LevelSelectorGUI : Editor
 
 public class LevelSelectorMenu : MonoBehaviour
 {
+    public textChanger textChanger;
     public Button playLevelButton;
     public Button leftNavigateButton;
     public Button rightNavigateButton;
@@ -142,6 +143,60 @@ public class LevelSelectorMenu : MonoBehaviour
         UpdateDisplayView();
     }
 
+    public void chooseHintText()
+    {
+        switch (selectedLevelIndex)
+        {
+            case 0:
+                textChanger.hintText.text = "Hint 1-1";
+                break;
+            case 1:
+                textChanger.hintText.text = "Hint 1-2";
+                break;
+            case 2:
+                textChanger.hintText.text = "Hint 1-3";
+                break;
+            case 3:
+                textChanger.hintText.text = "Hint 1-4";
+                break;
+            case 4:
+                textChanger.hintText.text = "Hint 1-5";
+                break;
+            case 5:
+                textChanger.hintText.text = "Hint 2-1";
+                break;
+            case 6:
+                textChanger.hintText.text = "Hint 2-2";
+                break;
+            case 7:
+                textChanger.hintText.text = "Hint 2-3";
+                break;
+            case 8:
+                textChanger.hintText.text = "Hint 2-4";
+                break;
+            case 9:
+                textChanger.hintText.text = "Hint 2-5";
+                break;
+            case 10:
+                textChanger.hintText.text = "Hint 3-1";
+                break;
+            case 11:
+                textChanger.hintText.text = "Hint 3-2";
+                break;
+            case 12:
+                textChanger.hintText.text = "Hint 3-3";
+                break;
+            case 13:
+                textChanger.hintText.text = "Hint 3-4";
+                break;
+            case 14:
+                textChanger.hintText.text = "Hint 3-5";
+                break;
+            default:
+                break;
+        }
+        
+    }
     public void GoToLevel()
     {
         //Load into the levelLoader
@@ -150,6 +205,7 @@ public class LevelSelectorMenu : MonoBehaviour
             if(levelData.Count>selectedLevelIndex)
             {
                 LevelLoader.LoadLevel(levelData[selectedLevelIndex]);
+                chooseHintText();
             }
         }
         else

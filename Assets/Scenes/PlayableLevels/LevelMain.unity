@@ -14969,7 +14969,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 78b016d0966254d4fb1503e522fdfc4e, type: 2}
   - {fileID: 11400000, guid: de638ade2506cff45ba7fbb685877754, type: 2}
   - {fileID: 11400000, guid: 6c43819e060776149b39bedd661c75fe, type: 2}
-  - {fileID: 11400000, guid: f02aa3d5325b7a544b9ffc8e987a7a4f, type: 2}
+  - {fileID: 11400000, guid: dbf012e94dd744f41b7270a2bd9edf12, type: 2}
   - {fileID: 11400000, guid: cb30e55b4b80f6a4d8f59b38994a07d4, type: 2}
   - {fileID: 11400000, guid: 8490da0f0b3312548a2c92c2477f9c25, type: 2}
 --- !u!4 &979299244
@@ -34058,6 +34058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cfe97dc90f68a02ac48b7666dada10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textChanger: {fileID: 2079748940}
   playLevelButton: {fileID: 811355452}
   leftNavigateButton: {fileID: 413699953}
   rightNavigateButton: {fileID: 1434215876}
@@ -36654,6 +36655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2079748939}
+  - component: {fileID: 2079748940}
   m_Layer: 0
   m_Name: HintMenu
   m_TagString: Untagged
@@ -36681,6 +36683,19 @@ Transform:
   - {fileID: 1757084391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &2079748940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079748938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca23e2386ce653429523631200c618e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hintText: {fileID: 1239272425}
 --- !u!1 &2084341787
 GameObject:
   m_ObjectHideFlags: 0
