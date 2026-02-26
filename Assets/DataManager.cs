@@ -93,13 +93,8 @@ public class DataManager : MonoBehaviour
 
         CreateMetaData(dummyObject.name,true);
 
-        //clear the table -> traverse and call deleteObject
-        foreach (LevelObject temp in objects.ToArray())
-        {
-            Destroy(temp.obj);
-            levelObjects.Remove(temp);
-            levelObjectsSize -= 1;
-        }
+
+        s1.Clear();
 
         }
 

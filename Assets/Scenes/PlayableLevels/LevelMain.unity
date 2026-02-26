@@ -2345,6 +2345,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 837087736913088464, guid: e4aa7ef37bc726b489cf9ea717cd6b50, type: 3}
       insertIndex: -1
       addedObject: {fileID: 109638726}
+    - targetCorrespondingSourceObject: {fileID: 7363970556460041446, guid: e4aa7ef37bc726b489cf9ea717cd6b50, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e4aa7ef37bc726b489cf9ea717cd6b50, type: 3}
 --- !u!1 &109638725 stripped
 GameObject:
@@ -4884,6 +4887,7 @@ MonoBehaviour:
   startBlock: {fileID: 1265676904}
   startButton: {fileID: 81492878}
   handBoundUI: {fileID: 0}
+  mainBlockList: []
 --- !u!4 &290970302
 Transform:
   m_ObjectHideFlags: 0
@@ -32383,6 +32387,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 837087736913088464, guid: e4aa7ef37bc726b489cf9ea717cd6b50, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1845803271}
+    - targetCorrespondingSourceObject: {fileID: 7363970556460041446, guid: e4aa7ef37bc726b489cf9ea717cd6b50, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e4aa7ef37bc726b489cf9ea717cd6b50, type: 3}
 --- !u!1 &1845803270 stripped
 GameObject:
