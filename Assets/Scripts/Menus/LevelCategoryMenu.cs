@@ -31,7 +31,7 @@ public class LevelCategoryManager : MonoBehaviour
             //Open the LevelSelectorMenu
             LevelSelectMenu.LeanScale(Vector3.one, AnimSpeed).setEaseInOutCubic();
             //Getting a null error here, that's probably okay for now, we don't have any levels to load in categories
-            //LevelSelect.SetMinMaxLevel(StartLevel, EndLevel);
+            LevelSelect.SetMinMaxLevel(StartLevel, EndLevel);
 
             //Close this menu
             SetRelativeScale(Vector3.zero);
@@ -40,10 +40,10 @@ public class LevelCategoryManager : MonoBehaviour
 
     }
 
-    void OpenEasyMenu() { OpenLevelMenu(0, 15); }
-    void OpenMediumMenu() { OpenLevelMenu(16, 31); }
-    void OpenHardMenu() { OpenLevelMenu(32, 47); }
-    void OpenChallengeMenu() { OpenLevelMenu(48, 63); }
+    void OpenEasyMenu() { OpenLevelMenu(0, 4); }
+    void OpenMediumMenu() { OpenLevelMenu(5, 9); }
+    void OpenHardMenu() { OpenLevelMenu(10, 14); }
+    void OpenChallengeMenu() { OpenLevelMenu(15, 19); }
 
 
     // Useful when you need to show/hide this menu.

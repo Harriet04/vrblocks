@@ -175,7 +175,7 @@ public class LevelSelectorMenu : MonoBehaviour
         rightLevelView.LeanRotate(rightLevelViewRot.eulerAngles, levelNavAnimationSpeed).setEaseOutCubic();
         rightLevelView.LeanScale(rightLevelViewScale, levelNavAnimationSpeed).setEaseOutCubic();
         leftLevelView.LeanScale(Vector3.zero, 0f);
-        if (selectedLevelIndex > 0)
+        if (selectedLevelIndex!=0 && selectedLevelIndex!=5 && selectedLevelIndex!=10 && selectedLevelIndex!=15)
         {
             leftLevelView.LeanScale(leftLevelViewScale, levelNavAnimationSpeed).setEaseOutCubic();
         }
@@ -196,7 +196,7 @@ public class LevelSelectorMenu : MonoBehaviour
         leftLevelView.LeanRotate(leftLevelViewRot.eulerAngles, levelNavAnimationSpeed).setEaseOutCubic();
         leftLevelView.LeanScale(leftLevelViewScale, levelNavAnimationSpeed).setEaseOutCubic();
         rightLevelView.LeanScale(Vector3.zero, 0f);
-        if (selectedLevelIndex < levelThumbnails.Length - 1)
+        if (selectedLevelIndex!=4 && selectedLevelIndex!=9 && selectedLevelIndex!=14 && selectedLevelIndex!=19)
         {
             rightLevelView.LeanScale(rightLevelViewScale, levelNavAnimationSpeed).setEaseOutCubic();
         }
