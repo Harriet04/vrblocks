@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -31,7 +32,7 @@ public class DataManager : MonoBehaviour
         //A count is innitialized to track how many blocks have been placed
         int count = 0;
 
-        //NEED TO check that there is a turtle and flag present, and fail if not
+        //check that there is a turtle and flag present, and fail if not
         bool turtleExists = false, goalExists=false;
         foreach (LevelObject temp in objects)
         {
@@ -90,12 +91,17 @@ public class DataManager : MonoBehaviour
         AssetDatabase.CreateAsset(dummyObject, "Assets/Map/SandboxLevels/" + dummyObject.name + ".asset");
         AssetDatabase.SaveAssets();
 
-        //NEED TO clear the table -> traverse and call deleteObject
-
         CreateMetaData(dummyObject.name,true);
 
-        
-    }
+        //clear the table -> traverse and call deleteObject
+        foreach (LevelObject temp in objects.ToArray())
+        {
+            Destroy(temp.obj);
+            levelObjects.Remove(temp);
+            levelObjectsSize -= 1;
+        }
+
+        }
 
     public void CreateMetaData(string name, bool developerMode)
     {
