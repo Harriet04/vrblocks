@@ -18,25 +18,25 @@ public class VRButton : MonoBehaviour
     {
         if(other.tag == "Button" && !_deadTimeActive)
         {
-            onPressed.Invoke();
             Debug.Log("VR Button Pressed");
+            onPressed.Invoke();
         }
     }
     private void OnTriggerExit(Collider other) // checks if button has entered Released and sets onReleased
     {
         if(other.tag=="Button" && !_deadTimeActive)
         {
-            OnReleased?.Invoke();
             Debug.Log("VR Button Released");
+            OnReleased.Invoke();
             StartCoroutine(WaitForDeadTime());
         }
     }
 
     IEnumerator WaitForDeadTime() //Locks Button Press until deadTime times out
     {
-        _deadTimeActive = true; Debug.Log("DEADTIME: active");
+        _deadTimeActive = true;
         yield return new WaitForSeconds(deadTime);
-        _deadTimeActive = false; Debug.Log("DEADTIME: inactive");
+        _deadTimeActive = false;
     }
     // Start is called before the first frame update
     void Start()
