@@ -54,6 +54,7 @@ public class UserLevelMenu : MonoBehaviour
     public Button leftNavigateButton;
     public Button rightNavigateButton;
     public Button lockedLevelButton;
+    public Button deleteButton;
 
     public GameObject middleLevelView;
     public GameObject leftLevelView;
@@ -131,6 +132,7 @@ public class UserLevelMenu : MonoBehaviour
             UpdateDisplayView();
             AnimateNavigateRight();
         });
+        deleteButton.onClick.AddListener(() => { DeleteSelected(); });
 
         UpdateDisplayView();
     }
@@ -213,6 +215,36 @@ public class UserLevelMenu : MonoBehaviour
             print("Root Directory: " + rootPath + " not found");
         }
         //Otherwise, the directory doesnt exist; ie no user levels yet
+    }
+
+
+    //Delete the selected object from persistent memory
+    //NOTE: This logic *MIGHT* break once levels are added mid-session. Just ensure once the menu is active, FindPersistentLevels() is called.
+    //Need to tie this to a button 
+    private void DeleteSelected()
+    {
+        string[] subDirectories = Directory.GetDirectories(Path.Join(Application.persistentDataPath, "Levels"));
+        if (Directory.Exists(subDirectories[selectedLevelIndex]))
+        {
+            Directory.Delete(subDirectories[selectedLevelIndex], true);
+            print("Deleted " +  subDirectories[selectedLevelIndex]);
+        }
+        else
+        {
+            return; //not found
+        }
+
+
+            //Update lists and view
+            levelData.RemoveAt(selectedLevelIndex);
+        levelThumbnails.RemoveAt(selectedLevelIndex);
+        levelTitles.RemoveAt(selectedLevelIndex);
+
+        //so we don't overflow
+        selectedLevelIndex -= 1;
+        if(selectedLevelIndex < 0) { selectedLevelIndex = 0; } 
+
+        UpdateDisplayView();
     }
 
     private void Update() //all mono prints have been comented to provide a less cluttered console at runtime (they are all just checkpoints for testing)
