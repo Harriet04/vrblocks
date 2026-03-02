@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviour
     public ScriptableObject scriptableObject;
     public PlacementSystem s1;
     public ScreenshotCapturer screenshotCapturer;
+    public bool developerMode = true;
 
     // Start is called before the first frame update
     public void OnEnable()
@@ -87,7 +88,7 @@ public class DataManager : MonoBehaviour
             }
         }
 
-        bool developerMode = true;
+        
         if (!developerMode)
         {
             //We're storing this level in persistent memory; it was created by the player
@@ -108,14 +109,14 @@ public class DataManager : MonoBehaviour
             AssetDatabase.SaveAssets();
         }
 
-        CreateMetaData(dummyObject.name,developerMode);
+        CreateMetaData(dummyObject.name);
 
 
         s1.Clear();
 
         }
 
-    public void CreateMetaData(string name, bool developerMode)
+    public void CreateMetaData(string name)
     {
         //Add Thumbnail to folder
         Texture2D tex = screenshotCapturer.CaptureFromCamera();

@@ -66,8 +66,8 @@ public class UserLevelMenu : MonoBehaviour
     private int selectedLevelIndex = SceneTransitionStates.GetSelectedLevel();
     private int MinLevel = 0;
     private int MaxLevel = 16;
-    private Sprite[] levelThumbnails;
-    private string[] levelTitles;
+    private List<Sprite> levelThumbnails;
+    private List<string> levelTitles;
 
     // Animations
     private readonly float levelNavAnimationSpeed = 0.1f;
@@ -84,6 +84,7 @@ public class UserLevelMenu : MonoBehaviour
 
     void Awake()
     {
+        FindPersistentLevels();
         // Animations
         // Note: Keeping this here to fix scaling bugs when returning to the level selector menu from a level since Start() is run each time.
         middleLevelViewPos = middleLevelView.transform.position;
@@ -99,7 +100,13 @@ public class UserLevelMenu : MonoBehaviour
 
     void Start()
     {
-        LevelMetadataScriptableObject[] levelMetadataScriptables = GameObject.Find("/LevelStatesManager").GetComponent<LevelStatesManager>().levelMetadataScriptables;
+        FindPersistentLevels();
+        //Need to retrieve the levels from Application.persistentDataPath/Levels
+        //Each level is in its own folder; that folder being the level name.
+        //In that folder, you have the MetaData and MapBlock objects in JSON; need to convert them to scriptable objects
+        //You also have the thumbnail as a png. You'll need to convert that to a sprite.
+
+        /*LevelMetadataScriptableObject[] levelMetadataScriptables = GameObject.Find("/LevelStatesManager").GetComponent<LevelStatesManager>().levelMetadataScriptables;
         levelThumbnails = new Sprite[levelMetadataScriptables.Length];
         levelTitles = new string[levelMetadataScriptables.Length];
         for (int i = 0; i < levelMetadataScriptables.Length; i++)
@@ -109,7 +116,7 @@ public class UserLevelMenu : MonoBehaviour
         for (int i = 0; i < levelMetadataScriptables.Length; i++)
         {
             levelTitles[i] = levelMetadataScriptables[i].displayName;
-        }
+        }*/
 
         playLevelButton.onClick.AddListener(GoToLevel);
         leftNavigateButton.onClick.AddListener(() =>
@@ -120,12 +127,92 @@ public class UserLevelMenu : MonoBehaviour
         });
         rightNavigateButton.onClick.AddListener(() =>
         {
-            selectedLevelIndex = Math.Min(selectedLevelIndex + 1, levelThumbnails.Length - 1);
+            selectedLevelIndex = Math.Min(selectedLevelIndex + 1, levelThumbnails.Count - 1);
             UpdateDisplayView();
             AnimateNavigateRight();
         });
 
         UpdateDisplayView();
+    }
+
+    //Function that searches Application.persistentDataPath/Levels and stores them
+    void FindPersistentLevels()
+    {
+        print("FINDING PERSISTENT LEVELS");
+
+        //First, clear all of the lists/arrays
+        //Or create them if they don't exist
+        if (levelData == null){ levelData = new List<MapBlockScriptableObject>(); }
+        else { levelData.Clear(); }
+
+        if (levelThumbnails == null) { levelThumbnails = new List<Sprite>(); }
+        else { levelThumbnails.Clear(); }
+
+        if(levelTitles == null) { levelTitles = new List<string>(); }
+        else { levelTitles.Clear(); }
+
+
+        string rootPath = Path.Join(Application.persistentDataPath, "Levels");
+        if (Directory.Exists(rootPath))
+        {
+            print("Directory Found!");
+            string[] SubDirectories = Directory.GetDirectories(rootPath);
+
+            foreach (string subDirectory in SubDirectories)
+            {
+                print("Searching " + subDirectory);
+
+                //INSERT A CHECK TO VERIFY THIS FOLDER HAS ALL 3 FILES
+                if (
+                    !File.Exists(Path.Join(subDirectory, "thumbnail.png"))
+                    || !File.Exists(Path.Join(subDirectory, "MetaData"))
+                    || !File.Exists(Path.Join(subDirectory, "MapBlock"))
+
+                    ) {
+                    print("A file is missing from " + subDirectory);
+                    continue;
+                }
+
+
+                //Retrieve the MetaData
+                string meta_JSON = File.ReadAllText(Path.Join(subDirectory, "MetaData"));
+                LevelMetadataScriptableObject meta = LevelMetadataScriptableObject.CreateInstance<LevelMetadataScriptableObject>();
+                JsonUtility.FromJsonOverwrite(meta_JSON, meta);
+                print("metadata display name: " + meta.displayName);
+                levelTitles.Add(meta.displayName);
+
+
+
+                //Retrieve the Thumbnail
+                byte[] png = File.ReadAllBytes(Path.Join(subDirectory, "thumbnail.png"));
+
+                Texture2D texture = new Texture2D(2, 2); // size doesn't matter, will resize
+                texture.LoadImage(png); // loads and resizes texture
+
+                texture.filterMode = FilterMode.Bilinear; // optional
+                texture.wrapMode = TextureWrapMode.Clamp;
+
+                Sprite sprite = Sprite.Create(
+                    texture,
+                    new Rect(0, 0, texture.width, texture.height),
+                    new Vector2(0.5f, 0.5f) // pivot center
+                );
+                levelThumbnails.Add(sprite);
+
+
+
+                //Retrieve the MapBlocks
+                string mb_JSON = File.ReadAllText(Path.Join(subDirectory,"MapBlock"));
+                MapBlockScriptableObject mb = MapBlockScriptableObject.CreateInstance<MapBlockScriptableObject>();
+                JsonUtility.FromJsonOverwrite(mb_JSON, mb);
+                levelData.Add(mb);
+            }
+        }
+        else
+        {
+            print("Root Directory: " + rootPath + " not found");
+        }
+        //Otherwise, the directory doesnt exist; ie no user levels yet
     }
 
     private void Update() //all mono prints have been comented to provide a less cluttered console at runtime (they are all just checkpoints for testing)
@@ -228,7 +315,7 @@ public class UserLevelMenu : MonoBehaviour
         leftLevelView.LeanRotate(leftLevelViewRot.eulerAngles, levelNavAnimationSpeed).setEaseOutCubic();
         leftLevelView.LeanScale(leftLevelViewScale, levelNavAnimationSpeed).setEaseOutCubic();
         rightLevelView.LeanScale(Vector3.zero, 0f);
-        if (selectedLevelIndex < levelThumbnails.Length - 1)
+        if (selectedLevelIndex < levelThumbnails.Count - 1)
         {
             rightLevelView.LeanScale(rightLevelViewScale, levelNavAnimationSpeed).setEaseOutCubic();
         }
@@ -238,7 +325,7 @@ public class UserLevelMenu : MonoBehaviour
     {
 
         // For error handling, show nothing if there are no levels
-        if (levelThumbnails.Length > MinLevel)
+        if (levelThumbnails.Count > MinLevel)
         {
             middleLevelView.SetActive(true);
             Image mThumbnail = middleLevelView.transform.Find("LevelThumbnail").GetComponent<Image>();
@@ -252,7 +339,7 @@ public class UserLevelMenu : MonoBehaviour
         }
 
         // Display Left View
-        if (selectedLevelIndex > MinLevel && levelThumbnails.Length > selectedLevelIndex - 1)
+        if (selectedLevelIndex > MinLevel && levelThumbnails.Count > selectedLevelIndex - 1)
         {
             leftNavigateButton.gameObject.SetActive(true);
             Image lThumbnail = leftLevelView.transform.Find("LevelThumbnail").GetComponent<Image>();
@@ -267,7 +354,7 @@ public class UserLevelMenu : MonoBehaviour
         }
 
         // Display Right View
-        if (selectedLevelIndex < levelThumbnails.Length - 1 && selectedLevelIndex < MaxLevel)
+        if (selectedLevelIndex < levelThumbnails.Count - 1 && selectedLevelIndex < MaxLevel)
         {
             rightNavigateButton.gameObject.SetActive(true);
             Image rThumbnail = rightLevelView.transform.Find("LevelThumbnail").GetComponent<Image>();
