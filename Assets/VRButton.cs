@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class VRButton : MonoBehaviour
 {
-    public float deadTime = 1.0f; //Time to prevent button activation after press
+    public float deadTime = 1.0f; //Time to prevent button activation after press in frame?
 
     private bool _deadTimeActive = false; // Bool for button lock state
 
@@ -34,9 +34,9 @@ public class VRButton : MonoBehaviour
 
     IEnumerator WaitForDeadTime() //Locks Button Press until deadTime times out
     {
-        _deadTimeActive = true;
+        _deadTimeActive = true; Debug.Log("DEADTIME: active");
         yield return new WaitForSeconds(deadTime);
-        _deadTimeActive = false;
+        _deadTimeActive = false; Debug.Log("DEADTIME: inactive");
     }
     // Start is called before the first frame update
     void Start()
@@ -44,15 +44,4 @@ public class VRButton : MonoBehaviour
         initalLocalPos = visualTarget.localPosition;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if ((visualTarget.localPosition - initalLocalPos).sqrMagnitude > 0.001)
-        {
-            onPressed.Invoke();
-            Debug.Log("VR Button Pressed");
-
-            //Debug.Log((visualTarget.localPosition - initalLocalPos).sqrMagnitude);
-        }
-    }
 }

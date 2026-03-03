@@ -22,7 +22,7 @@ public class ExecutionDirector : MonoBehaviour
     public HandBoundUIHandler handBoundUI;
 
     // maintains a list of the blocks under Block (StartQueue)
-    private List<GameObject> mainBlockList = new List<GameObject>();
+    public List<GameObject> mainBlockList = new List<GameObject>();
 
     // Function IDs map to separate lists of blocks under their respective Function Definition blocks.
     private Dictionary<int, List<GameObject>> functionBlockLists = new Dictionary<int, List<GameObject>>();

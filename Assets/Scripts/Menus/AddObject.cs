@@ -40,4 +40,9 @@ public class AddObject : MonoBehaviour
 
         Debug.Log("Spawned: " + newBlock.name + " at " + newBlock.transform.position);
     }
+
+    /*public void LinkTest()
+    {
+        Debug.Log("LINK WORKS");
+    }*/
 }
