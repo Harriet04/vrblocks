@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -173,18 +174,23 @@ public class PlacementSystem : MonoBehaviour
             if (temp.pos.x == posv.x && temp.pos.y == posv.y && temp.pos.z == posv.z)
             {
                 canPlace = false;
+                print("Cannot place");
             }
         }
         if (canPlace)
         {
+            print("Attempting to Place");
+            // Object might fail to instantiate?
             LevelObject temp = new LevelObject(Instantiate(PlacementObjects[CycleCounter], posv, Quaternion.Euler(0, 0, 0)), posv, CycleCounter);
             temp.obj.transform.localScale = new Vector3(scaleFactor.localScale.x/2, scaleFactor.localScale.y/2, scaleFactor.localScale.z/2);   //match scale of parent grid when placing
             temp.obj.transform.rotation = scaleFactor.transform.rotation;   //match rotation of parent grid when placing
             levelObjects.Add(temp);
             levelObjectsSize += 1;
+            print("After instantiation");
 
             if (temp.type == 1 && isTurtle == false)    //remove old turtle if new one is placed
             {
+                print("Is Turtle");
                 isTurtle = true;
             }
             else if (temp.type == 1 && isTurtle == true)
@@ -239,6 +245,7 @@ public class PlacementSystem : MonoBehaviour
     //delete object at given position
     void DeleteObject(Vector3 posv)
     {
+        //We gotta check to see if this is the turtle or the flag
         foreach (LevelObject temp in levelObjects)
         {
             if(temp.pos.x == posv.x && temp.pos.y == posv.y && temp.pos.z == posv.z)
@@ -247,10 +254,30 @@ public class PlacementSystem : MonoBehaviour
                 Destroy(temp.obj);
                 levelObjects.Remove(temp);
                 levelObjectsSize -= 1;
+
+                //If we delete the turtle, or the flag, we need to set those bools to false
+                if (temp.type == 1) { isTurtle = false; }
+                if (temp.type == 2) { isFlag = false; }
+
                 continue;
             }
         }
     }
+
+    public void Clear()
+    {
+        //clear the table -> traverse and call deleteObject
+        foreach (LevelObject temp in levelObjects)
+        {
+            Destroy(temp.obj);
+        }
+        levelObjects.Clear();
+        levelObjectsSize = 0;
+
+        isFlag = false;
+        isTurtle = false;
+    }
+
     void OnDisable()
     {
         //Claer objects
