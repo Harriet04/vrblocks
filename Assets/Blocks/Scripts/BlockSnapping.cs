@@ -66,7 +66,7 @@ public class BlockSnapping : MonoBehaviour
         }
     }
 
-    public void OnChildTriggerEnter(CollisionForwarding sender, Collider other)
+    public void OnChildTriggerEnter(CollisionForwarding sender, Collider other)// Conditions to start snapping
     {
         // Check if SnapTriggerTop was entered by SnapTriggerBottom
         if (sender.gameObject.name == "SnapTriggerTop" && other.gameObject.name == "SnapTriggerBottom" && !hasSnapped)
@@ -178,7 +178,7 @@ public class BlockSnapping : MonoBehaviour
         ReleaseRootBlock(block1);
     }
 
-    private void ReleaseRootBlock(GameObject block)
+    private void ReleaseRootBlock(GameObject block) //un snaps blocks
     {
         if (block == null) return;
 
