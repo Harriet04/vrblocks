@@ -14957,10 +14957,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelMetadataScriptables:
-  - {fileID: 11400000, guid: bd47bb387ab4cdb6eb0a91e72d026dae, type: 2}
-  - {fileID: 11400000, guid: 2fd2c8f5e96284ec0894b2ac0301c537, type: 2}
-  - {fileID: 11400000, guid: 8f6266ce3c1eb33e4875e64f789bec24, type: 2}
-  - {fileID: 11400000, guid: 85cf979bcd1aec33092f614218595556, type: 2}
+  - {fileID: 11400000, guid: 2119c24b90be6cd44beea46843eca14d, type: 2}
+  - {fileID: 11400000, guid: 8490710b0baf201419f6653a5d7b87af, type: 2}
+  - {fileID: 11400000, guid: 70b15b699cee3194f9afab5c47dd89f4, type: 2}
+  - {fileID: 11400000, guid: ba9f0a08e6c141449976565a6a0fc9e1, type: 2}
+  - {fileID: 11400000, guid: 7b889ef86e042744b8b439d5bcd2f5e7, type: 2}
+  - {fileID: 11400000, guid: 11eb5b0aa7b5e6e4aa2a84a7e7a97877, type: 2}
+  - {fileID: 11400000, guid: 3dea862abbf6c144ab87778887c6237e, type: 2}
+  - {fileID: 11400000, guid: bc226c60bd41aa94b8b4815857835cdb, type: 2}
+  - {fileID: 11400000, guid: 6f41fbc5ab2af5446885a63fc8c8a6dd, type: 2}
+  - {fileID: 11400000, guid: 78b016d0966254d4fb1503e522fdfc4e, type: 2}
+  - {fileID: 11400000, guid: de638ade2506cff45ba7fbb685877754, type: 2}
+  - {fileID: 11400000, guid: 6c43819e060776149b39bedd661c75fe, type: 2}
+  - {fileID: 11400000, guid: dbf012e94dd744f41b7270a2bd9edf12, type: 2}
+  - {fileID: 11400000, guid: cb30e55b4b80f6a4d8f59b38994a07d4, type: 2}
+  - {fileID: 11400000, guid: 8490da0f0b3312548a2c92c2477f9c25, type: 2}
 --- !u!4 &979299244
 Transform:
   m_ObjectHideFlags: 0
@@ -34047,6 +34058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cfe97dc90f68a02ac48b7666dada10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textChanger: {fileID: 2079748940}
   playLevelButton: {fileID: 811355452}
   leftNavigateButton: {fileID: 413699953}
   rightNavigateButton: {fileID: 1434215876}
@@ -34058,10 +34070,21 @@ MonoBehaviour:
   LoadIntoCurrentScene: 1
   devLevelsPath: Assets/Map/MapLayouts
   levelData:
-  - {fileID: 11400000, guid: 30c92f8a06ad94ff6817a0427b4eff21, type: 2}
-  - {fileID: 11400000, guid: 5d67acbdc89602503adce1fcf97559e0, type: 2}
-  - {fileID: 11400000, guid: 2f642700e45ba8105af77a62db0aa903, type: 2}
-  - {fileID: 11400000, guid: 31ce2b061f2a80ba8948e6f0546d65d2, type: 2}
+  - {fileID: 11400000, guid: d2a3c3ce6ec592247b6ca72b256e1282, type: 2}
+  - {fileID: 11400000, guid: fd47345027aa81d4281497bcdaa38a01, type: 2}
+  - {fileID: 11400000, guid: 9b9ed3fdff863f847ad270b5748dec60, type: 2}
+  - {fileID: 11400000, guid: e78ebe454b17d934b9e3e4cabd6ca92b, type: 2}
+  - {fileID: 11400000, guid: 05ec3342eb3a8b94e863e16feac54c18, type: 2}
+  - {fileID: 11400000, guid: 49f82bc62239bae45972bdac26c2127d, type: 2}
+  - {fileID: 11400000, guid: d3116ecc821910e4297023d39a57f535, type: 2}
+  - {fileID: 11400000, guid: a1cf87b9714e16b43b2261cad2b86e0c, type: 2}
+  - {fileID: 11400000, guid: b1b3e6689b70bc746b6c36986605e4f4, type: 2}
+  - {fileID: 11400000, guid: 0fcb026c0a8cace48bddcf4dcb0a0192, type: 2}
+  - {fileID: 11400000, guid: 5d790d5c60d4adb4494c842e99e0ec05, type: 2}
+  - {fileID: 11400000, guid: f8865503c3f1112409a9806d84cf5744, type: 2}
+  - {fileID: 11400000, guid: dfa6394ce1f12d74597b82f504fe8399, type: 2}
+  - {fileID: 11400000, guid: 84c7ab928a3aa3d4cb5ad4ade08b4b4c, type: 2}
+  - {fileID: 11400000, guid: d846f01dc8fe1a940a23d9b050fc573b, type: 2}
 --- !u!1 &1950784995 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9187168534958783521, guid: 062e00bc7d87f6d49a53faf40f9f75d8, type: 3}
@@ -36632,6 +36655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2079748939}
+  - component: {fileID: 2079748940}
   m_Layer: 0
   m_Name: HintMenu
   m_TagString: Untagged
@@ -36659,6 +36683,19 @@ Transform:
   - {fileID: 1757084391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &2079748940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079748938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca23e2386ce653429523631200c618e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hintText: {fileID: 1239272425}
 --- !u!1 &2084341787
 GameObject:
   m_ObjectHideFlags: 0
