@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class DataManager : MonoBehaviour
     public ScriptableObject scriptableObject;
     public PlacementSystem s1;
     public ScreenshotCapturer screenshotCapturer;
+    public TMP_InputField userLevelName;
+    public bool developerMode = true;
 
     // Start is called before the first frame update
     public void OnEnable()
@@ -26,8 +29,24 @@ public class DataManager : MonoBehaviour
         MapBlockScriptableObject scriptReference = (MapBlockScriptableObject)scriptableObject;
         MapBlockScriptableObject dummyObject = ScriptableObject.CreateInstance<MapBlockScriptableObject>();
         
-        //NEED TO get other names so multiple saves can be created
-        dummyObject.name = "UserLevel" + Time.time;
+        //Get other names so multiple saves can be created
+        if(userLevelName != null)
+        {
+            if(userLevelName.text == "")
+            {
+                dummyObject.name = "UserLevel" + Time.time;
+            }
+            else
+            {
+                dummyObject.name = userLevelName.text;
+            }
+        }
+        else
+        {
+            dummyObject.name = "UserLevel" + Time.time;
+        }
+
+            
         
         //A count is innitialized to track how many blocks have been placed
         int count = 0;
@@ -86,19 +105,36 @@ public class DataManager : MonoBehaviour
                 count = count + 1;
             }
         }
-        
-        //The asset is created and saved to the system
-        AssetDatabase.CreateAsset(dummyObject, "Assets/Map/SandboxLevels/" + dummyObject.name + ".asset");
-        AssetDatabase.SaveAssets();
 
-        CreateMetaData(dummyObject.name,true);
+        
+        if (!developerMode)
+        {
+            //We're storing this level in persistent memory; it was created by the player
+            UnityEngine.Debug.Log(Application.persistentDataPath);
+            string levelDir = Path.Combine(Application.persistentDataPath, "Levels", dummyObject.name);
+            Directory.CreateDirectory(levelDir);
+
+            string json = JsonUtility.ToJson(dummyObject, true);
+            string path = Path.Combine(levelDir, "MapBlock");
+            File.WriteAllText(path, json);
+        }
+
+        else
+        {
+            //Developer asset, save to Assets
+            //The asset is created and saved to the system
+            AssetDatabase.CreateAsset(dummyObject, "Assets/Map/SandboxLevels/" + dummyObject.name + ".asset");
+            AssetDatabase.SaveAssets();
+        }
+
+        CreateMetaData(dummyObject.name);
 
 
         s1.Clear();
 
         }
 
-    public void CreateMetaData(string name, bool developerMode)
+    public void CreateMetaData(string name)
     {
         //Add Thumbnail to folder
         Texture2D tex = screenshotCapturer.CaptureFromCamera();
@@ -107,46 +143,65 @@ public class DataManager : MonoBehaviour
 
 
         string myPath;
-        //If it's a player-made level, use this path
+        //If it's a developer-made level, use this path
         if (developerMode) { myPath = "Assets/LevelData/Thumbnails/"; }
-        //Else, it's a developer-made level
-        else { myPath = Application.persistentDataPath; }
+        //Else, it's a player-made level
+        else { myPath = Path.Combine(Application.persistentDataPath, "Levels", name); }
 
-        string assetPath = Path.Combine(myPath, name + ".png");
+        string assetPath;
+        if (developerMode) { assetPath = Path.Combine(myPath, name + ".png"); }
+        else { assetPath = Path.Combine(myPath, "thumbnail.png"); }
 
         File.WriteAllBytes(
             assetPath,
             png
         );
 
+        if (developerMode)
+        {
+            //Convert it to sprite
+            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
 
-        //Convert it to sprite
-        AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+            TextureImporter importer =
+                (TextureImporter)AssetImporter.GetAtPath(assetPath);
 
-        TextureImporter importer =
-            (TextureImporter)AssetImporter.GetAtPath(assetPath);
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Single;
+            importer.spritePixelsPerUnit = 100;
+            importer.mipmapEnabled = false;
+            importer.alphaIsTransparency = true;
 
-        importer.textureType = TextureImporterType.Sprite;
-        importer.spriteImportMode = SpriteImportMode.Single;
-        importer.spritePixelsPerUnit = 100;
-        importer.mipmapEnabled = false;
-        importer.alphaIsTransparency = true;
-
-        importer.SaveAndReimport();
-        AssetDatabase.Refresh();
+            importer.SaveAndReimport();
+            AssetDatabase.Refresh();
+        }
 
 
-
+        // =================================================================================//
         //Create the Metadata
-        LevelMetadataScriptableObject data= ScriptableObject.CreateInstance<LevelMetadataScriptableObject>();
+        // =================================================================================//
 
-        data.levelThumbnail = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath); ;
+        LevelMetadataScriptableObject data= ScriptableObject.CreateInstance<LevelMetadataScriptableObject>();
         data.displayName = name;
 
-        //This only works in editor; we'll need a separate pipeline for players
-        AssetDatabase.CreateAsset(data, "Assets/LevelData/MetaData/" + name + ".asset");
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
+
+        //developer-mode only
+        if (developerMode)
+        {
+            data.levelThumbnail = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath); ;
+
+            //This only works in editor; we'll need a separate pipeline for players
+            AssetDatabase.CreateAsset(data, "Assets/LevelData/MetaData/" + name + ".asset");
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+        //Save to persistent memory for player
+        else
+        {
+            string levelDir = Path.Combine(Application.persistentDataPath, "Levels", name);
+            string json = JsonUtility.ToJson(data, true);
+            string path = Path.Combine(levelDir, "MetaData");
+            File.WriteAllText(path, json);
+        }
 
         //Clean-up texture
         Destroy(tex);
