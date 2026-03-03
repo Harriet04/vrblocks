@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class DataManager : MonoBehaviour
     public ScriptableObject scriptableObject;
     public PlacementSystem s1;
     public ScreenshotCapturer screenshotCapturer;
+    public TMP_InputField userLevelName;
 
     // Start is called before the first frame update
     public void OnEnable()
@@ -26,8 +28,24 @@ public class DataManager : MonoBehaviour
         MapBlockScriptableObject scriptReference = (MapBlockScriptableObject)scriptableObject;
         MapBlockScriptableObject dummyObject = ScriptableObject.CreateInstance<MapBlockScriptableObject>();
         
-        //NEED TO get other names so multiple saves can be created
-        dummyObject.name = "UserLevel" + Time.time;
+        //Get other names so multiple saves can be created
+        if(userLevelName != null)
+        {
+            if(userLevelName.text == "")
+            {
+                dummyObject.name = "UserLevel" + Time.time;
+            }
+            else
+            {
+                dummyObject.name = userLevelName.text;
+            }
+        }
+        else
+        {
+            dummyObject.name = "UserLevel" + Time.time;
+        }
+
+            
         
         //A count is innitialized to track how many blocks have been placed
         int count = 0;
