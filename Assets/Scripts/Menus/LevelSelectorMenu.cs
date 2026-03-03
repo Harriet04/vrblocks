@@ -260,7 +260,6 @@ public class LevelSelectorMenu : MonoBehaviour
 
     public void UpdateDisplayView()
     {
-
         // For error handling, show nothing if there are no levels
         if (levelThumbnails.Length > MinLevel)
         {
