@@ -241,9 +241,116 @@ public class BlockSnapping : MonoBehaviour
     private Coroutine? resetSnapStatusCoroutine;
     private Coroutine? disableSnapOnGrab;
 
+    private void DetachSelectedBlock()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.None;
+
+        SnappedForwarding snappedForwarding = GetComponentInChildren<SnappedForwarding>();
+
+        // Get references to parent and child blocks
+        GameObject parentBlock = null;
+        GameObject childBlock = snappedForwarding?.ConnectedBlock;
+
+        // Detach from PARENT (if any)
+        FixedJoint[] joints = GetComponents<FixedJoint>();
+        foreach (FixedJoint joint in joints)
+        {
+            if (joint.connectedBody != null)
+            {
+                GameObject otherObject = joint.connectedBody.gameObject;
+                parentBlock = otherObject;
+
+                DestroyWire(joint.connectedBody);
+                ResetSnapStatusOnOtherBlock(otherObject);
+                Destroy(joint);
+
+                SnappedForwarding parentSF = otherObject.GetComponentInChildren<SnappedForwarding>();
+                if (parentSF != null)
+                {
+                    parentSF.UpdatePhysics(joint.connectedBody);
+                }
+            }
+        }
+
+        // Detach from CHILD (if any)
+        if (childBlock != null)
+        {
+            FixedJoint[] childJoints = childBlock.GetComponents<FixedJoint>();
+            Rigidbody childRb = childBlock.GetComponent<Rigidbody>();
+
+            DestroyWire(childRb);
+
+            foreach (FixedJoint childJoint in childJoints)
+            {
+                if (childJoint.connectedBody == rb)
+                {
+                    Destroy(childJoint);
+                }
+            }
+
+            // Reset child's snap status
+            SnappedForwarding childSF = childBlock.GetComponentInChildren<SnappedForwarding>();
+            if (childSF != null)
+            {
+                childSF.ConnectedBlock = null;
+                childSF.SetSnapped(false);
+                childSF.IsRootBlock = true;
+
+                BlockSnapping childSnapping = childBlock.GetComponent<BlockSnapping>();
+                if (childSnapping != null)
+                {
+                    childSnapping.targetPosition = 1;
+                }
+
+                childSF.UpdatePhysics(childRb);
+            }
+
+            // Re-snap the child chain to itself
+            if (childSF != null)
+            {
+                Rigidbody currentRb = childRb;
+                SnappedForwarding currentSF = childSF;
+
+                while (currentSF != null && currentSF.ConnectedBlock != null)
+                {
+                    GameObject nextBlock = currentSF.ConnectedBlock;
+                    if (nextBlock == this.gameObject) break;
+
+                    Rigidbody nextRb = nextBlock.GetComponent<Rigidbody>();
+                    SnappedForwarding nextSF = nextBlock.GetComponentInChildren<SnappedForwarding>();
+
+                    if (nextRb != null && nextSF != null)
+                    {
+                        FixedJoint newJoint = currentRb.gameObject.AddComponent<FixedJoint>();
+                        newJoint.connectedBody = nextRb;
+                        newJoint.breakForce = Mathf.Infinity;
+                        newJoint.breakTorque = Mathf.Infinity;
+
+                        currentSF = nextSF;
+                        currentRb = nextRb;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Reset this block's connections
+        if (snappedForwarding != null)
+        {
+            snappedForwarding.ConnectedBlock = null;
+            snappedForwarding.SetSnapped(false);
+        }
+
+        Debug.Log($"Block {gameObject.name} completely detached from both parent and children");
+    }
+
     private void OnGrab(SelectEnterEventArgs args)
     {
-        // Disable snapping for a moment to prevent snapping during teleportation (Moved up to ensure it's called before anything else)
+        // Disable snapping for a moment to prevent snapping during teleportation
         disableSnapOnGrab = StartCoroutine(DisableSnapOnGrab());
         OnGrab(BlockGrabInteractable.DetachMode.Primary);
     }
@@ -251,141 +358,9 @@ public class BlockSnapping : MonoBehaviour
     {
         SnappedForwarding snappedForwarding = gameObject.GetComponentInChildren<SnappedForwarding>();
 
-        if (detachMode == BlockGrabInteractable.DetachMode.Primary) // Primary grab logic
-        {
-            Debug.Log($"Block grabbed (primary): {gameObject.name}");
-
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.None;
-
-            FixedJoint[] joints = GetComponents<FixedJoint>();
-            foreach (FixedJoint joint in joints)
-            {
-                Rigidbody otherRb = joint.connectedBody;
-                if (otherRb != null)
-                {
-                    GameObject otherObject = otherRb.gameObject;
-                    DestroyWire(otherRb);
-                    ResetSnapStatusOnOtherBlock(otherObject);
-                }
-
-                Destroy(joint);
-
-                SnappedForwarding sf = otherRb.GetComponentInChildren<SnappedForwarding>();
-                if (sf != null)
-                {
-                    sf.UpdatePhysics(otherRb);
-                    ResnapBlocks(otherRb);
-                }
-            }
-        }
-        else if (detachMode == BlockGrabInteractable.DetachMode.Secondary)
-        {
-            Debug.Log($"Block grabbed (secondary): {gameObject.name}");
-
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.None;
-
-            GameObject childBlock = snappedForwarding?.ConnectedBlock;
-            GameObject topBlock = null;
-
-            // Destroy joints in block
-            FixedJoint[] joints = GetComponents<FixedJoint>();
-            foreach (FixedJoint joint in joints)
-            {
-                Rigidbody otherRb = joint.connectedBody;
-                if (otherRb != null)
-                {
-                    GameObject otherObject = otherRb.gameObject;
-                    topBlock = otherObject; // Save as parent
-                    DestroyWire(otherRb);
-                    Destroy(joint);
-                }
-            }
-
-            // Destroy joints in child block
-            if (childBlock != null)
-            {
-                FixedJoint[] childJoints = childBlock.GetComponents<FixedJoint>();
-                Rigidbody childRb = childBlock.GetComponent<Rigidbody>();
-                DestroyWire(childRb);
-                Debug.Log($"Secondary Grab: Found {childJoints.Length} joint(s) on childBlock: {childBlock.name}");
-
-                foreach (FixedJoint childJoint in childJoints)
-                {
-                    Debug.Log($"Secondary Grab: Destroying joint on childBlock: {childJoint.name} (connected to: {childJoint.connectedBody?.gameObject.name})");
-
-                    Destroy(childJoint);
-                }
-            }
-            else
-            {
-                Debug.Log("Secondary grab: childBlock is null!");
-            }
-
-            // Snap top block to child block
-            if (topBlock != null && childBlock != null) // CASE 1: Block has parent and child block
-            {
-                FixedJoint newJoint = childBlock.AddComponent<FixedJoint>();
-                newJoint.connectedBody = topBlock.GetComponent<Rigidbody>();
-                newJoint.breakForce = Mathf.Infinity;
-                newJoint.breakTorque = Mathf.Infinity;
-
-                SnappedForwarding topSnap = topBlock.GetComponentInChildren<SnappedForwarding>();
-                if (topSnap != null)
-                {
-                    topSnap.ConnectedBlock = null;
-                    snappedForwarding.ConnectedBlock = null;
-                    snappedForwarding.SetSnapped(false);
-                    topSnap.ConnectedBlock = childBlock;
-
-                    // Update physics
-                    Rigidbody topRb = topBlock.GetComponent<Rigidbody>();
-
-                    UpdateChildBlockPositions(topBlock);
-                    topSnap.UpdatePhysics(topRb);
-
-                    BlockSnapping topBlockSnapping = topBlock.GetComponent<BlockSnapping>();
-                    if (topBlockSnapping != null)
-                        topBlockSnapping.ProceedWithRelease();
-                }
-            }
-            else if (childBlock != null) // CASE 2: Block has NO parent block but has child block
-            {
-                snappedForwarding.ConnectedBlock = null;
-                snappedForwarding.SetSnapped(false);
-
-                Rigidbody childRb = childBlock.GetComponent<Rigidbody>();
-                BlockSnapping childBlockSnapping = childBlock.GetComponent<BlockSnapping>();
-                SnappedForwarding childSnappedForwarding = childBlock.GetComponentInChildren<SnappedForwarding>();
-
-                childBlockSnapping.targetPosition = 1;
-                childBlockSnapping.hasSnapped = false;
-
-                UpdateChildBlockPositions(childBlock);
-                childSnappedForwarding.UpdatePhysics(childRb);
-
-                childSnappedForwarding.IsRootBlock = true;
-                childBlockSnapping.ProceedWithRelease();
-            }
-            else if (topBlock != null) // Case 3: Block has parent block but NO child block
-            {
-                SnappedForwarding topSnap = topBlock.GetComponentInChildren<SnappedForwarding>();
-                Rigidbody otherRb = topBlock.GetComponent<Rigidbody>();
-
-                ResetSnapStatusOnOtherBlock(topBlock);
-                topSnap.UpdatePhysics(otherRb);
-                ResnapBlocks(otherRb);
-            }
-            else // Case 4: Block has NO parent and NO child block
-            {
-                // Add logic if necessary (don't think it is, will delete on cleanup)
-            }
-        }
-        else
-        {
-            Debug.LogWarning("detachMode is null!");
-        }
+        // Always detach the selected block completely, regardless of detach mode
+        Debug.Log($"Block grabbed: {gameObject.name}");
+        DetachSelectedBlock();
 
         // Start the coroutine and store reference for OnRelease()
         resetSnapStatusCoroutine = StartCoroutine(ResetSnapStatusAfterDelay());
