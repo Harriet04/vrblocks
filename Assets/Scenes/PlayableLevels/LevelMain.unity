@@ -33156,6 +33156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CodingMode: 0
   ExecutionDirector: {fileID: 290970301}
+  startBlock: {fileID: 1265676904}
+  window: {fileID: 1100220749}
 --- !u!4 &1868430527
 Transform:
   m_ObjectHideFlags: 0
