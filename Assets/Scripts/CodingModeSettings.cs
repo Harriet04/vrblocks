@@ -48,6 +48,7 @@ public class CodingModeSettings : MonoBehaviour
         startBlock.transform.position = new Vector3(window.position.x, window.position.y, window.position.z);
         startBlock.transform.eulerAngles = new Vector3(window.transform.eulerAngles.x, window.transform.eulerAngles.y, window.transform.eulerAngles.z);
         startBlock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        startBlock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         //startBlock.GetComponent<BoxCollider>().isTrigger = true;
 
         Debug.Log("Current Mode = Simple, block list cleared");
