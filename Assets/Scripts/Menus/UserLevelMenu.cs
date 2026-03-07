@@ -86,11 +86,6 @@ public class UserLevelMenu : MonoBehaviour
     void Awake()
     {
         UpdateMenu();
-    }
-
-    public void UpdateMenu()
-    {
-        FindPersistentLevels();
         // Animations
         // Note: Keeping this here to fix scaling bugs when returning to the level selector menu from a level since Start() is run each time.
         middleLevelViewPos = middleLevelView.transform.position;
@@ -102,6 +97,13 @@ public class UserLevelMenu : MonoBehaviour
         rightLevelViewPos = rightLevelView.transform.position;
         rightLevelViewRot = rightLevelView.transform.localRotation;
         rightLevelViewScale = rightLevelView.transform.localScale;
+    }
+
+    public void UpdateMenu()
+    {
+        FindPersistentLevels();
+        UpdateDisplayView();
+
     }
 
     void Start()
