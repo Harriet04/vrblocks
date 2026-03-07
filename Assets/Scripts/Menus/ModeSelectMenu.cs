@@ -48,6 +48,8 @@ public class ModeSelectMenu : MonoBehaviour
     public void OpenUserLevelMenu()
     {
         UserLevelSelector.LeanScale(Vector3.one, AnimSpeed).setEaseInOutCubic();
+        UserLevelMenu UserMenu = UserLevelSelector.GetComponent<UserLevelMenu>();
+        if(UserMenu!=null){UserMenu.UpdateMenu();}
         PlacementSystem.enabled = false;
         DisableMenu();
     }

@@ -8496,6 +8496,7 @@ MonoBehaviour:
   m_RepeatRate: 0.1
   m_TrackedDeviceDragThresholdMultiplier: 1.4
   m_TrackedScrollDeltaMultiplier: 5
+  m_BypassUIToolkitEvents: 0
   m_ActiveInputMode: 0
   m_MaxTrackedDeviceRaycastDistance: 1000
   m_EnableXRInput: 1
@@ -30171,8 +30172,8 @@ MonoBehaviour:
   scriptableObject: {fileID: 11400000, guid: 3db717fa1a1e83945a92b63b9283c46a, type: 2}
   s1: {fileID: 1334452654}
   screenshotCapturer: {fileID: 1388589193}
-  userLevelName: {fileID: 0}
-  developerMode: 1
+  userLevelName: {fileID: 1086825264}
+  developerMode: 0
 --- !u!1001 &1706849957
 PrefabInstance:
   m_ObjectHideFlags: 0
