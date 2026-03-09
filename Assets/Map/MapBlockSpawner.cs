@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Linq;
+using System.Collections;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -98,10 +99,13 @@ public class MapBlockSpawner : MonoBehaviour
 
         detectTurtle.SetTurtleAndGoal(turtleEntity, generatedGoalObject);
         TurtleMovement turtleMovementComponent = turtleEntity.GetComponent<TurtleMovement>();
-        if (turtleMovementComponent != null) { ExecDirector.turtleMovement = turtleMovementComponent; turtleMovementComponent.Fail(); }
+        if (turtleMovementComponent != null) { ExecDirector.turtleMovement = turtleMovementComponent; turtleMovementComponent.canFail = true; turtleMovementComponent.Fail(); }
         ExecDirector.Init();
-         
+
+
+
     }
+
 
     public void ClearMap()
     {
