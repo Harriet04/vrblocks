@@ -61,6 +61,7 @@ public class TurtleMovement : MonoBehaviour
 
     void Start()
     {
+        print("Turtle Start");
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();

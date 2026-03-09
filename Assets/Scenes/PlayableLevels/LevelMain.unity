@@ -5002,8 +5002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c021ad426592221b35df0cdab6ffa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turtleMovement: {fileID: 0}
-  startBlock: {fileID: 1265676904}
+  turtleMovement: {fileID: 802109003}
+  startBlock: {fileID: 467421824}
   startButton: {fileID: 81492878}
   handBoundUI: {fileID: 0}
   mainBlockList: []
@@ -6657,6 +6657,11 @@ Transform:
   - {fileID: 923841362}
   m_Father: {fileID: 802108998}
   m_LocalEulerAnglesHint: {x: 0.939, y: 89.441, z: 3.81}
+--- !u!1 &467421824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6122732868338158301, guid: 5619ccd8f57d4ae9eadafa60b02da6cd, type: 3}
+  m_PrefabInstance: {fileID: 538665588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &476771605
 GameObject:
   m_ObjectHideFlags: 0
@@ -22956,6 +22961,7 @@ MonoBehaviour:
   goalObject: {fileID: 3548398643600602396, guid: c307c7d47e4ee9e478f6f36e7846ccf7, type: 3}
   turtle: {fileID: 8949930570369046022, guid: 400fef76ef71943d48f3221445efd519, type: 3}
   testMapValues: {fileID: 11400000, guid: 05ec3342eb3a8b94e863e16feac54c18, type: 2}
+  ExecDirector: {fileID: 290970301}
 --- !u!4 &1337409705
 Transform:
   m_ObjectHideFlags: 0
@@ -27611,6 +27617,7 @@ MonoBehaviour:
   goalObject: {fileID: 3548398643600602396, guid: f1ee4ab51e4d2b3a189cf3881dbf2ae0, type: 3}
   turtle: {fileID: 8949930570369046022, guid: 400fef76ef71943d48f3221445efd519, type: 3}
   testMapValues: {fileID: 0}
+  ExecDirector: {fileID: 0}
 --- !u!1 &1597107250
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,12 @@ public class ExecutionDirector : MonoBehaviour
 
     void Start()
     {
+        Init(); 
+    }
+
+    //We call this anytime a level is loaded; might need to find a way to cancel listeners
+    public void Init()
+    {
         // The execution director must begin execution (StartButtonPressed), and maintain an internal representation of the list of blocks (OnSnapEvent)
         startButton.GetComponent<XRSimpleInteractable>().selectEntered.AddListener(StartButtonPressed);
         BlockSnapping.blockSnapEvent.AddListener(OnSnapEvent);
@@ -38,7 +44,7 @@ public class ExecutionDirector : MonoBehaviour
         turtleMovement.SuccessEvent.AddListener(SuccessHandler);
         turtleMovement.ResetEvent.AddListener(ResetStartButton);
 
-        if(handBoundUI == null){ handBoundUI = FindObjectOfType<HandBoundUIHandler>(); }
+        if (handBoundUI == null) { handBoundUI = FindObjectOfType<HandBoundUIHandler>(); }
     }
 
     public void StartButtonPressed(SelectEnterEventArgs selectEnter)

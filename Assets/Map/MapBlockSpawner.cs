@@ -39,6 +39,7 @@ public class MapBlockSpawner : MonoBehaviour
     public GameObject goalObject;
     public TurtleMovement turtle;
     public MapBlockScriptableObject testMapValues;
+    public ExecutionDirector ExecDirector;
 
     private readonly DetectTurtle detectTurtle = new();
 
@@ -96,6 +97,10 @@ public class MapBlockSpawner : MonoBehaviour
         }
 
         detectTurtle.SetTurtleAndGoal(turtleEntity, generatedGoalObject);
+        TurtleMovement turtleMovementComponent = turtleEntity.GetComponent<TurtleMovement>();
+        if (turtleMovementComponent != null) { ExecDirector.turtleMovement = turtleMovementComponent; }
+        ExecDirector.Init();
+         
     }
 
     public void ClearMap()
