@@ -98,7 +98,7 @@ public class MapBlockSpawner : MonoBehaviour
 
         detectTurtle.SetTurtleAndGoal(turtleEntity, generatedGoalObject);
         TurtleMovement turtleMovementComponent = turtleEntity.GetComponent<TurtleMovement>();
-        if (turtleMovementComponent != null) { ExecDirector.turtleMovement = turtleMovementComponent; }
+        if (turtleMovementComponent != null) { ExecDirector.turtleMovement = turtleMovementComponent; turtleMovementComponent.Fail(); }
         ExecDirector.Init();
          
     }

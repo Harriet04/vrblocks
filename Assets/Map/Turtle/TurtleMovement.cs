@@ -50,13 +50,13 @@ public class TurtleMovement : MonoBehaviour
     private void SetIsWalking(bool value)
     {
         animator.SetBool("isWalking", value);
-        if(miniMapTurtle){ miniMapTurtleAnimator.SetBool("isWalking", value); }
+        //if(miniMapTurtle){ miniMapTurtleAnimator.SetBool("isWalking", value); }
     }
 
     private void SetAnimSpeed(float value)
     {
         animator.SetFloat("animSpeed", value);
-        if(miniMapTurtle){ miniMapTurtleAnimator.SetFloat("animSpeed", value); }
+        //if(miniMapTurtle){ miniMapTurtleAnimator.SetFloat("animSpeed", value); }
     }
 
     void Start()
