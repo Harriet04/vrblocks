@@ -20,6 +20,7 @@ public class TurtleMovement : MonoBehaviour
     public float animationSpeed = 1.0f;
     public float failBounciness = 0.3f;
     public Vector3 moveDistance = Vector3.zero;
+    private Vector3 lossyMoveDistance = Vector3.zero;
 
     public bool canReset = false; // separate from fail because external things can call reset
     public bool canFail = false;
@@ -62,6 +63,7 @@ public class TurtleMovement : MonoBehaviour
     void Start()
     {
         print("Turtle Start");
+        lossyMoveDistance = transform.lossyScale*0.5f;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -90,7 +92,7 @@ public class TurtleMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (!Physics.Raycast(transform.position, -transform.up, moveDistance.y * 2))
+        if (!Physics.Raycast(transform.position, -transform.up, lossyMoveDistance.y * 2))
         {
             Fail(() =>
             {
@@ -234,7 +236,7 @@ public class TurtleMovement : MonoBehaviour
         forwardArrow.SetActive(true);
         SetIsWalking(true);
 
-        Vector3 targetPosition = transform.position + Vector3.Scale(transform.forward, moveDistance);
+        Vector3 targetPosition = transform.position + Vector3.Scale(transform.forward, lossyMoveDistance);
 
         tween = null;
         if (Math.Abs(targetPosition.x - transform.position.x) > 0.01)
@@ -292,7 +294,7 @@ public class TurtleMovement : MonoBehaviour
     { // to be called by the jump animation
         audioSource.PlayOneShot(turtleJumpAudio);
 
-        float jumpForce = Mathf.Sqrt(moveDistance.y * 1.5f * 2 * Mathf.Abs(Physics.gravity.y)); // h = (µsin(θ))^2 / 2g with 50% more height
+        float jumpForce = Mathf.Sqrt(lossyMoveDistance.y * 1.5f * 2 * Mathf.Abs(Physics.gravity.y)); // h = (µsin(θ))^2 / 2g with 50% more height
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         isGrounded = false;
 
@@ -313,7 +315,7 @@ public class TurtleMovement : MonoBehaviour
         Fail(() =>
         {
             audioSource.PlayOneShot(turtleCollisionAudio);
-            rb.AddForce((-transform.forward + transform.up) * Mathf.Sqrt(moveDistance.y * 0.3f * 2 * Mathf.Abs(Physics.gravity.y)), ForceMode.Impulse);
+            rb.AddForce((-transform.forward + transform.up) * Mathf.Sqrt(lossyMoveDistance.y * 0.3f * 2 * Mathf.Abs(Physics.gravity.y)), ForceMode.Impulse);
             rb.AddTorque(-transform.right * 5, ForceMode.Impulse);
         });
     }
