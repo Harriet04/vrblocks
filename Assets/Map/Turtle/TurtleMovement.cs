@@ -44,6 +44,8 @@ public class TurtleMovement : MonoBehaviour
     public UnityEvent SuccessEvent = new UnityEvent();
     public UnityEvent ResetEvent = new UnityEvent();
 
+    private float JumpTime = -99999.0f; //Know when a jump was last performed so we don't accidentally trigger a fail condition from the jump itself.
+
     //private EmoteBoard emoteBoard;
     public GameObject forwardArrow;
 
@@ -64,6 +66,8 @@ public class TurtleMovement : MonoBehaviour
     {
         print("Turtle Start");
         lossyMoveDistance = transform.lossyScale*0.5f;
+        lossyMoveDistance.y = transform.lossyScale.y;
+        print("Lossy Move Distance: " + lossyMoveDistance.y);
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -92,8 +96,9 @@ public class TurtleMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (!Physics.Raycast(transform.position, -transform.up, lossyMoveDistance.y * 2))
+        if (Time.time-JumpTime > 2.0f && !Physics.Raycast(transform.position, -transform.up, lossyMoveDistance.y * 2))
         {
+            print("Fail on FixedUpdate: Not grounded!");
             Fail(() =>
             {
                 audioSource.PlayOneShot(turtleFallAudio);
@@ -286,6 +291,7 @@ public class TurtleMovement : MonoBehaviour
     private void PerformJump()
     {
         //emoteBoard.Emote(EmoteBoard.Emotes.Jump);
+        JumpTime = Time.time;
         animator.SetTrigger("Jump");
         if(miniMapTurtle){ miniMapTurtleAnimator.SetTrigger("Jump"); }
     }
@@ -293,7 +299,7 @@ public class TurtleMovement : MonoBehaviour
     private void AddJumpForce()
     { // to be called by the jump animation
         audioSource.PlayOneShot(turtleJumpAudio);
-
+        print("Lossy Jump: " + lossyMoveDistance.y);
         float jumpForce = Mathf.Sqrt(lossyMoveDistance.y * 1.5f * 2 * Mathf.Abs(Physics.gravity.y)); // h = (µsin(θ))^2 / 2g with 50% more height
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         isGrounded = false;
@@ -303,6 +309,7 @@ public class TurtleMovement : MonoBehaviour
 
     private void FailOnHitBack()
     {
+        print("Fail on Hit Back");
         Fail(() =>
         {
             audioSource.PlayOneShot(turtleCollisionAudio);
@@ -312,6 +319,7 @@ public class TurtleMovement : MonoBehaviour
 
     private void FailOnHitNose()
     {
+        print("Fail on Hit Nose");
         Fail(() =>
         {
             audioSource.PlayOneShot(turtleCollisionAudio);
