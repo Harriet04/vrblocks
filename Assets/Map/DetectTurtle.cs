@@ -64,7 +64,7 @@ public class DetectTurtle
 
         float distance = Vector3.Distance(Goal.transform.position, Turtle.transform.position);
 
-        if (distance <= distanceActivationThreshold)
+        if (distance <= distanceActivationThreshold*Turtle.transform.lossyScale.y)
         {
             if (!isNearby)
             {
