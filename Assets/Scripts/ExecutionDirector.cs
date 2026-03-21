@@ -20,7 +20,7 @@ public class ExecutionDirector : MonoBehaviour
     public GameObject startBlock;
     public GameObject startButton;
     public HandBoundUIHandler handBoundUI;
-
+    public TextCodeManager textCodeManager;
     // maintains a list of the blocks under Block (StartQueue)
     public List<GameObject> mainBlockList = new List<GameObject>();                                         //
 
@@ -57,6 +57,8 @@ public class ExecutionDirector : MonoBehaviour
         mainFunction.instructionPointer = 0;
         mainFunction.scopeDict = new Dictionary<int, ScopeData>();
         mainFunction.scopes = new Stack<ScopeData>();
+
+        textCodeManager.ConstructText(mainBlockList);
 
         // setup and begin execution
         AssembleScopes(mainFunction);

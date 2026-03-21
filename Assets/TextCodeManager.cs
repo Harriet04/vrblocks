@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,8 +25,10 @@ public class TextCodeManager : MonoBehaviour
     string cls_clr = "</color>";
 
     string Indent(int level) => new string(' ', level * 4);
+
+    public TextMeshProUGUI textMesh;
     
-    string ConstructText(List<GameObject> blockList)
+    public string ConstructText(List<GameObject> blockList)
     {
         /*
          * Notes:
@@ -136,6 +139,9 @@ public class TextCodeManager : MonoBehaviour
                 line++;
             }
         }
+
+        textMesh.SetText(text);
+
         return text;
     }
 

@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 6879204}
   - component: {fileID: 6879203}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text Code
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5189,6 +5189,7 @@ MonoBehaviour:
   startBlock: {fileID: 467421824}
   startButton: {fileID: 81492878}
   handBoundUI: {fileID: 0}
+  textCodeManager: {fileID: 973052474}
   mainBlockList: []
 --- !u!4 &290970302
 Transform:
@@ -16028,6 +16029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d6aaba80c23ca428f0159626038bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMesh: {fileID: 6879203}
 --- !u!1 &978286079
 GameObject:
   m_ObjectHideFlags: 0
