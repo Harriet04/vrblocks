@@ -154,8 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13cc745a3ea2ae440a62b80c6f41b8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.03
+  amplitude: 0.3
   frequency: 1
+  pointerArrow: {fileID: 2378453033894453888}
+  textLabel: {fileID: 2476768992383691855}
 --- !u!1 &3022275729850042158
 GameObject:
   m_ObjectHideFlags: 0
