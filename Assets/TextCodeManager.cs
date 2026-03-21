@@ -18,13 +18,22 @@ public class TextCodeManager : MonoBehaviour
         
     }
 
-    string key_clr = "<color=#000000>"; //Color for keywords like if, else, else if, etc
-    string smb_clr = "<color=#000000>";
-    string tok_clr = "<color=#000000>"; //Color for tokens (class names, instances, etc)
-    string val_clr = "<color=#000000>"; //Color for values (floats, ints, etc)
+    string key_clr = "<color=#FF00FF>"; //Color for keywords like if, else, else if, etc
+    string smb_clr = "<color=#FFFFFF>";
+    string tok_clr = "<color=#FFFF00>"; //Color for tokens (class names, instances, etc)
+    string val_clr = "<color=#FFFF00>"; //Color for values (floats, ints, etc)
     string cls_clr = "</color>";
 
     string Indent(int level) => new string(' ', level * 4);
+    string FormatLine(int line)
+    {
+        string s = line.ToString();
+        int spaces = 4 - s.Length;
+
+        if (spaces < 0) spaces = 0; // in case line has more than 4 digits
+
+        return s + new string(' ', spaces);
+    }
 
     public TextMeshProUGUI textMesh;
     
@@ -54,7 +63,7 @@ public class TextCodeManager : MonoBehaviour
                 switch (blockTurtleCommand.commandEnum)
                 {
                     case (TurtleCommand.Command.IfBegin):
-                        text += $"{line}\t{Indent(ind)}{key_clr}if{smb_clr}(";
+                        text += $"{FormatLine(line)}{Indent(ind)}{key_clr}if{smb_clr}(";
 
                         //Check next block, see if its a condition
                         if (blockList.Count > i + 1)
@@ -74,7 +83,7 @@ public class TextCodeManager : MonoBehaviour
                         break;
                     case (TurtleCommand.Command.ElseIf):
                         ind--; //Assume we had an If before this
-                        text += $"{line}\t{Indent(ind)}{key_clr}ElseIf{smb_clr}(";
+                        text += $"{FormatLine(line)}{Indent(ind)}{key_clr}ElseIf{smb_clr}(";
 
                         //Check next block, see if its a condition
                         if (blockList.Count > i + 1)
@@ -94,17 +103,17 @@ public class TextCodeManager : MonoBehaviour
 
                     case (TurtleCommand.Command.Else):
                         ind--; //Assume we had an If before this
-                        text += $"{line}\t{Indent(ind)}{key_clr}Else{smb_clr}:\n";
+                        text += $"{FormatLine(line)}{Indent(ind)}{key_clr}Else{smb_clr}:\n";
                         ind++; //Enter Else
                         break;
 
                     case (TurtleCommand.Command.IfEnd):
                         ind--; //We're exiting an if
-                        text += text += $"{line}\t{Indent(ind)}{key_clr}EndIf{smb_clr}\n";
+                        text += text += $"{FormatLine(line)}{Indent(ind)}{key_clr}EndIf{smb_clr}\n";
                         break;
 
                     case (TurtleCommand.Command.WhileBegin):
-                        text += $"{line}\t{Indent(ind)}{key_clr}While{smb_clr}(";
+                        text += $"{FormatLine(line)}{Indent(ind)}{key_clr}While{smb_clr}(";
 
                         //Check next block, see if its a condition
                         if (blockList.Count > i + 1)
@@ -123,19 +132,20 @@ public class TextCodeManager : MonoBehaviour
                         break;
 
                     case (TurtleCommand.Command.WhileBreak):
-                        text += $"{line}\t{Indent(ind)}{key_clr}Break\n";
+                        text += $"{FormatLine(line)}{Indent(ind)}{key_clr}Break\n";
                         break;
 
                     case (TurtleCommand.Command.WhileEnd):
                         ind--; //exiting While End
-                        text += $"{line}\t{Indent(ind)}{key_clr}WhileEnd{smb_clr}\n";
+                        text += $"{FormatLine(line)}{Indent(ind)}{key_clr}WhileEnd{smb_clr}\n";
                         break;
 
                     //Handle everything else as a single line, no control flow change
                     default:
-                        text += $"{line}\t{Indent(ind)}{GetString(blockTurtleCommand.commandEnum)}\n";
+                        text += $"{FormatLine(line)}{Indent(ind)}{GetString(blockTurtleCommand.commandEnum)}\n";
                         break;
                 }
+                i++;
                 line++;
             }
         }
