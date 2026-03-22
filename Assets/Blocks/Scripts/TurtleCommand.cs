@@ -16,11 +16,11 @@ public class TurtleCommand : MonoBehaviour
         WhileBegin,
         WhileBreak,
         WhileEnd,
-        ConditionTrue,
+        ConditionTrue, //11
         ConditionFalse,
         ConditionFacingWall,
         ConditionFacingCliff,
-        ConditionFacingStepDown,
+        ConditionFacingStepDown, //15 <make sure we put any new conditions in this 11-15 range
         CommandError
     };
 
