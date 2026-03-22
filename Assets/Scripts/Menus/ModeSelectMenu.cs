@@ -7,14 +7,15 @@ public class ModeSelectMenu : MonoBehaviour
 {
     // Buttons
     public Button SandboxButton;
-    public Button UserLevelButton;
+    //public Button UserLevelButton;
     public Button LevelButton;
 
     // GameObjects
     public GameObject SandboxModeView;
     public GameObject LevelModeView;
     public GameObject LevelSelector;
-    public GameObject UserLevelSelector;
+    //public GameObject UserLevelSelector;
+    public GameObject SandboxMenu;
 
     //Sandbox/Level Handlers
     public level_loader LevelLoader;
@@ -28,7 +29,7 @@ public class ModeSelectMenu : MonoBehaviour
     {
         //Link onClick event to load sandbox mode
         SandboxButton.onClick.AddListener(OpenSandboxMenu);
-        UserLevelButton.onClick.AddListener(OpenUserLevelMenu);
+        //UserLevelButton.onClick.AddListener(OpenUserLevelMenu);
         LevelButton.onClick.AddListener(OpenLevelSelectMenu);
     }
 
@@ -45,7 +46,7 @@ public class ModeSelectMenu : MonoBehaviour
         DisableMenu();
     }
 
-    public void OpenUserLevelMenu()
+    /*public void OpenUserLevelMenu()
     {
         UserLevelSelector.LeanScale(Vector3.one, AnimSpeed).setEaseInOutCubic();
         UserLevelMenu UserMenu = UserLevelSelector.GetComponent<UserLevelMenu>();
@@ -55,7 +56,7 @@ public class ModeSelectMenu : MonoBehaviour
         PlacementSystem.enabled = false;
         DisableMenu();
     }
-
+    */
     public void OpenSandboxMenu()
     {
         //Sandbox not active, play error sound
@@ -63,6 +64,8 @@ public class ModeSelectMenu : MonoBehaviour
         //DisableMenu();
         LevelLoader.clearLevel();
         PlacementSystem.enabled = true;
+        SandboxMenu.LeanScale(Vector3.one, AnimSpeed).setEaseInOutCubic();
+        DisableMenu();
     }
 
 
