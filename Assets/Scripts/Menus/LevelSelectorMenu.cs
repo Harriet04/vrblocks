@@ -53,6 +53,8 @@ public class LevelSelectorMenu : MonoBehaviour
     public Button rightNavigateButton;
     public Button lockedLevelButton;
 
+    public GameObject level1_1Tutorial;
+
     public GameObject middleLevelView;
     public GameObject leftLevelView;
     public GameObject rightLevelView;
@@ -149,6 +151,7 @@ public class LevelSelectorMenu : MonoBehaviour
         {
             case 0:
                 textChanger.hintText.text = "Hint 1-1";
+                level1_1Tutorial.SetActive(true);
                 break;
             case 1:
                 textChanger.hintText.text = "Hint 1-2";
@@ -204,8 +207,8 @@ public class LevelSelectorMenu : MonoBehaviour
         {
             if(levelData.Count>selectedLevelIndex)
             {
-                LevelLoader.LoadLevel(levelData[selectedLevelIndex]);
                 chooseHintText();
+                LevelLoader.LoadLevel(levelData[selectedLevelIndex]);
             }
         }
         else
