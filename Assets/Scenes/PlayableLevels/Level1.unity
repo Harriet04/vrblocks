@@ -21486,7 +21486,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 173921313449220421, guid: 76555faf8f1c47a41a39009bca958939, type: 3}
       propertyPath: m_text
-      value: 
+      value: Level Map
       objectReference: {fileID: 0}
     - target: {fileID: 2954211131937653608, guid: 76555faf8f1c47a41a39009bca958939, type: 3}
       propertyPath: m_Name
