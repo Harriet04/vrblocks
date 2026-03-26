@@ -12095,6 +12095,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 270200700328784619, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 270200700328784619, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12103,6 +12107,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1868430526}
     - target: {fileID: 877510787010942670, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 877510787010942670, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12111,6 +12119,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1868430526}
     - target: {fileID: 1184415923336961799, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 1184415923336961799, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12119,6 +12131,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1868430526}
     - target: {fileID: 1452545170152731813, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 1452545170152731813, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12127,6 +12143,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1868430526}
     - target: {fileID: 1571717382074643306, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 1571717382074643306, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12134,6 +12154,10 @@ PrefabInstance:
       propertyPath: CodingModeSettings
       value: 
       objectReference: {fileID: 1868430526}
+    - target: {fileID: 1586183030346636381, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
     - target: {fileID: 1586183030346636381, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
@@ -12147,6 +12171,10 @@ PrefabInstance:
       value: PlayerUIManager
       objectReference: {fileID: 0}
     - target: {fileID: 6062818035419030095, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 6062818035419030095, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12154,6 +12182,10 @@ PrefabInstance:
       propertyPath: CodingModeSettings
       value: 
       objectReference: {fileID: 1868430526}
+    - target: {fileID: 6181617017192666194, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
     - target: {fileID: 6181617017192666194, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
@@ -12203,6 +12235,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6820417665725837129, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 6820417665725837129, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12210,6 +12246,10 @@ PrefabInstance:
       propertyPath: CodingModeSettings
       value: 
       objectReference: {fileID: 1868430526}
+    - target: {fileID: 7168437453572038466, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
     - target: {fileID: 7168437453572038466, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
@@ -12231,6 +12271,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4585b016f635a9a998c04558e5941eae, type: 3}
     - target: {fileID: 8749371570860973986, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 8749371570860973986, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12239,6 +12283,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1868430526}
     - target: {fileID: 8761773523358483969, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 8761773523358483969, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12247,6 +12295,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1868430526}
     - target: {fileID: 8962096698554753688, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
+    - target: {fileID: 8962096698554753688, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
       objectReference: {fileID: 1100220749}
@@ -12254,6 +12306,10 @@ PrefabInstance:
       propertyPath: CodingModeSettings
       value: 
       objectReference: {fileID: 1868430526}
+    - target: {fileID: 9192224999874940459, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: startBlock
+      value: 
+      objectReference: {fileID: 1747486403}
     - target: {fileID: 9192224999874940459, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: CodingWindow
       value: 
@@ -23749,7 +23805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1346304427
 Transform:
   m_ObjectHideFlags: 0
@@ -34572,7 +34628,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CodingMode: 0
   ExecutionDirector: {fileID: 290970301}
-  startBlock: {fileID: 0}
+  startBlock: {fileID: 467421824}
+  CodingWindow: {fileID: 1346304426}
   window: {fileID: 1100220749}
 --- !u!4 &1868430527
 Transform:

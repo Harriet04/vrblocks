@@ -9,8 +9,10 @@ public class AddObject : MonoBehaviour
     [SerializeField] private Vector3 spawnOffset = new(0, 0.1f, 0); // Offset to avoid overlap
     public CodingModeSettings CodingModeSettings;
     public Transform CodingWindow;
+    public Transform startBlock;
     private int spawnCounter = 1;
     private Vector3 scaleValue = new Vector3(0.25f, 0.125f, 0.25f);
+    private Vector3 simpleOffset = new Vector3(0.0f, -0.25f, 0.0f);
     private void Awake()
     {
         if (TryGetComponent<Button>(out var button))
@@ -52,20 +54,25 @@ public class AddObject : MonoBehaviour
                 return;
             }
 
+
+            
             GameObject newBlock = Instantiate(
                 blockPrefab,
-                CodingWindow.position + (spawnCounter * -spawnOffset * 0.7f), // Spawning based on button position
-                CodingWindow.rotation,
+                startBlock.position + (simpleOffset * spawnCounter), // Spawning based on start block position
+                startBlock.rotation,
                 spawnParent
             );
-            
+            //delete snapping
+            Destroy(newBlock.GetComponent<BlockSnapping>());
+
             spawnCounter++;
             newBlock.GetComponent<Rigidbody>().useGravity = false;  //turn off block gravity
             newBlock.transform.eulerAngles = new Vector3(CodingWindow.eulerAngles.x, CodingWindow.eulerAngles.y, CodingWindow.eulerAngles.z);
             newBlock.transform.LeanScale(scaleValue,0.0f);
-            newBlock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-            newBlock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            //newBlock.GetComponent<BoxCollider>().isTrigger = true;
+            Destroy(newBlock.GetComponent<BlockGrabInteractable>());
+            Destroy(newBlock.GetComponent<Rigidbody>());  //turn off physics of all blocks
+            
+            
             newBlock.name = blockPrefab.name; // Because I use strings for block queue.
         }
     }
