@@ -11,6 +11,7 @@ public class CodingModeSettings : MonoBehaviour
     public GameObject startBlock;
     public GameObject CodingWindow;
     public Transform window;
+    public int spawnCounter = 1;
 
     private Vector3 scaleValue = new Vector3(0.25f, 0.125f, 0.25f);
     public void SetModeNormal()
@@ -40,7 +41,7 @@ public class CodingModeSettings : MonoBehaviour
     public void SetModeSimple()
     {
         CodingMode=1;
-
+        spawnCounter=1;
 
         //delete all existing blocks
         ExecutionDirector.mainBlockList.Clear();

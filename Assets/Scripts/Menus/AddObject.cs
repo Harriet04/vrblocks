@@ -10,9 +10,8 @@ public class AddObject : MonoBehaviour
     public CodingModeSettings CodingModeSettings;
     public Transform CodingWindow;
     public Transform startBlock;
-    private int spawnCounter = 1;
     private Vector3 scaleValue = new Vector3(0.25f, 0.125f, 0.25f);
-    private Vector3 simpleOffset = new Vector3(0.0f, -0.25f, 0.0f);
+    private Vector3 simpleOffset = new Vector3(0.0f, -0.125f, 0.0f);
     private void Awake()
     {
         if (TryGetComponent<Button>(out var button))
@@ -58,14 +57,14 @@ public class AddObject : MonoBehaviour
             
             GameObject newBlock = Instantiate(
                 blockPrefab,
-                startBlock.position + (simpleOffset * spawnCounter), // Spawning based on start block position
+                startBlock.position + (simpleOffset * CodingModeSettings.spawnCounter), // Spawning based on start block position
                 startBlock.rotation,
                 spawnParent
             );
             //delete snapping
             Destroy(newBlock.GetComponent<BlockSnapping>());
 
-            spawnCounter++;
+            CodingModeSettings.spawnCounter++;
             newBlock.GetComponent<Rigidbody>().useGravity = false;  //turn off block gravity
             newBlock.transform.eulerAngles = new Vector3(CodingWindow.eulerAngles.x, CodingWindow.eulerAngles.y, CodingWindow.eulerAngles.z);
             newBlock.transform.LeanScale(scaleValue,0.0f);
