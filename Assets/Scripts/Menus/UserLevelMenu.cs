@@ -55,6 +55,12 @@ public class UserLevelMenu : MonoBehaviour
     public Button rightNavigateButton;
     public Button lockedLevelButton;
     public Button deleteButton;
+    public Button editButton;
+    public TMP_InputField inputField; //for level naming
+    public level_loader levelLoader;
+
+    public GameObject sandboxMenu;
+    public PlacementSystem placementSystem;
 
     public GameObject middleLevelView;
     public GameObject leftLevelView;
@@ -127,6 +133,7 @@ public class UserLevelMenu : MonoBehaviour
         }*/
 
         playLevelButton.onClick.AddListener(GoToLevel);
+        editButton.onClick.AddListener(EditLevel);
         leftNavigateButton.onClick.AddListener(() =>
         {
             selectedLevelIndex = Math.Max(0, selectedLevelIndex - 1);
@@ -315,6 +322,29 @@ public class UserLevelMenu : MonoBehaviour
             SceneTransitionManager.singleton.GoToSceneAsync(selectedLevelIndex, LoadSceneBy.LevelStatesManagerArrayOrder);
             // SceneTransitionManager.singleton.GoToSceneAsync(selectedLevelIndex, LoadSceneBy.BuildSettingsOrder);
             SceneTransitionStates.SetSelectedLevel(selectedLevelIndex);
+        }
+    }
+
+    public void EditLevel()
+    {
+        //NEED TO CLEAR
+        if (levelData.Count > selectedLevelIndex)
+        {
+            LevelLoader.clearLevel();
+            //Load into the sandbox menu
+            
+            //Open the sandbox menu
+            sandboxMenu.LeanScale(Vector3.one, 0.3f).setEaseInOutCubic();
+            //Close this menu
+            gameObject.LeanScale(Vector3.zero, 0.3f).setEaseInOutCubic();
+
+            //load level to edit into placementSystem
+            placementSystem.enabled = true;
+            placementSystem.Clear();
+            placementSystem.LoadLevel(levelData[selectedLevelIndex]);
+
+            string Name = levelTitles[selectedLevelIndex];
+            inputField.text = Name;
         }
     }
 

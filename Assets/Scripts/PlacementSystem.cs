@@ -162,6 +162,30 @@ public class PlacementSystem : MonoBehaviour
         }
     }
 
+    //Load an existing level for editing
+    public void LoadLevel(MapBlockScriptableObject Map)
+    {
+        print("Loading Level");
+        //place blocks first
+        CycleCounter = 0;
+        foreach (Vector3 block in Map.spawnPoints)
+        {
+            PlaceObject(grid.CellToWorld(Vector3Int.RoundToInt(block)));
+        }
+
+        //Then turtle
+        CycleCounter = 1;
+        PlaceObject(grid.CellToWorld(Vector3Int.RoundToInt(Map.turtleSpawnPoint)));
+
+        //Then flag
+        CycleCounter = 2;
+        PlaceObject(grid.CellToWorld(Vector3Int.RoundToInt(Map.goalSpawnPoint)));
+
+        CycleCounter = 0;
+    }
+
+
+
     //check to make sure an object is not already in the position, then place object
     public Transform scaleFactor;
     private bool isTurtle = false;

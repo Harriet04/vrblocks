@@ -67,6 +67,7 @@ public class DataManager : MonoBehaviour
         if (!turtleExists || !goalExists)
         {
             MonoBehaviour.print("Save Failed");
+            userLevelName.text = "";
             return;
         }
         //The amount of items in the list is recorded two messages are sent to check if the value is consistant
@@ -131,6 +132,7 @@ public class DataManager : MonoBehaviour
 
 
         s1.Clear();
+        userLevelName.text = "";
 
         }
 
