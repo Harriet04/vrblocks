@@ -65,7 +65,6 @@ public class CodingModeSettings : MonoBehaviour
         startBlock.transform.eulerAngles = new Vector3(window.transform.eulerAngles.x, window.transform.eulerAngles.y, window.transform.eulerAngles.z);
         startBlock.GetComponent<Rigidbody>().isKinematic = true; //turn off physics
         heightOffset = startBlock.transform.position;
-        ExecutionDirector.mainBlockList.Add(startBlock);
         //startBlock.GetComponent<BoxCollider>().isTrigger = true;
 
         Debug.Log("Current Mode = Simple, block list cleared");
