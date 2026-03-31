@@ -61,7 +61,7 @@ public class CodingModeSettings : MonoBehaviour
         //pull start block to initial position
         startBlock.GetComponent<Rigidbody>().useGravity = false;
         startBlock.transform.LeanScale(scaleValue,0.0f);
-        startBlock.transform.position = new Vector3(window.position.x - 0.3f, window.position.y + 0.4f, window.position.z);
+        startBlock.transform.position = new Vector3(window.position.x - 0.3f, window.position.y + 0.4f, window.position.z + 0.2f);
         startBlock.transform.eulerAngles = new Vector3(window.transform.eulerAngles.x, window.transform.eulerAngles.y, window.transform.eulerAngles.z);
         startBlock.GetComponent<Rigidbody>().isKinematic = true; //turn off physics
         heightOffset = startBlock.transform.position;
