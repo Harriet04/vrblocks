@@ -7,9 +7,10 @@ public class AddObject : MonoBehaviour
     [SerializeField] private GameObject? blockPrefab; // Assign corresponding block in inspector
     [SerializeField] private Transform spawnParent; // Assign "MoveableEntities" as spawn position in hierarchy if that's how we're moving with it.
     [SerializeField] private Vector3 spawnOffset = new(0, 0.1f, 0); // Offset to avoid overlap
+    public ExecutionDirector executionDirector;
     public CodingModeSettings CodingModeSettings;
     public Transform CodingWindow;
-    private int spawnCounter = 1;
+    public Transform startBlock;
     private Vector3 scaleValue = new Vector3(0.25f, 0.125f, 0.25f);
     private void Awake()
     {
@@ -52,21 +53,34 @@ public class AddObject : MonoBehaviour
                 return;
             }
 
+
+            
             GameObject newBlock = Instantiate(
                 blockPrefab,
-                CodingWindow.position + (spawnCounter * -spawnOffset * 0.7f), // Spawning based on button position
-                CodingWindow.rotation,
+                CodingModeSettings.heightOffset + (CodingModeSettings.simpleOffset * (CodingModeSettings.spawnCounter%8)), // Spawning based on start block position
+                startBlock.rotation,
                 spawnParent
             );
-            
-            spawnCounter++;
+            //delete snapping
+            Destroy(newBlock.GetComponent<BlockSnapping>());
+
+            CodingModeSettings.spawnCounter++;
             newBlock.GetComponent<Rigidbody>().useGravity = false;  //turn off block gravity
             newBlock.transform.eulerAngles = new Vector3(CodingWindow.eulerAngles.x, CodingWindow.eulerAngles.y, CodingWindow.eulerAngles.z);
             newBlock.transform.LeanScale(scaleValue,0.0f);
-            newBlock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-            newBlock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            //newBlock.GetComponent<BoxCollider>().isTrigger = true;
+            Destroy(newBlock.GetComponent<BlockGrabInteractable>());
+            Destroy(newBlock.GetComponent<Rigidbody>());  //turn off physics of all blocks
+            
+            
             newBlock.name = blockPrefab.name; // Because I use strings for block queue.
+            executionDirector.mainBlockList.Add(newBlock);
+            
+            //update spawn offset in case of block overflow
+            if (CodingModeSettings.spawnCounter % 8 == 0)
+            {
+                Vector3 temp = new Vector3(0.175f,0.0f,-0.225f);
+                CodingModeSettings.heightOffset += temp;
+            }
         }
     }
 
