@@ -11,7 +11,6 @@ public class AddObject : MonoBehaviour
     public Transform CodingWindow;
     public Transform startBlock;
     private Vector3 scaleValue = new Vector3(0.25f, 0.125f, 0.25f);
-    private Vector3 simpleOffset = new Vector3(0.0f, -0.125f, 0.0f);
     private void Awake()
     {
         if (TryGetComponent<Button>(out var button))
@@ -57,7 +56,7 @@ public class AddObject : MonoBehaviour
             
             GameObject newBlock = Instantiate(
                 blockPrefab,
-                startBlock.position + (simpleOffset * CodingModeSettings.spawnCounter), // Spawning based on start block position
+                CodingModeSettings.heightOffset + (CodingModeSettings.simpleOffset * (CodingModeSettings.spawnCounter%8)), // Spawning based on start block position
                 startBlock.rotation,
                 spawnParent
             );
@@ -73,6 +72,13 @@ public class AddObject : MonoBehaviour
             
             
             newBlock.name = blockPrefab.name; // Because I use strings for block queue.
+            
+            //update spawn offset in case of block overflow
+            if (CodingModeSettings.spawnCounter % 8 == 0)
+            {
+                Vector3 temp = new Vector3(0.175f,0.0f,-0.225f);
+                CodingModeSettings.heightOffset += temp;
+            }
         }
     }
 

@@ -14,6 +14,8 @@ public class CodingModeSettings : MonoBehaviour
     public int spawnCounter = 1;
 
     private Vector3 scaleValue = new Vector3(0.25f, 0.125f, 0.25f);
+    public Vector3 simpleOffset = new Vector3(0.0f, -0.125f, 0.0f);
+    public Vector3 heightOffset;
     public void SetModeNormal()
     {
         CodingMode=0;
@@ -61,6 +63,7 @@ public class CodingModeSettings : MonoBehaviour
         startBlock.transform.position = new Vector3(window.position.x - 0.3f, window.position.y + 0.4f, window.position.z);
         startBlock.transform.eulerAngles = new Vector3(window.transform.eulerAngles.x, window.transform.eulerAngles.y, window.transform.eulerAngles.z);
         startBlock.GetComponent<Rigidbody>().isKinematic = true; //turn off physics
+        heightOffset = startBlock.transform.position;
         //startBlock.GetComponent<BoxCollider>().isTrigger = true;
 
         Debug.Log("Current Mode = Simple, block list cleared");
