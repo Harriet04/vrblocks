@@ -32,6 +32,7 @@ public class CodingModeSettings : MonoBehaviour
         //hide coding window
         CodingWindow.SetActive(false);
 
+        startBlock.transform.LeanScale(new Vector3(0.0f,0.0f,0.0f),0.0f);
         startBlock.GetComponent<Rigidbody>().useGravity = true;
         startBlock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         startBlock.GetComponent<Rigidbody>().isKinematic = false; //turn on physics
@@ -64,6 +65,7 @@ public class CodingModeSettings : MonoBehaviour
         startBlock.transform.eulerAngles = new Vector3(window.transform.eulerAngles.x, window.transform.eulerAngles.y, window.transform.eulerAngles.z);
         startBlock.GetComponent<Rigidbody>().isKinematic = true; //turn off physics
         heightOffset = startBlock.transform.position;
+        ExecutionDirector.mainBlockList.Add(startBlock);
         //startBlock.GetComponent<BoxCollider>().isTrigger = true;
 
         Debug.Log("Current Mode = Simple, block list cleared");

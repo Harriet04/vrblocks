@@ -7,6 +7,7 @@ public class AddObject : MonoBehaviour
     [SerializeField] private GameObject? blockPrefab; // Assign corresponding block in inspector
     [SerializeField] private Transform spawnParent; // Assign "MoveableEntities" as spawn position in hierarchy if that's how we're moving with it.
     [SerializeField] private Vector3 spawnOffset = new(0, 0.1f, 0); // Offset to avoid overlap
+    public ExecutionDirector executionDirector;
     public CodingModeSettings CodingModeSettings;
     public Transform CodingWindow;
     public Transform startBlock;
@@ -72,6 +73,7 @@ public class AddObject : MonoBehaviour
             
             
             newBlock.name = blockPrefab.name; // Because I use strings for block queue.
+            executionDirector.mainBlockList.Add(newBlock);
             
             //update spawn offset in case of block overflow
             if (CodingModeSettings.spawnCounter % 8 == 0)
