@@ -65,6 +65,7 @@ public class LevelSelectorMenu : MonoBehaviour
     public GameObject level2_5Tutorial;
     public GameObject level3_1Tutorial;
     public GameObject level3_2Tutorial;
+    public GameObject level3_3Tutorial;
 
     public GameObject middleLevelView;
     public GameObject leftLevelView;
@@ -210,6 +211,7 @@ public class LevelSelectorMenu : MonoBehaviour
                 break;
             case 12:
                 textChanger.hintText.text = "Hint 3-3";
+                level3_3Tutorial.SetActive(true);
                 break;
             case 13:
                 textChanger.hintText.text = "Hint 3-4";
