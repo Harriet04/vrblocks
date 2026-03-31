@@ -21349,7 +21349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1228897483}
   m_Layer: 0
-  m_Name: MoveableEntities (1)
+  m_Name: MoveableEntities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24023,7 +24023,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1346554417 stripped
