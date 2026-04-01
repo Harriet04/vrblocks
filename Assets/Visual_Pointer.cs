@@ -16,7 +16,7 @@ public class Visual_Pointer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pointerArrow.transform.rotation = Quaternion.Euler(ArrowRotation); //set arrow global rotation to ArrowRotation values.
+        pointerArrow.transform.localRotation = Quaternion.Euler(ArrowRotation); //set arrow global rotation to ArrowRotation values.
         textMesh = GetComponentInChildren<TMP_Text>(); //find existing TMP Text element
         textMesh.text = caption; // set TMP Text to new text from edit mode
     }
@@ -27,6 +27,6 @@ public class Visual_Pointer : MonoBehaviour
 
         float Displace = Mathf.Sin(Time.time * frequency) * amplitude; //sine wave ossilation function, runs everyframe, stored as a variable
         pointerArrow.transform.localPosition = new Vector3(0, Displace, 0); //offsets pointer Arrow Local Position by (Displace) distance along the y axis
-        
+
     }
 }
