@@ -69,7 +69,7 @@ public class TextCodeManager : MonoBehaviour
                         if (blockList.Count > i + 1)
                         {
                             TurtleCommand conditionCmd;
-                            bool found = blockList[i].TryGetComponent<TurtleCommand>(out conditionCmd);
+                            bool found = blockList[i+1].TryGetComponent<TurtleCommand>(out conditionCmd);
                             if (found && isCondition(conditionCmd.commandEnum))
                             {
                                 text += GetString(conditionCmd.commandEnum);
@@ -89,7 +89,7 @@ public class TextCodeManager : MonoBehaviour
                         if (blockList.Count > i + 1)
                         {
                             TurtleCommand conditionCmd;
-                            bool found = blockList[i].TryGetComponent<TurtleCommand>(out conditionCmd);
+                            bool found = blockList[i+1].TryGetComponent<TurtleCommand>(out conditionCmd);
                             if (found && isCondition(conditionCmd.commandEnum))
                             {
                                 text += GetString(conditionCmd.commandEnum);
@@ -109,7 +109,7 @@ public class TextCodeManager : MonoBehaviour
 
                     case (TurtleCommand.Command.IfEnd):
                         ind--; //We're exiting an if
-                        text += text += $"{FormatLine(line)}{Indent(ind)}{key_clr}EndIf{smb_clr}\n";
+                        text += $"{FormatLine(line)}{Indent(ind)}{key_clr}EndIf{smb_clr}\n";
                         break;
 
                     case (TurtleCommand.Command.WhileBegin):
@@ -119,7 +119,7 @@ public class TextCodeManager : MonoBehaviour
                         if (blockList.Count > i + 1)
                         {
                             TurtleCommand conditionCmd;
-                            bool found = blockList[i].TryGetComponent<TurtleCommand>(out conditionCmd);
+                            bool found = blockList[i+1].TryGetComponent<TurtleCommand>(out conditionCmd);
                             if (found && isCondition(conditionCmd.commandEnum))
                             {
                                 text += GetString(conditionCmd.commandEnum);
@@ -147,6 +147,7 @@ public class TextCodeManager : MonoBehaviour
                 }
                 i++;
                 line++;
+                print(text);
             }
         }
 
