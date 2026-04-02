@@ -53,6 +53,7 @@ public class LevelSelectorMenu : MonoBehaviour
     public Button rightNavigateButton;
     public Button lockedLevelButton;
 
+    public GameObject gameStartTutorial;
     public GameObject level1_1Tutorial;
     public GameObject level1_2Tutorial;
     public GameObject level1_3Tutorial;
@@ -159,6 +160,71 @@ public class LevelSelectorMenu : MonoBehaviour
         UpdateDisplayView();
     }
 
+
+    public void setTutorialsInactive(int level)
+    {
+        gameStartTutorial.SetActive(false);
+        if(level != 0)
+        {
+            level1_1Tutorial.SetActive(false);
+        }
+        if(level != 1)
+        {
+            level1_2Tutorial.SetActive(false);
+        }
+        if(level != 2)
+        {
+            level1_3Tutorial.SetActive(false);
+        }
+        if(level != 3)
+        {
+            level1_4Tutorial.SetActive(false);
+        }
+        if(level != 4)
+        {
+            level1_5Tutorial.SetActive(false);
+        }
+        if(level != 5)
+        {
+            level2_1Tutorial.SetActive(false);
+        }
+        if(level != 6)
+        {
+            level2_2Tutorial.SetActive(false);
+        }
+        if(level != 7)
+        {
+            level2_3Tutorial.SetActive(false);
+        }
+        if(level != 8)
+        {
+            level2_4Tutorial.SetActive(false);
+        }
+        if(level != 9)
+        {
+            level2_5Tutorial.SetActive(false);
+        }
+        if(level != 10)
+        {
+            level3_1Tutorial.SetActive(false);
+        }
+        if(level != 11)
+        {
+            level3_2Tutorial.SetActive(false);
+        }
+        if(level != 12)
+        {
+            level3_3Tutorial.SetActive(false);
+        }
+        if(level != 13)
+        {
+            level3_4Tutorial.SetActive(false);
+        }
+        if(level != 14)
+        {
+            level3_5Tutorial.SetActive(false);
+        }
+    }
     public void chooseHintText()
     {
         switch (selectedLevelIndex)
@@ -226,6 +292,7 @@ public class LevelSelectorMenu : MonoBehaviour
             default:
                 break;
         }
+        setTutorialsInactive(selectedLevelIndex);
         
     }
     public void GoToLevel()

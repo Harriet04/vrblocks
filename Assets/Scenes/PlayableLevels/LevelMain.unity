@@ -5872,6 +5872,11 @@ Transform:
   - {fileID: 1954680583}
   m_Father: {fileID: 150767394}
   m_LocalEulerAnglesHint: {x: 0, y: -189.033, z: 0}
+--- !u!1 &330133837 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8055831565338831343, guid: 1dec07f39c50d53429421e1cdf8e9aa4, type: 3}
+  m_PrefabInstance: {fileID: 1339728886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &334403406
 GameObject:
   m_ObjectHideFlags: 0
@@ -38023,6 +38028,7 @@ MonoBehaviour:
   leftNavigateButton: {fileID: 413699953}
   rightNavigateButton: {fileID: 1434215876}
   lockedLevelButton: {fileID: 2050191218}
+  gameStartTutorial: {fileID: 330133837}
   level1_1Tutorial: {fileID: 239219327}
   level1_2Tutorial: {fileID: 471642801}
   level1_3Tutorial: {fileID: 1454006866}
@@ -38197,7 +38203,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5897899570601444522, guid: 1dec07f39c50d53429421e1cdf8e9aa4, type: 3}
   m_PrefabInstance: {fileID: 1339728886}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 330133837}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
