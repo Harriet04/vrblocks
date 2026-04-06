@@ -6986,10 +6986,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3022275729850042158, guid: 76555faf8f1c47a41a39009bca958939, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76555faf8f1c47a41a39009bca958939, type: 3}
 --- !u!1 &413699951
 GameObject:
@@ -24047,12 +24044,47 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -851591506940895311, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
+  RotateCWInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Rotate CW Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c6fa1035-fa09-4cd3-8734-b0859dd510e1
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 1f7bb2d0-3326-4ed1-b3d4-1949f759ae78
+        m_Path: 
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Rotate CW Input
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: -5510777845572535337, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  RotateCCWInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Rotate CCW Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d9c2081d-0968-4246-b285-917ce32e4d37
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   goalPositionOffset: {x: 0, y: 0, z: 0}
   HoverMaterial: {fileID: 2100000, guid: b9f992e82c2bb5e41a89042664f6fb5d, type: 2}
   PlacementObjects:
   - {fileID: 2844158347067402648, guid: 040b808da240c4b54a6a4135c497a5ec, type: 3}
   - {fileID: 5145861100388396173, guid: 400fef76ef71943d48f3221445efd519, type: 3}
   - {fileID: 3548398643600602396, guid: c307c7d47e4ee9e478f6f36e7846ccf7, type: 3}
+  Yaw: 0
+  TurtleRotation: {x: 0, y: 0, z: 0}
+  GoalRotation: {x: 0, y: 0, z: 0}
   scaleFactor: {fileID: 892866662}
 --- !u!1 &1337409703
 GameObject:
@@ -35348,10 +35380,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3022275729850042158, guid: 76555faf8f1c47a41a39009bca958939, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76555faf8f1c47a41a39009bca958939, type: 3}
 --- !u!1 &1845750738
 GameObject:
