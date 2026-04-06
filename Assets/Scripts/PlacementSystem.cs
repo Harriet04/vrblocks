@@ -36,12 +36,18 @@ public class PlacementSystem : MonoBehaviour
     public InputActionProperty PlaceInput;
     public InputActionProperty DeleteInput;
     public InputActionProperty CycleInput;
+    public InputActionProperty RotateCWInput;
+    public InputActionProperty RotateCCWInput;
 
     public Vector3 goalPositionOffset;
     public Material HoverMaterial;
 
     //object to be placed into grid on input
     public List<GameObject> PlacementObjects = new List<GameObject>();
+    public int Yaw = 0;
+    public Vector3 TurtleRotation;
+    public Vector3 GoalRotation;
+
     private int CycleCounter = 0;
     //struct for placing new objects into managing vector
     public struct LevelObject
@@ -112,6 +118,7 @@ public class PlacementSystem : MonoBehaviour
         //Change HoverObject to the object that is selected
         if(HoverObject == null || HoverObjectIndex != CycleCounter)
         {
+            Yaw = 0;
             if(HoverObject != null) { Destroy(HoverObject);  }
             HoverObject = Instantiate(PlacementObjects[CycleCounter], SnappedPosition, Quaternion.Euler(0, 0, 0));
             HoverObject.transform.localScale = new Vector3(scaleFactor.localScale.x / 2, scaleFactor.localScale.y / 2, scaleFactor.localScale.z / 2);   //match scale of parent grid when placing
@@ -126,10 +133,25 @@ public class PlacementSystem : MonoBehaviour
                     r.sharedMaterial = HoverMaterial;
                 }
             }
+            //Disable movement on the turtle
+            if(CycleCounter == 1)
+            {
+                HoverObject.GetComponent<TurtleMovement>().enabled = false;
+                Transform forwardArrow = transform.Find("ForwardArrow");
+
+                HoverObject.GetComponent<TurtleMovement>().forwardArrow.gameObject.SetActive(true);
+
+                if (forwardArrow != null)
+                {
+                    print("Found forward arrow");
+                    forwardArrow.gameObject.SetActive(true);
+                }
+                else { print("Didnt find arrow"); }
+            }
         }
 
 
-            HoverObject.transform.position = SnappedPosition;
+        HoverObject.transform.position = SnappedPosition;
         UnsnappedObject.transform.position = LoosePosition;
 
 
@@ -159,6 +181,16 @@ public class PlacementSystem : MonoBehaviour
             {
                 CycleCounter += 1;
             }
+        }
+        if(RotateCCWInput.action.WasPressedThisFrame())
+        {
+            Yaw = (Yaw - 1) % 4;
+            HoverObject.transform.Rotate(0, -90, 0);
+        }
+        if(RotateCWInput.action.WasPressedThisFrame())
+        {
+            Yaw = (Yaw + 1) % 4;
+            HoverObject.transform.Rotate(0, 90, 0);
         }
     }
 
@@ -208,6 +240,7 @@ public class PlacementSystem : MonoBehaviour
             LevelObject temp = new LevelObject(Instantiate(PlacementObjects[CycleCounter], posv, Quaternion.Euler(0, 0, 0)), posv, CycleCounter);
             temp.obj.transform.localScale = new Vector3(scaleFactor.localScale.x/2, scaleFactor.localScale.y/2, scaleFactor.localScale.z/2);   //match scale of parent grid when placing
             temp.obj.transform.rotation = scaleFactor.transform.rotation;   //match rotation of parent grid when placing
+            temp.obj.transform.Rotate(0, Yaw * 90, 0);    //rotate based on current yaw value
             levelObjects.Add(temp);
             levelObjectsSize += 1;
             print("After instantiation");
@@ -215,11 +248,13 @@ public class PlacementSystem : MonoBehaviour
             if (temp.type == 1 && isTurtle == false)    //remove old turtle if new one is placed
             {
                 print("Is Turtle");
+                TurtleRotation = new Vector3(0, Yaw * 90, 0);
                 isTurtle = true;
             }
             else if (temp.type == 1 && isTurtle == true)
             {
-                foreach(LevelObject t in levelObjects)
+                TurtleRotation = new Vector3(0, Yaw * 90, 0);
+                foreach (LevelObject t in levelObjects)
                 {
                     if(t.type == 1)
                     {
@@ -233,11 +268,13 @@ public class PlacementSystem : MonoBehaviour
 
             if (temp.type == 2 && isFlag == false)    //remove old flag if new one is placed
             {
+                GoalRotation = new Vector3(0, Yaw * 90, 0);
                 isFlag = true;
             }
             else if (temp.type == 2 && isFlag == true)
             {
-                foreach(LevelObject t in levelObjects)
+                GoalRotation = new Vector3(0, Yaw * 90, 0);
+                foreach (LevelObject t in levelObjects)
                 {
                     if(t.type == 2)
                     {

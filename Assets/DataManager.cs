@@ -88,6 +88,8 @@ public class DataManager : MonoBehaviour
         dummyObject.goalPrefabName = "GoalFlag";
         dummyObject.goalScale = new Vector3((float)0.3, (float)0.3, (float)0.3);
         dummyObject.offsetSpawnPoints = new Vector3Int(-5, -1, -5); //Offset from our sandbox mode grid
+        dummyObject.turtleRotation = s1.TurtleRotation.y; //float
+        dummyObject.goalRotation = s1.GoalRotation;
 
         //The assigning of positions based on the type of block
         foreach (LevelObject temp in objects) 
