@@ -53,6 +53,8 @@ public class LevelSelectorMenu : MonoBehaviour
     public Button rightNavigateButton;
     public Button lockedLevelButton;
 
+    public GameObject hintButton;
+    public GameObject hintText;
     public GameObject gameStartTutorial;
     public GameObject level1_1Tutorial;
     public GameObject level1_2Tutorial;
@@ -160,6 +162,11 @@ public class LevelSelectorMenu : MonoBehaviour
         UpdateDisplayView();
     }
 
+    public void resetHint()
+    {
+        hintButton.gameObject.SetActive(true);
+        hintText.gameObject.SetActive(false);
+    }
 
     public void setTutorialsInactive(int level)
     {
@@ -302,6 +309,7 @@ public class LevelSelectorMenu : MonoBehaviour
         {
             if(levelData.Count>selectedLevelIndex)
             {
+                resetHint();
                 chooseHintText();
                 LevelLoader.LoadLevel(levelData[selectedLevelIndex]);
             }
