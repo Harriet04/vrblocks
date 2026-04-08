@@ -10498,6 +10498,7 @@ MonoBehaviour:
   SandboxMenu: {fileID: 212046954}
   LevelLoader: {fileID: 511605078}
   PlacementSystem: {fileID: 1334452654}
+  blockMenu: {fileID: 720066169}
   AnimSpeed: 0.3
 --- !u!114 &614738260 stripped
 MonoBehaviour:
@@ -11353,6 +11354,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7814516957906256252, guid: 1dec07f39c50d53429421e1cdf8e9aa4, type: 3}
   m_PrefabInstance: {fileID: 1339728886}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &720066169 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3913061927442600147, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+  m_PrefabInstance: {fileID: 777648387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee9a855ec97cfd4f981babb8186b74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &728026611
 GameObject:
   m_ObjectHideFlags: 0
@@ -12793,6 +12805,10 @@ PrefabInstance:
     - target: {fileID: 3791435711907798678, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: m_Name
       value: PlayerUIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521336260826798716, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6062818035419030095, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: startBlock
