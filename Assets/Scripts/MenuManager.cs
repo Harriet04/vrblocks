@@ -6,6 +6,7 @@ public class MenuManager : MonoBehaviour
     public Button movementTab;
     public Button controlTab;
     public Button functionTab;
+    public bool isSandboxMode = false;
     private LevelStatesManager levelStatesManager;
     private int levelProgress;
 
@@ -26,7 +27,7 @@ public class MenuManager : MonoBehaviour
             tmPro.gameObject.SetActive(enabled);
             lockSprite.gameObject.SetActive(!enabled);
         }
-        if(levelStatesManager)
+        if(levelStatesManager && !isSandboxMode)
         {
             LevelMetadataScriptableObject levelMetadata = levelStatesManager.levelMetadataScriptables[levelProgress];
             set_interactable(movementTab, levelMetadata.enableMovementMenu);

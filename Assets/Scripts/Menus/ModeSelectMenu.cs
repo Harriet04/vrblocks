@@ -20,6 +20,7 @@ public class ModeSelectMenu : MonoBehaviour
     //Sandbox/Level Handlers
     public level_loader LevelLoader;
     public PlacementSystem PlacementSystem;
+    public MenuManager blockMenu;
 
     public float AnimSpeed = 0.3f;
 
@@ -41,6 +42,8 @@ public class ModeSelectMenu : MonoBehaviour
 
     public void OpenLevelSelectMenu()
     {
+        blockMenu.isSandboxMode = false;
+        blockMenu.UpdateTabLocks(0);
         LevelSelector.LeanScale(Vector3.one, AnimSpeed).setEaseInOutCubic();
         PlacementSystem.enabled = false;
         DisableMenu();
@@ -62,6 +65,8 @@ public class ModeSelectMenu : MonoBehaviour
         //Sandbox not active, play error sound
         //Perhaps a sub-menu of previously created levels. Otherwise just load the mode and close this UI
         //DisableMenu();
+        blockMenu.isSandboxMode = true;
+        blockMenu.UpdateTabLocks(0); 
         LevelLoader.clearLevel();
         PlacementSystem.enabled = true;
         SandboxMenu.LeanScale(Vector3.one, AnimSpeed).setEaseInOutCubic();
