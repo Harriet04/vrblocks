@@ -16,10 +16,12 @@ public class ModeSelectMenu : MonoBehaviour
     public GameObject LevelSelector;
     //public GameObject UserLevelSelector;
     public GameObject SandboxMenu;
+    public GameObject sandboxTutorial;
 
     //Sandbox/Level Handlers
     public level_loader LevelLoader;
     public PlacementSystem PlacementSystem;
+    public LevelSelectorMenu levelSelectorMenu;
 
     public float AnimSpeed = 0.3f;
 
@@ -62,6 +64,12 @@ public class ModeSelectMenu : MonoBehaviour
         //Sandbox not active, play error sound
         //Perhaps a sub-menu of previously created levels. Otherwise just load the mode and close this UI
         //DisableMenu();
+        if(PlayerPrefs.GetInt("sandboxTutorial", 0) == 0)
+            {
+                sandboxTutorial.SetActive(true);
+                PlayerPrefs.SetInt("sandboxTutorial", 1);
+            }
+        levelSelectorMenu.setTutorialsInactive(30);
         LevelLoader.clearLevel();
         PlacementSystem.enabled = true;
         SandboxMenu.LeanScale(Vector3.one, AnimSpeed).setEaseInOutCubic();
