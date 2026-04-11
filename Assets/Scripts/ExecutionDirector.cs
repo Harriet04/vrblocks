@@ -49,6 +49,7 @@ public class ExecutionDirector : MonoBehaviour
 
     public void StartButtonPressed(SelectEnterEventArgs selectEnter)
     {
+        
         // initialize data structures
         executionInterrupted = false;
         CallStack.Clear();

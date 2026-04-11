@@ -39,7 +39,8 @@ public class FunctionBlock : MonoBehaviour
       GetComponent<XRGrabInteractable>().hoverExited.AddListener(OnHoverExited);
       FunctionID = gameObject.GetInstanceID();
       var FCLabel = transform.Find("BlockLabel/LabelText").gameObject.GetComponent<TextMeshProUGUI>();
-      FCLabel.text = "Function " + FunctionID.ToString();
+      functionName = "Function" + FunctionID.ToString();
+      FCLabel.text = functionName;
       playerUIManager = FindObjectOfType<PlayerUIManager>();
     }
 

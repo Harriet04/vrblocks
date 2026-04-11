@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -54,6 +55,11 @@ public class TextCodeManager : MonoBehaviour
         int i = 0;
         int ind = 0; //Indentation
         int line = 0;
+
+        //Get all functions to retrieve functionNames later
+        // FunctionBlock[] functionBlocks = FindObjectsOfType(typeof(FunctionBlock)) as FunctionBlock[];
+        Dictionary<int, FunctionBlock> functionBlockDict = FindObjectsOfType<FunctionBlock>().ToDictionary(fb => fb.FunctionID);
+
         while (i < blockList.Count) {
             TurtleCommand blockTurtleCommand;
             bool isCommandOrFlowControl = blockList[i].TryGetComponent<TurtleCommand>(out blockTurtleCommand);
@@ -148,6 +154,22 @@ public class TextCodeManager : MonoBehaviour
                 i++;
                 line++;
                 print(text);
+            }
+            else
+            {
+                FunctionCallBlock blockFuncCall;
+                bool isFunctionCall = blockList[i].TryGetComponent<FunctionCallBlock>(out blockFuncCall);
+                if(isFunctionCall)
+                {
+                    string funcName = functionBlockDict[blockFuncCall.FunctionID].functionName;
+                    if (funcName == "")
+                    {
+                        funcName = "FUNC_" + blockFuncCall.FunctionID.ToString();
+                    }
+                    text += $"{FormatLine(line)}{Indent(ind)}{tok_clr}{funcName}{smb_clr}()\n";
+                    line++;
+                }
+                i++;
             }
         }
 
