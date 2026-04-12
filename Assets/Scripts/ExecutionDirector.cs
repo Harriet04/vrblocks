@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
 
 using Command = TurtleCommand.Command;
 
@@ -21,11 +22,14 @@ public class ExecutionDirector : MonoBehaviour
     public GameObject startButton;
     public HandBoundUIHandler handBoundUI;
     public TextCodeManager textCodeManager;
+    public GameObject textCodePrefab;
+    public ScrollRect textCodeScrollView;
     // maintains a list of the blocks under Block (StartQueue)
     public List<GameObject> mainBlockList = new List<GameObject>();                                         //
 
     // Function IDs map to separate lists of blocks under their respective Function Definition blocks.
     private Dictionary<int, List<GameObject>> functionBlockLists = new Dictionary<int, List<GameObject>>();
+    private Dictionary<int, FunctionBlock> functionBlockDict = new Dictionary<int, FunctionBlock>();
 
     void Start()
     {
@@ -47,7 +51,41 @@ public class ExecutionDirector : MonoBehaviour
         if (handBoundUI == null) { handBoundUI = FindObjectOfType<HandBoundUIHandler>(); }
     }
 
-    public void StartButtonPressed(SelectEnterEventArgs selectEnter)
+    
+    public void RebuildScrollView()
+    {
+        Transform content = textCodeScrollView.content;
+
+        foreach (Transform child in content)
+        {
+            TextCodeManager manager = child.GetComponent<TextCodeManager>();
+
+            // Keep ONLY the main instance
+            if (manager == null || manager != textCodeManager)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        // Rebuild main
+        textCodeManager.ConstructText(mainBlockList, "main");
+
+        // make functions
+        foreach (var kvp in functionBlockLists)
+        {
+            GameObject newObj = Instantiate(textCodePrefab, content, false); //add to scroll view
+            newObj.transform.localScale = Vector3.one;
+
+            TextCodeManager manager = newObj.GetComponent<TextCodeManager>();
+
+            if (manager != null)
+            {
+                manager.ConstructText(kvp.Value, functionBlockDict[kvp.Key].functionName);
+            }
+        }
+    }
+
+public void StartButtonPressed(SelectEnterEventArgs selectEnter)
     {
         
         // initialize data structures
@@ -59,7 +97,8 @@ public class ExecutionDirector : MonoBehaviour
         mainFunction.scopeDict = new Dictionary<int, ScopeData>();
         mainFunction.scopes = new Stack<ScopeData>();
 
-        textCodeManager.ConstructText(mainBlockList);
+        RebuildScrollView();
+        
 
         // setup and begin execution
         AssembleScopes(mainFunction);
@@ -652,11 +691,13 @@ public class ExecutionDirector : MonoBehaviour
 
     void GrabFunctionsInScene(){
         functionBlockLists.Clear();
+        functionBlockDict.Clear();
         FunctionBlock[] functionBlocks = FindObjectsOfType(typeof(FunctionBlock)) as FunctionBlock[];
         foreach(FunctionBlock fb in functionBlocks)
         {
             Debug.Log($"ExecutionDirector.GrabFunctionsInScene(): Added Function ID {fb.FunctionID} to list of functions");
             functionBlockLists[fb.FunctionID] = ReadFunctionBlocks(fb.gameObject);
+            functionBlockDict[fb.FunctionID] = fb;
         }
     }
 

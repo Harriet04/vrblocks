@@ -38,7 +38,7 @@ public class TextCodeManager : MonoBehaviour
 
     public TextMeshProUGUI textMesh;
     
-    public string ConstructText(List<GameObject> blockList)
+    public string ConstructText(List<GameObject> blockList, string functionName)
     {
         /*
          * Notes:
@@ -59,6 +59,10 @@ public class TextCodeManager : MonoBehaviour
         //Get all functions to retrieve functionNames later
         // FunctionBlock[] functionBlocks = FindObjectsOfType(typeof(FunctionBlock)) as FunctionBlock[];
         Dictionary<int, FunctionBlock> functionBlockDict = FindObjectsOfType<FunctionBlock>().ToDictionary(fb => fb.FunctionID);
+
+        text += $"{FormatLine(line)}{key_clr}Function{smb_clr} {tok_clr}{functionName}{smb_clr}():\n";
+        ind++;
+        line++;
 
         while (i < blockList.Count) {
             TurtleCommand blockTurtleCommand;
