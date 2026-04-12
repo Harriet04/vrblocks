@@ -3176,6 +3176,7 @@ GameObject:
   - component: {fileID: 918076843}
   - component: {fileID: 918076842}
   - component: {fileID: 918076844}
+  - component: {fileID: 918076845}
   m_Layer: 0
   m_Name: Play Button
   m_TagString: MenuUIButton
@@ -3284,7 +3285,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 918076842}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 918076845}
+        m_TargetAssemblyTypeName: PlayGameFix, Assembly-CSharp
+        m_MethodName: LoadNextLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LevelMain
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &918076845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918076840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c88e403b53b7c47a2c977f5a269f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &922462866
 GameObject:
   m_ObjectHideFlags: 0
@@ -4027,7 +4052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1093326367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6700,13 +6725,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cfe97dc90f68a02ac48b7666dada10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textChanger: {fileID: 0}
   playLevelButton: {fileID: 1096760041}
   leftNavigateButton: {fileID: 1440528373}
   rightNavigateButton: {fileID: 861530842}
   lockedLevelButton: {fileID: 1090786045}
+  gameStartTutorial: {fileID: 0}
+  level1_1Tutorial: {fileID: 0}
+  level1_2Tutorial: {fileID: 0}
+  level1_3Tutorial: {fileID: 0}
+  level1_4Tutorial: {fileID: 0}
+  level1_5Tutorial: {fileID: 0}
+  level2_1Tutorial: {fileID: 0}
+  level2_2Tutorial: {fileID: 0}
+  level2_3Tutorial: {fileID: 0}
+  level2_4Tutorial: {fileID: 0}
+  level2_5Tutorial: {fileID: 0}
+  level3_1Tutorial: {fileID: 0}
+  level3_2Tutorial: {fileID: 0}
+  level3_3Tutorial: {fileID: 0}
+  level3_4Tutorial: {fileID: 0}
+  level3_5Tutorial: {fileID: 0}
   middleLevelView: {fileID: 282266609}
   leftLevelView: {fileID: 413289342}
   rightLevelView: {fileID: 2104979130}
+  LevelLoader: {fileID: 0}
+  LoadIntoCurrentScene: 0
+  devLevelsPath: Assets/Map/MapLayouts
+  levelData: []
 --- !u!1 &1620565657
 GameObject:
   m_ObjectHideFlags: 0
@@ -6835,7 +6881,9 @@ MonoBehaviour:
   options: {fileID: 0}
   levelSelector: {fileID: 0}
   modeSelector: {fileID: 0}
+  UserLevelSelector: {fileID: 0}
   categorySelector: {fileID: 0}
+  SandBoxSelectorMenu: {fileID: 0}
   playGameButton: {fileID: 0}
   optionsButton: {fileID: 0}
   quitButton: {fileID: 0}
@@ -6858,6 +6906,10 @@ MonoBehaviour:
   SandboxModeView: {fileID: 0}
   LevelModeView: {fileID: 0}
   LevelSelector: {fileID: 0}
+  SandboxMenu: {fileID: 0}
+  LevelLoader: {fileID: 0}
+  PlacementSystem: {fileID: 0}
+  blockMenu: {fileID: 0}
   AnimSpeed: 0.3
 --- !u!114 &1620565664
 MonoBehaviour:
@@ -6871,13 +6923,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cfe97dc90f68a02ac48b7666dada10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textChanger: {fileID: 0}
   playLevelButton: {fileID: 0}
   leftNavigateButton: {fileID: 0}
   rightNavigateButton: {fileID: 0}
   lockedLevelButton: {fileID: 0}
+  gameStartTutorial: {fileID: 0}
+  level1_1Tutorial: {fileID: 0}
+  level1_2Tutorial: {fileID: 0}
+  level1_3Tutorial: {fileID: 0}
+  level1_4Tutorial: {fileID: 0}
+  level1_5Tutorial: {fileID: 0}
+  level2_1Tutorial: {fileID: 0}
+  level2_2Tutorial: {fileID: 0}
+  level2_3Tutorial: {fileID: 0}
+  level2_4Tutorial: {fileID: 0}
+  level2_5Tutorial: {fileID: 0}
+  level3_1Tutorial: {fileID: 0}
+  level3_2Tutorial: {fileID: 0}
+  level3_3Tutorial: {fileID: 0}
+  level3_4Tutorial: {fileID: 0}
+  level3_5Tutorial: {fileID: 0}
   middleLevelView: {fileID: 0}
   leftLevelView: {fileID: 0}
   rightLevelView: {fileID: 0}
+  LevelLoader: {fileID: 0}
+  LoadIntoCurrentScene: 0
+  devLevelsPath: Assets/Map/MapLayouts
+  levelData: []
 --- !u!114 &1620565665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6895,6 +6968,10 @@ MonoBehaviour:
   SandboxModeView: {fileID: 0}
   LevelModeView: {fileID: 0}
   LevelSelector: {fileID: 0}
+  SandboxMenu: {fileID: 0}
+  LevelLoader: {fileID: 0}
+  PlacementSystem: {fileID: 0}
+  blockMenu: {fileID: 0}
   AnimSpeed: 0.3
 --- !u!114 &1620565666
 MonoBehaviour:
@@ -6913,6 +6990,10 @@ MonoBehaviour:
   SandboxModeView: {fileID: 0}
   LevelModeView: {fileID: 0}
   LevelSelector: {fileID: 0}
+  SandboxMenu: {fileID: 0}
+  LevelLoader: {fileID: 0}
+  PlacementSystem: {fileID: 0}
+  blockMenu: {fileID: 0}
   AnimSpeed: 0.3
 --- !u!1001 &1676637169
 PrefabInstance:
@@ -7036,6 +7117,10 @@ MonoBehaviour:
   SandboxModeView: {fileID: 1364538476}
   LevelModeView: {fileID: 1188733101}
   LevelSelector: {fileID: 1980558299}
+  SandboxMenu: {fileID: 0}
+  LevelLoader: {fileID: 0}
+  PlacementSystem: {fileID: 0}
+  blockMenu: {fileID: 0}
   AnimSpeed: 0.3
 --- !u!224 &1721899604
 RectTransform:
@@ -8341,7 +8426,9 @@ MonoBehaviour:
   options: {fileID: 1231368946}
   levelSelector: {fileID: 1617601577}
   modeSelector: {fileID: 1721899602}
+  UserLevelSelector: {fileID: 0}
   categorySelector: {fileID: 1980558299}
+  SandBoxSelectorMenu: {fileID: 0}
   playGameButton: {fileID: 918076844}
   optionsButton: {fileID: 804696986}
   quitButton: {fileID: 1131996939}
