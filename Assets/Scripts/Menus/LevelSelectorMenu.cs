@@ -71,6 +71,11 @@ public class LevelSelectorMenu : MonoBehaviour
     public GameObject level3_3Tutorial;
     public GameObject level3_4Tutorial;
     public GameObject level3_5Tutorial;
+    public GameObject level4_1Tutorial;
+    public GameObject level4_2Tutorial;
+    public GameObject level4_3Tutorial;
+    public GameObject level4_4Tutorial;
+    public GameObject level4_5Tutorial;
 
     public GameObject middleLevelView;
     public GameObject leftLevelView;
@@ -231,6 +236,26 @@ public class LevelSelectorMenu : MonoBehaviour
         {
             level3_5Tutorial.SetActive(false);
         }
+        if(level != 15)
+        {
+            level4_1Tutorial.SetActive(false);
+        }
+        if(level != 16)
+        {
+            level4_2Tutorial.SetActive(false);
+        }
+        if(level != 17)
+        {
+            level4_3Tutorial.SetActive(false);
+        }
+        if(level != 18)
+        {
+            level4_4Tutorial.SetActive(false);
+        }
+        if(level != 19)
+        {
+            level4_5Tutorial.SetActive(false);
+        }
     }
     public void chooseHintText()
     {
@@ -354,6 +379,46 @@ public class LevelSelectorMenu : MonoBehaviour
                 {
                     level3_5Tutorial.SetActive(true);
                     PlayerPrefs.SetInt("Tutorial3-5", 1);
+                }
+                break;
+            case 15:
+                textChanger.hintText.text = "Remember to put your if statement inside of your while statement.";
+                if(PlayerPrefs.GetInt("Tutorial4-1", 0) == 0)
+                {
+                    level4_1Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-1", 1);
+                }
+                break;
+            case 16:
+                textChanger.hintText.text = "Remember to use the proper condition to stop your while loop.";
+                if(PlayerPrefs.GetInt("Tutorial4-2", 0) == 0)
+                {
+                    level4_2Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-2", 1);
+                }
+                break;
+            case 17:
+                textChanger.hintText.text = "You can put multiple if statements with different conditions inside of a single while loop.";
+                if(PlayerPrefs.GetInt("Tutorial4-3", 0) == 0)
+                {
+                    level4_3Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-3", 1);
+                }
+                break;
+            case 18:
+                textChanger.hintText.text = "Remember that you can always stop your while loop if you need to respond differently to a condition.";
+                if(PlayerPrefs.GetInt("Tutorial4-4", 0) == 0)
+                {
+                    level4_4Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-4", 1);
+                }
+                break;
+            case 19:
+                textChanger.hintText.text = "Sometimes one while loop isn't enough for a problem due to overlapping conditions.";
+                if(PlayerPrefs.GetInt("Tutorial4-5", 0) == 0)
+                {
+                    level4_5Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-5", 1);
                 }
                 break;
             default:
