@@ -53,6 +53,8 @@ public class LevelSelectorMenu : MonoBehaviour
     public Button rightNavigateButton;
     public Button lockedLevelButton;
 
+    public GameObject hintButton;
+    public GameObject hintText;
     public GameObject gameStartTutorial;
     public GameObject level1_1Tutorial;
     public GameObject level1_2Tutorial;
@@ -69,6 +71,11 @@ public class LevelSelectorMenu : MonoBehaviour
     public GameObject level3_3Tutorial;
     public GameObject level3_4Tutorial;
     public GameObject level3_5Tutorial;
+    public GameObject level4_1Tutorial;
+    public GameObject level4_2Tutorial;
+    public GameObject level4_3Tutorial;
+    public GameObject level4_4Tutorial;
+    public GameObject level4_5Tutorial;
 
     public GameObject middleLevelView;
     public GameObject leftLevelView;
@@ -162,6 +169,11 @@ public class LevelSelectorMenu : MonoBehaviour
         UpdateDisplayView();
     }
 
+    public void resetHint()
+    {
+        hintButton.gameObject.SetActive(true);
+        hintText.gameObject.SetActive(false);
+    }
 
     public void setTutorialsInactive(int level)
     {
@@ -226,70 +238,190 @@ public class LevelSelectorMenu : MonoBehaviour
         {
             level3_5Tutorial.SetActive(false);
         }
+        if(level != 15)
+        {
+            level4_1Tutorial.SetActive(false);
+        }
+        if(level != 16)
+        {
+            level4_2Tutorial.SetActive(false);
+        }
+        if(level != 17)
+        {
+            level4_3Tutorial.SetActive(false);
+        }
+        if(level != 18)
+        {
+            level4_4Tutorial.SetActive(false);
+        }
+        if(level != 19)
+        {
+            level4_5Tutorial.SetActive(false);
+        }
     }
     public void chooseHintText()
     {
         switch (selectedLevelIndex)
         {
             case 0:
-                textChanger.hintText.text = "Hint 1-1";
-                level1_1Tutorial.SetActive(true);
+                textChanger.hintText.text = "Make your turtle advance using the move forward blocks!";
+                if(PlayerPrefs.GetInt("Tutorial1-1", 0) == 0)
+                {
+                    level1_1Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial1-1", 1);
+                }
                 break;
             case 1:
-                textChanger.hintText.text = "Hint 1-2";
-                level1_2Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember that your turtle has to rotate AND move forward!";
+                if(PlayerPrefs.GetInt("Tutorial1-2", 0) == 0)
+                {
+                    level1_2Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial1-2", 1);
+                }
                 break;
             case 2:
-                textChanger.hintText.text = "Hint 1-3";
-                level1_3Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember that your turtle can rotate both left AND right!";
+                if(PlayerPrefs.GetInt("Tutorial1-3", 0) == 0)
+                {
+                    level1_3Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial1-3", 1);
+                }
                 break;
             case 3:
-                textChanger.hintText.text = "Hint 1-4";
-                level1_4Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember that you have to move forward after you jump!";
+                if(PlayerPrefs.GetInt("Tutorial1-4", 0) == 0)
+                {
+                    level1_4Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial1-4", 1);
+                }
                 break;
             case 4:
-                textChanger.hintText.text = "Hint 1-5";
-                level1_5Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember to use all of the blocks you have been introduced to so far!";
+                if(PlayerPrefs.GetInt("Tutorial1-5", 0) == 0)
+                {
+                    level1_5Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial1-5", 1);
+                }
                 break;
             case 5:
-                textChanger.hintText.text = "Hint 2-1";
-                level2_1Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember that a while loop repeats any actions inside of it.";
+                if(PlayerPrefs.GetInt("Tutorial2-1", 0) == 0)
+                {
+                    level2_1Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial2-1", 1);
+                }
                 break;
             case 6:
-                textChanger.hintText.text = "Hint 2-2";
-                level2_2Tutorial.SetActive(true);
+                textChanger.hintText.text = "While loops can have multiple actions within them.";
+                if(PlayerPrefs.GetInt("Tutorial2-2", 0) == 0)
+                {
+                    level2_2Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial2-2", 1);
+                }
                 break;
             case 7:
-                textChanger.hintText.text = "Hint 2-3";
-                level2_3Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember that you can set a different condition for your while loop.";
+                if(PlayerPrefs.GetInt("Tutorial2-3", 0) == 0)
+                {
+                    level2_3Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial2-3", 1);
+                }
                 break;
             case 8:
-                textChanger.hintText.text = "Hint 2-4";
-                level2_4Tutorial.SetActive(true);
+                textChanger.hintText.text = "Make sure your condition is correct in your if statement.";
+                if(PlayerPrefs.GetInt("Tutorial2-4", 0) == 0)
+                {
+                    level2_4Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial2-4", 1);
+                }
                 break;
             case 9:
-                textChanger.hintText.text = "Hint 2-5";
-                level2_5Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember that you want the else statement to activate, so have the if condition be the opposite of where you want to go.";
+                if(PlayerPrefs.GetInt("Tutorial2-5", 0) == 0)
+                {
+                    level2_5Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial2-5", 1);
+                }
                 break;
             case 10:
-                textChanger.hintText.text = "Hint 3-1";
-                level3_1Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember to put your if statement inside of your while statement.";
+                if(PlayerPrefs.GetInt("Tutorial3-1", 0) == 0)
+                {
+                    level3_1Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial3-1", 1);
+                }
                 break;
             case 11:
-                textChanger.hintText.text = "Hint 3-2";
-                level3_2Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember to use the proper condition to stop your while loop.";
+                if(PlayerPrefs.GetInt("Tutorial3-2", 0) == 0)
+                {
+                    level3_2Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial3-2", 1);
+                }
                 break;
             case 12:
-                textChanger.hintText.text = "Hint 3-3";
-                level3_3Tutorial.SetActive(true);
+                textChanger.hintText.text = "You can put multiple if statements with different conditions inside of a single while loop.";
+                if(PlayerPrefs.GetInt("Tutorial3-3", 0) == 0)
+                {
+                    level3_3Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial3-3", 1);
+                }
                 break;
             case 13:
-                textChanger.hintText.text = "Hint 3-4";
-                level3_4Tutorial.SetActive(true);
+                textChanger.hintText.text = "Remember that you can always stop your while loop if you need to respond differently to a condition.";
+                if(PlayerPrefs.GetInt("Tutorial3-4", 0) == 0)
+                {
+                    level3_4Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial3-4", 1);
+                }
                 break;
             case 14:
-                textChanger.hintText.text = "Hint 3-5";
-                level3_5Tutorial.SetActive(true);
+                textChanger.hintText.text = "Sometimes one while loop isn't enough for a problem due to overlapping conditions.";
+                if(PlayerPrefs.GetInt("Tutorial3-5", 0) == 0)
+                {
+                    level3_5Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial3-5", 1);
+                }
+                break;
+            case 15:
+                textChanger.hintText.text = "Remember to put your if statement inside of your while statement.";
+                if(PlayerPrefs.GetInt("Tutorial4-1", 0) == 0)
+                {
+                    level4_1Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-1", 1);
+                }
+                break;
+            case 16:
+                textChanger.hintText.text = "Remember to use the proper condition to stop your while loop.";
+                if(PlayerPrefs.GetInt("Tutorial4-2", 0) == 0)
+                {
+                    level4_2Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-2", 1);
+                }
+                break;
+            case 17:
+                textChanger.hintText.text = "You can put multiple if statements with different conditions inside of a single while loop.";
+                if(PlayerPrefs.GetInt("Tutorial4-3", 0) == 0)
+                {
+                    level4_3Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-3", 1);
+                }
+                break;
+            case 18:
+                textChanger.hintText.text = "Remember that you can always stop your while loop if you need to respond differently to a condition.";
+                if(PlayerPrefs.GetInt("Tutorial4-4", 0) == 0)
+                {
+                    level4_4Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-4", 1);
+                }
+                break;
+            case 19:
+                textChanger.hintText.text = "Sometimes one while loop isn't enough for a problem due to overlapping conditions.";
+                if(PlayerPrefs.GetInt("Tutorial4-5", 0) == 0)
+                {
+                    level4_5Tutorial.SetActive(true);
+                    PlayerPrefs.SetInt("Tutorial4-5", 1);
+                }
                 break;
             default:
                 break;
@@ -306,6 +438,7 @@ public class LevelSelectorMenu : MonoBehaviour
         {
             if(levelData.Count>selectedLevelIndex)
             {
+                resetHint();
                 chooseHintText();
                 LevelLoader.LoadLevel(levelData[selectedLevelIndex]);
             }
