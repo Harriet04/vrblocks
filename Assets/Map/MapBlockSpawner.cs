@@ -58,6 +58,7 @@ public class MapBlockSpawner : MonoBehaviour
     }
     public void SpawnEntities(MapBlockScriptableObject mapValues)
     {
+        print("MapBlockSpawner::SpawnEntities()");
         ClearMap();
         Vector3 startPositionOffset = mapValues.blockScale / 2;
 
@@ -81,6 +82,7 @@ public class MapBlockSpawner : MonoBehaviour
         //generatedGoalObject.transform.position += Vector3.Scale(mapValues.goalPositionOffset, mapValues.blockScale/2);
         generatedGoalObject.name = mapValues.goalPrefabName;
 
+        print("MapBlockSpawner::SpawnEntities() Tick 1");
         Vector3 turtleCoords = startPositionOffset + Vector3.Scale(mapValues.turtleSpawnPoint + mapValues.offsetSpawnPoints, mapValues.blockScale);
         TurtleMovement turtleEntity = Instantiate(turtle, turtleCoords, Quaternion.Euler(0, mapValues.turtleRotation, 0));
 
@@ -90,17 +92,21 @@ public class MapBlockSpawner : MonoBehaviour
 
         turtleEntity.movementDuration = mapValues.movementDuration;
         turtleEntity.animationSpeed = mapValues.animationSpeed;
-
+        print("MapBlockSpawner::SpawnEntities() Tick 2");
 
         if (currentEntity != null)
         {
             turtleEntity.moveDistance = Vector3.Scale(currentEntity.GetComponent<BoxCollider>().bounds.size, mapValues.blockScale);
         }
 
+        print("MapBlockSpawner::SpawnEntities() Tick 3");
         detectTurtle.SetTurtleAndGoal(turtleEntity, generatedGoalObject);
+        print("MapBlockSpawner::SpawnEntities() Tick 4");
         TurtleMovement turtleMovementComponent = turtleEntity.GetComponent<TurtleMovement>();
-        if (turtleMovementComponent != null) { ExecDirector.turtleMovement = turtleMovementComponent; turtleMovementComponent.canFail = true; turtleMovementComponent.Fail(); }
+        if (turtleMovementComponent != null) { ExecDirector.turtleMovement = turtleMovementComponent; turtleMovementComponent.canFail = true; }// turtleMovementComponent.Fail(); }
+        print("MapBlockSpawner::SpawnEntities() Tick 5");
         ExecDirector.Init();
+        print("MapBlockSpawner::SpawnEntities() Tick 6");
 
 
 

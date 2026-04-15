@@ -36,17 +36,24 @@ public class ExecutionDirector : MonoBehaviour
         Init(); 
     }
 
+    public void SetTurtle()
+    {
+        turtleMovement.FailEvent.AddListener(FailHandler);
+        turtleMovement.SuccessEvent.AddListener(SuccessHandler);
+        turtleMovement.ResetEvent.AddListener(ResetStartButton);
+        print("Subscribed to new Turtle");
+    }
+
     //We call this anytime a level is loaded; might need to find a way to cancel listeners
     public void Init()
     {
+        print("ExecutionDirectior::Init()");
         // The execution director must begin execution (StartButtonPressed), and maintain an internal representation of the list of blocks (OnSnapEvent)
         startButton.GetComponent<XRSimpleInteractable>().selectEntered.AddListener(StartButtonPressed);
         BlockSnapping.blockSnapEvent.AddListener(OnSnapEvent);
 
         GrabFunctionsInScene();
-        turtleMovement.FailEvent.AddListener(FailHandler);
-        turtleMovement.SuccessEvent.AddListener(SuccessHandler);
-        turtleMovement.ResetEvent.AddListener(ResetStartButton);
+        SetTurtle();
 
         if (handBoundUI == null) { handBoundUI = FindObjectOfType<HandBoundUIHandler>(); }
     }
@@ -128,8 +135,9 @@ public void StartButtonPressed(SelectEnterEventArgs selectEnter)
         }
     }
 
-    private void ResetStartButton()
+    public void ResetStartButton()
     {
+        print("Resetting Start Button");
         startButton.GetComponent<StartButton>().SetEnabled(true);
         startButton.GetComponent<XRSimpleInteractable>().selectEntered.AddListener(StartButtonPressed);
     }

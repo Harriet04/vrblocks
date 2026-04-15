@@ -58,6 +58,8 @@ public class UserLevelMenu : MonoBehaviour
     public Button editButton;
     public TMP_InputField inputField; //for level naming
     public level_loader levelLoader;
+    public GameObject endScreen;
+    public ExecutionDirector ExecDirector;
 
     public GameObject sandboxMenu;
     public PlacementSystem placementSystem;
@@ -309,6 +311,8 @@ public class UserLevelMenu : MonoBehaviour
 
     public void GoToLevel()
     {
+        ExecDirector.ResetStartButton();
+        endScreen.LeanScale(Vector3.zero, 0.5f).setEaseInOutCubic();
         //Load into the levelLoader
         if (LoadIntoCurrentScene)
         {
@@ -327,6 +331,8 @@ public class UserLevelMenu : MonoBehaviour
 
     public void EditLevel()
     {
+        ExecDirector.ResetStartButton();
+        endScreen.LeanScale(Vector3.zero, 0.5f).setEaseInOutCubic();
         //NEED TO CLEAR
         if (levelData.Count > selectedLevelIndex)
         {

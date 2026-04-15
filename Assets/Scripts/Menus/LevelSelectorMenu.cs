@@ -77,6 +77,8 @@ public class LevelSelectorMenu : MonoBehaviour
     public bool LoadIntoCurrentScene = false;
     public string devLevelsPath = "Assets/Map/MapLayouts";
     public List<MapBlockScriptableObject> levelData;
+    public GameObject endScreen;
+    public ExecutionDirector ExecDirector;
 
     private int selectedLevelIndex = SceneTransitionStates.GetSelectedLevel();
     private int MinLevel = 0;
@@ -297,6 +299,8 @@ public class LevelSelectorMenu : MonoBehaviour
     }
     public void GoToLevel()
     {
+        ExecDirector.ResetStartButton();
+        endScreen.LeanScale(Vector3.zero, 0.5f).setEaseInOutCubic();
         //Load into the levelLoader
         if (LoadIntoCurrentScene)
         {
