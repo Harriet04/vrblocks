@@ -2282,6 +2282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executionDirector: {fileID: 290970301}
+  codingModeSettings: {fileID: 1868430526}
 --- !u!1 &116198088
 GameObject:
   m_ObjectHideFlags: 0
@@ -21128,7 +21129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5059228857634201577, guid: a145688eb60061d49aac7087891511a6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 414.81
+      value: 428.81
       objectReference: {fileID: 0}
     - target: {fileID: 5059228857634201577, guid: a145688eb60061d49aac7087891511a6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -21164,11 +21165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5059228857634201577, guid: a145688eb60061d49aac7087891511a6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 222.405
+      value: 229.405
       objectReference: {fileID: 0}
     - target: {fileID: 5059228857634201577, guid: a145688eb60061d49aac7087891511a6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -42.975006
+      value: -49.975
       objectReference: {fileID: 0}
     - target: {fileID: 5059228857634201577, guid: a145688eb60061d49aac7087891511a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21200,11 +21201,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6391837779305261093, guid: a145688eb60061d49aac7087891511a6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 207.405
+      value: 214.405
       objectReference: {fileID: 0}
     - target: {fileID: 6391837779305261093, guid: a145688eb60061d49aac7087891511a6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -27.975006
+      value: -34.975
       objectReference: {fileID: 0}
     - target: {fileID: 7423682157128196291, guid: a145688eb60061d49aac7087891511a6, type: 3}
       propertyPath: m_Name

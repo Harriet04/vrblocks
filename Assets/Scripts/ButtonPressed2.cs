@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonPressed2 : MonoBehaviour
 {
      public ExecutionDirector executionDirector;
+     public CodingModeSettings codingModeSettings;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,8 @@ public class ButtonPressed2 : MonoBehaviour
         {
             Destroy(obj);
         }
+        codingModeSettings.spawnCounter = 1;
+        codingModeSettings.heightOffset = codingModeSettings.startBlock.transform.position;
     }
     // Update is called once per frame
     void Update()

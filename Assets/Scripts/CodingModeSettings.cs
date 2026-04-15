@@ -19,6 +19,7 @@ public class CodingModeSettings : MonoBehaviour
     public void SetModeNormal()
     {
         CodingMode=0;
+        spawnCounter=1;
 
         //delete all existing blocks
         ExecutionDirector.mainBlockList.Clear();
@@ -32,7 +33,7 @@ public class CodingModeSettings : MonoBehaviour
         //hide coding window
         CodingWindow.SetActive(false);
 
-        startBlock.transform.LeanScale(new Vector3(0.0f,0.0f,0.0f),0.0f);
+        startBlock.transform.LeanScale(new Vector3(0.5f,0.25f,0.5f),0.0f);
         startBlock.GetComponent<Rigidbody>().useGravity = true;
         startBlock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         startBlock.GetComponent<Rigidbody>().isKinematic = false; //turn on physics
