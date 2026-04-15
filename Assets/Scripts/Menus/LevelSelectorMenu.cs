@@ -384,7 +384,7 @@ public class LevelSelectorMenu : MonoBehaviour
                 }
                 break;
             case 15:
-                textChanger.hintText.text = "Remember to put your if statement inside of your while statement.";
+                textChanger.hintText.text = "Remember that after you create your function, you have to call it in the main part of the code!";
                 if(PlayerPrefs.GetInt("Tutorial4-1", 0) == 0)
                 {
                     level4_1Tutorial.SetActive(true);
@@ -392,7 +392,7 @@ public class LevelSelectorMenu : MonoBehaviour
                 }
                 break;
             case 16:
-                textChanger.hintText.text = "Remember to use the proper condition to stop your while loop.";
+                textChanger.hintText.text = "Look at the level and find a sequence of three blocks that can clear the level when repeated!";
                 if(PlayerPrefs.GetInt("Tutorial4-2", 0) == 0)
                 {
                     level4_2Tutorial.SetActive(true);
@@ -400,7 +400,7 @@ public class LevelSelectorMenu : MonoBehaviour
                 }
                 break;
             case 17:
-                textChanger.hintText.text = "You can put multiple if statements with different conditions inside of a single while loop.";
+                textChanger.hintText.text = "Remember to use if statements within your function to make decisions!";
                 if(PlayerPrefs.GetInt("Tutorial4-3", 0) == 0)
                 {
                     level4_3Tutorial.SetActive(true);
@@ -408,7 +408,7 @@ public class LevelSelectorMenu : MonoBehaviour
                 }
                 break;
             case 18:
-                textChanger.hintText.text = "Remember that you can always stop your while loop if you need to respond differently to a condition.";
+                textChanger.hintText.text = "Remember to use while loops and if statements within your function!";
                 if(PlayerPrefs.GetInt("Tutorial4-4", 0) == 0)
                 {
                     level4_4Tutorial.SetActive(true);
@@ -416,7 +416,7 @@ public class LevelSelectorMenu : MonoBehaviour
                 }
                 break;
             case 19:
-                textChanger.hintText.text = "Sometimes one while loop isn't enough for a problem due to overlapping conditions.";
+                textChanger.hintText.text = "Remember that you can create and use multiple functions within your solution!";
                 if(PlayerPrefs.GetInt("Tutorial4-5", 0) == 0)
                 {
                     level4_5Tutorial.SetActive(true);
