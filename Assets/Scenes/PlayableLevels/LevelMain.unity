@@ -23128,6 +23128,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0.516, y: -0.362}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1412788634 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5897964637470027076, guid: 4778009b3259c9729a1620fc1104dc60, type: 3}
+  m_PrefabInstance: {fileID: 338217465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1413145341
 GameObject:
   m_ObjectHideFlags: 0
@@ -30818,6 +30823,8 @@ MonoBehaviour:
   spawnCounter: 1
   simpleOffset: {x: 0, y: -0.125, z: 0}
   heightOffset: {x: 0, y: 0, z: 0}
+  RightHandTransform: {fileID: 1412788634}
+  hitN: {fileID: -5510777845572535337, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!4 &1868430527
 Transform:
   m_ObjectHideFlags: 0
