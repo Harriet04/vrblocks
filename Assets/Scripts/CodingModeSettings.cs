@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class CodingModeSettings : MonoBehaviour
@@ -18,11 +16,6 @@ public class CodingModeSettings : MonoBehaviour
     private Vector3 scaleValue = new Vector3(0.25f, 0.125f, 0.25f);
     public Vector3 simpleOffset = new Vector3(0.0f, -0.125f, 0.0f);
     public Vector3 heightOffset;
-    public Transform RightHandTransform;
-
-    private GameObject currentObject;
-    public InputActionReference hitN;
-    public int numcols = 0;
     public void SetModeNormal()
     {
         CodingMode=0;
@@ -76,62 +69,6 @@ public class CodingModeSettings : MonoBehaviour
         //startBlock.GetComponent<BoxCollider>().isTrigger = true;
 
         Debug.Log("Current Mode = Simple, block list cleared");
-    }
-
-    private void Update()
-    {
-        if (CodingMode == 1)
-        {
-            Ray ray = new Ray(RightHandTransform.position, RightHandTransform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, 10f)) {
-                if (hit.collider.CompareTag("Block")) {
-                    currentObject = hit.collider.gameObject;
-                }
-                else
-                {
-                    currentObject = null;
-                }
-            }
-            if (hitN.action.WasPressedThisFrame())
-            {
-                int tempspot = 1;
-                int tempcount = 0;
-                int tempmode = 0;
-                foreach(GameObject obj in ExecutionDirector.mainBlockList)
-                {
-                    if(obj == currentObject)
-                    {
-                        tempmode = 1;
-                        tempcount=tempspot;
-                    }
-                    else
-                    {
-                        if(tempmode == 0){
-                            tempspot+=1;
-                        }else if (tempmode == 1)
-                        {
-                            tempcount+=1;
-                            if ((tempcount+1) % 8 == 1)
-                            {
-                                Vector3 temp = new Vector3(-0.175f,0.0f,0.225f);
-                                obj.transform.position+=(simpleOffset*7+temp);
-                            }else{
-                                obj.transform.position+=(-simpleOffset);
-                            }
-                        }
-                    }
-                }
-                
-                ExecutionDirector.mainBlockList.RemoveAt(tempspot);
-                Destroy(currentObject);
-                spawnCounter-=1;
-            }
-        }
-    }
-
-    private void DeleteBlock()
-    {
-        
     }
 
 
