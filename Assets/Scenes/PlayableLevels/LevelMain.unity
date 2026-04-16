@@ -5055,6 +5055,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &338217467 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5897964637470027076, guid: 4778009b3259c9729a1620fc1104dc60, type: 3}
+  m_PrefabInstance: {fileID: 338217465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &341208321
 GameObject:
   m_ObjectHideFlags: 0
@@ -30710,6 +30715,9 @@ MonoBehaviour:
   spawnCounter: 1
   simpleOffset: {x: 0, y: -0.125, z: 0}
   heightOffset: {x: 0, y: 0, z: 0}
+  RightHandTransform: {fileID: 338217467}
+  hitN: {fileID: -5510777845572535337, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  numcols: 0
 --- !u!4 &1868430527
 Transform:
   m_ObjectHideFlags: 0

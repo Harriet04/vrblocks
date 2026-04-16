@@ -22,6 +22,7 @@ public class ButtonPressed2 : MonoBehaviour
             Destroy(obj);
         }
         codingModeSettings.spawnCounter = 1;
+        codingModeSettings.numcols=0;
         codingModeSettings.heightOffset = codingModeSettings.startBlock.transform.position;
     }
     // Update is called once per frame
