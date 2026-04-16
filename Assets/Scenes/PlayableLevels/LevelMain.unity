@@ -27472,6 +27472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SandboxTutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 3162382950982848713, guid: c226cab1a09421443a7f16186290f2cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4019945520030673188, guid: c226cab1a09421443a7f16186290f2cf, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -27482,7 +27486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5616300147113385601, guid: c226cab1a09421443a7f16186290f2cf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6606294469381174037, guid: c226cab1a09421443a7f16186290f2cf, type: 3}
       propertyPath: m_IsActive
