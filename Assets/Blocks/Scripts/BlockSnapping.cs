@@ -178,7 +178,7 @@ public class BlockSnapping : MonoBehaviour
         ReleaseRootBlock(block1);
     }
 
-    private void ReleaseRootBlock(GameObject block) //un snaps blocks
+    private void ReleaseRootBlock(GameObject block) //un snaps blocks JACK
     {
         if (block == null) return;
 
@@ -241,7 +241,7 @@ public class BlockSnapping : MonoBehaviour
     private Coroutine? resetSnapStatusCoroutine;
     private Coroutine? disableSnapOnGrab;
 
-    private void DetachSelectedBlock()
+    private void DetachSelectedBlock() //JACK
     {
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.None;
@@ -274,7 +274,7 @@ public class BlockSnapping : MonoBehaviour
         }
 
         // Detach from CHILD (if any)
-        if (childBlock != null)
+        if (childBlock != null )
         {
             FixedJoint[] childJoints = childBlock.GetComponents<FixedJoint>();
             Rigidbody childRb = childBlock.GetComponent<Rigidbody>();
@@ -301,6 +301,7 @@ public class BlockSnapping : MonoBehaviour
                 if (childSnapping != null)
                 {
                     childSnapping.targetPosition = 1;
+                    childSnapping.hasSnapped = false;
                 }
 
                 childSF.UpdatePhysics(childRb);
@@ -336,6 +337,8 @@ public class BlockSnapping : MonoBehaviour
                     }
                 }
             }
+
+
         }
 
         // Reset this block's connections

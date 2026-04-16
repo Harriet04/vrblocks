@@ -743,6 +743,7 @@ GameObject:
   - component: {fileID: 3532953530259355432}
   - component: {fileID: 393817349159559478}
   - component: {fileID: 7968165581366844908}
+  - component: {fileID: 4041387871492965709}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -903,6 +904,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 393817349159559478}
   m_maskType: 0
+--- !u!114 &4041387871492965709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363970556460041446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7beca0da6198841a71a2a75ff97bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  billboardType: 1
 --- !u!1 &7563543646215303119
 GameObject:
   m_ObjectHideFlags: 0
