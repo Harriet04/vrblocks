@@ -253,7 +253,7 @@ public class BlockSnapping : MonoBehaviour
         GameObject childBlock = snappedForwarding?.ConnectedBlock;
 
         // Detach from PARENT (if any)
-        FixedJoint[] joints = GetComponents<FixedJoint>();
+        FixedJoint[] joints = GetComponents<FixedJoint>(); //JACK
         foreach (FixedJoint joint in joints)
         {
             if (joint.connectedBody != null)
@@ -268,7 +268,7 @@ public class BlockSnapping : MonoBehaviour
                 SnappedForwarding parentSF = otherObject.GetComponentInChildren<SnappedForwarding>();
                 if (parentSF != null)
                 {
-                    parentSF.UpdatePhysics(joint.connectedBody);
+                    //parentSF.UpdatePhysics(joint.connectedBody);
                 }
             }
         }
