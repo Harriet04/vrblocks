@@ -8,9 +8,8 @@ using UnityEngine.XR.OpenXR.Input;
 
 public class PlacementSystem : MonoBehaviour
 {
-    [SerializeField]
-    GameObject mouseIndicator, cellIndicator;
-    
+    private GameObject HoverObject;
+
     [SerializeField]
     private GridTracking gridtracking;
 
@@ -21,7 +20,7 @@ public class PlacementSystem : MonoBehaviour
     private Vector3Int minVal, maxVal;
 
     [SerializeField]
-    GameObject HoverObject, UnsnappedObject, Hand;
+    GameObject Hand;
 
     int HoverObjectIndex = -1;
 
@@ -150,10 +149,7 @@ public class PlacementSystem : MonoBehaviour
             }
         }
 
-
         HoverObject.transform.position = SnappedPosition;
-        UnsnappedObject.transform.position = LoosePosition;
-
 
         //if place block input has been pressed, call place block function.
         if (PlaceInput.action.ReadValue<float>() > 0.5)
@@ -348,7 +344,6 @@ public class PlacementSystem : MonoBehaviour
         }
         levelObjects.Clear();
         HoverObject.transform.position = Vector3.zero;
-        UnsnappedObject.transform.position = Vector3.zero;
         
     }
     private void OnEnable()
