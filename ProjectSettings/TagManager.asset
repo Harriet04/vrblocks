@@ -23,6 +23,9 @@ TagManager:
   - rotateRight
   - jump
   - if
+  - else
+  - while
+  - conditional
   layers:
   - Default
   - TransparentFX
