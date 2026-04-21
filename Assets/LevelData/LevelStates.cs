@@ -102,7 +102,9 @@ public static class LevelStates
     }
     public static void triggerPrerequisiteLevelUnlock(int prerequisiteLevelIndex)
     {
+        Debug.Log($"TRIGGERING PREREQ LEVEL UNLOCK for {prerequisiteLevelIndex}");
         string prerequisiteLevelName = states[prerequisiteLevelIndex].getName();
+        Debug.Log(prerequisiteLevelName);
         triggerPrerequisiteLevelUnlock(prerequisiteLevelName);
     }
 }

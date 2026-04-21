@@ -440,7 +440,7 @@ public class LevelSelectorMenu : MonoBehaviour
             {
                 resetHint();
                 chooseHintText();
-                LevelLoader.LoadLevel(levelData[selectedLevelIndex]);
+                LevelLoader.LoadLevel(levelData[selectedLevelIndex],selectedLevelIndex);
             }
         }
         else
