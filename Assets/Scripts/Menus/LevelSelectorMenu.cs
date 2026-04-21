@@ -55,6 +55,7 @@ public class LevelSelectorMenu : MonoBehaviour
 
     public GameObject hintButton;
     public GameObject hintText;
+    public GameObject hintButtonText;
     public GameObject gameStartTutorial;
     public GameObject level1_1Tutorial;
     public GameObject level1_2Tutorial;
@@ -173,6 +174,7 @@ public class LevelSelectorMenu : MonoBehaviour
     {
         hintButton.gameObject.SetActive(true);
         hintText.gameObject.SetActive(false);
+        hintButtonText.gameObject.SetActive(true);
     }
 
     public void setTutorialsInactive(int level)
