@@ -49,7 +49,7 @@ public class ExecutionDirector : MonoBehaviour
     {
         print("ExecutionDirectior::Init()");
         // The execution director must begin execution (StartButtonPressed), and maintain an internal representation of the list of blocks (OnSnapEvent)
-        startButton.GetComponent<XRSimpleInteractable>().selectEntered.AddListener(StartButtonPressed);
+        ResetStartButton();
         BlockSnapping.blockSnapEvent.AddListener(OnSnapEvent);
 
         GrabFunctionsInScene();
@@ -94,7 +94,7 @@ public class ExecutionDirector : MonoBehaviour
 
 public void StartButtonPressed(SelectEnterEventArgs selectEnter)
     {
-        
+        print("START BUTTON PRESSED");
         // initialize data structures
         executionInterrupted = false;
         CallStack.Clear();
@@ -139,6 +139,7 @@ public void StartButtonPressed(SelectEnterEventArgs selectEnter)
     {
         print("Resetting Start Button");
         startButton.GetComponent<StartButton>().SetEnabled(true);
+        startButton.GetComponent<XRSimpleInteractable>().selectEntered.RemoveListener(StartButtonPressed);
         startButton.GetComponent<XRSimpleInteractable>().selectEntered.AddListener(StartButtonPressed);
     }
 
