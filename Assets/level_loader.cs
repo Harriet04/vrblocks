@@ -15,7 +15,7 @@ public class LevelLoaderMenu : Editor
 
         if (GUILayout.Button("Load Level"))
         {
-            LevelLoader.LoadLevel(LevelLoader.TestLevel);
+            LevelLoader.LoadLevel(LevelLoader.TestLevel, 0);
         }
         if (GUILayout.Button("Clear Level"))
         {
@@ -31,6 +31,7 @@ public class level_loader : MonoBehaviour
     public MapBlockScriptableObject TestLevel;
     public List<GameObject> PlacementObjects = new List<GameObject>();
     public Grid Grid;
+    private int ActiveLevelIndex = -1;
 
 
     private List<GameObject> ActiveGameObjects = new List<GameObject>();
@@ -45,8 +46,10 @@ public class level_loader : MonoBehaviour
         
     }
 
-    public void LoadLevel(MapBlockScriptableObject Level)
+    public void LoadLevel(MapBlockScriptableObject Level, int levelIndex)
     {
+        ActiveLevelIndex = levelIndex;
+        Debug.Log($"Loading Level at Index {levelIndex} -> {ActiveLevelIndex}");
         MapSpawner.ClearMap();
         //clearLevel(); //Don't want multiple levels to stack on top of each other
 
@@ -94,5 +97,14 @@ public class level_loader : MonoBehaviour
             DestroyImmediate(NewObj);
         }
         ActiveGameObjects.Clear();*/
+    }
+
+    public void HandleSuccess()
+    {
+        Debug.Log($"Handling Success {ActiveLevelIndex}");
+        if(ActiveLevelIndex > -1)
+        {
+            LevelStates.triggerPrerequisiteLevelUnlock(ActiveLevelIndex);
+        }
     }
 }

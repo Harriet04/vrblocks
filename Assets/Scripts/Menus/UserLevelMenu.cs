@@ -318,7 +318,7 @@ public class UserLevelMenu : MonoBehaviour
         {
             if (levelData.Count > selectedLevelIndex)
             {
-                LevelLoader.LoadLevel(levelData[selectedLevelIndex]);
+                LevelLoader.LoadLevel(levelData[selectedLevelIndex],-1);
             }
         }
         else

@@ -24,6 +24,7 @@ public class ExecutionDirector : MonoBehaviour
     public TextCodeManager textCodeManager;
     public GameObject textCodePrefab;
     public ScrollRect textCodeScrollView;
+    public level_loader LevelLoader;
     // maintains a list of the blocks under Block (StartQueue)
     public List<GameObject> mainBlockList = new List<GameObject>();                                         //
 
@@ -385,6 +386,7 @@ public void StartButtonPressed(SelectEnterEventArgs selectEnter)
         Debug.Log("ExecutionDirector: Success! Halting..");
         ContinueLoopEvent.RemoveAllListeners();
         executionInterrupted = true;
+        LevelLoader.HandleSuccess();
     }
     public void FailHandler()
     {
