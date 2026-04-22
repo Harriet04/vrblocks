@@ -257,7 +257,7 @@ public class PlacementSystem : MonoBehaviour
                         Destroy(t.obj);
                         levelObjects.Remove(t);
                         levelObjectsSize-=1;
-                        continue;
+                        break; //only one of these will be present. 
                     }
                 }
             }
@@ -277,7 +277,7 @@ public class PlacementSystem : MonoBehaviour
                         Destroy(t.obj);
                         levelObjects.Remove(t);
                         levelObjectsSize-=1;
-                        continue;
+                        break; //only one of thse will be present
                     }
                 }
             }
