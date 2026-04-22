@@ -7848,7 +7848,7 @@ MonoBehaviour:
   scriptableObject: {fileID: 11400000, guid: 3db717fa1a1e83945a92b63b9283c46a, type: 2}
   s1: {fileID: 1334452654}
   screenshotCapturer: {fileID: 1388589193}
-  userLevelName: {fileID: 1481903606}
+  userLevelName: {fileID: 188885798}
   developerMode: 0
 --- !u!114 &519545703
 MonoBehaviour:
@@ -8976,7 +8976,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569396875}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bad379857917dfb489ed0bf7d778c9f2, type: 3}
   m_Name: 
@@ -19093,7 +19093,7 @@ GameObject:
   - component: {fileID: 1125573749}
   - component: {fileID: 1125573748}
   - component: {fileID: 1125573747}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23842,7 +23842,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1346554417 stripped
@@ -30423,7 +30423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1701975942}
   - component: {fileID: 1701975943}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Text Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31785,6 +31785,7 @@ GameObject:
   - component: {fileID: 1803481878}
   - component: {fileID: 1803481877}
   - component: {fileID: 1803481876}
+  - component: {fileID: 1803481880}
   m_Layer: 5
   m_Name: UserLevelName
   m_TagString: Untagged
@@ -31895,6 +31896,28 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1803481880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803481874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2182d4006a47b44cadc3f6a94c8c7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondaryButtonRight: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  secondaryButtonLeft: {fileID: 8449975300579844527, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  RrayInteractor: {fileID: 612948466}
+  LrayInteractor: {fileID: 1190006445}
+  UI_InputName: KeyboardField
+  LevelName: 
+  OnNameChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  textMesh: {fileID: 188885798}
 --- !u!1 &1804700211
 GameObject:
   m_ObjectHideFlags: 0
@@ -35444,7 +35467,7 @@ GameObject:
   - component: {fileID: 2008888818}
   - component: {fileID: 2008888820}
   - component: {fileID: 2008888819}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36968,7 +36991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2070420256
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37013,7 +37036,7 @@ MonoBehaviour:
   lockedLevelButton: {fileID: 541259632}
   deleteButton: {fileID: 304024660}
   editButton: {fileID: 1447517118}
-  inputField: {fileID: 1481903606}
+  inputField: {fileID: 188885798}
   levelLoader: {fileID: 0}
   endScreen: {fileID: 2092715860}
   ExecDirector: {fileID: 290970301}
