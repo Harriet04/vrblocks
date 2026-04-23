@@ -72,12 +72,12 @@ public class keyboardinput : MonoBehaviour
         if (RightHovered | LeftHovered)
         {
             isHovered = true;
-            //Debug.Log("hovered");
+            Debug.Log("hovered");
         }
         else
         {
             isHovered = false;
-            //Debug.Log("not hovered");
+            Debug.Log("not hovered");
         }
     }
 
