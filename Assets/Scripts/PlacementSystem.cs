@@ -46,6 +46,7 @@ public class PlacementSystem : MonoBehaviour
     public int Yaw = 0;
     public Vector3 TurtleRotation;
     public Vector3 GoalRotation;
+    public GameObject BlockMenu;
 
     private int CycleCounter = 0;
     //struct for placing new objects into managing vector
@@ -69,7 +70,8 @@ public class PlacementSystem : MonoBehaviour
     {
         //Set CastDistance to the minimum cast value
         //We'll want to handle controller events to to push/pull this distance.
-        CastDistance += CastDistanceRange.x;
+        CastDistance = CastDistanceRange.x;
+        BlockMenu.LeanScale(Vector3.zero, 0.3f).setEaseInOutCubic();
     }
 
 

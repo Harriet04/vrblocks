@@ -9886,6 +9886,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentBlockSnapping: {fileID: 0}
+--- !u!1 &618751975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5521336260826798716, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+  m_PrefabInstance: {fileID: 777648387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619482170 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7970415767061155305, guid: 1dec07f39c50d53429421e1cdf8e9aa4, type: 3}
@@ -10880,7 +10885,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3913061927442600147, guid: 31950658326a059b18d3112adbe92c14, type: 3}
   m_PrefabInstance: {fileID: 777648387}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 618751975}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ee9a855ec97cfd4f981babb8186b74d, type: 3}
@@ -12349,6 +12354,10 @@ PrefabInstance:
       propertyPath: xrRig
       value: 
       objectReference: {fileID: 338217466}
+    - target: {fileID: 8297278869765511259, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: SandboxMode
+      value: 
+      objectReference: {fileID: 1334452654}
     - target: {fileID: 8297278869765511259, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: inputActionAudio
       value: 
@@ -22723,6 +22732,7 @@ MonoBehaviour:
   Yaw: 0
   TurtleRotation: {x: 0, y: 0, z: 0}
   GoalRotation: {x: 0, y: 0, z: 0}
+  BlockMenu: {fileID: 618751975}
   scaleFactor: {fileID: 892866662}
 --- !u!1 &1337409703
 GameObject:

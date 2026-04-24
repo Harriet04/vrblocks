@@ -66,6 +66,9 @@ public class PlayerUIManager : MonoBehaviour
     public GameObject functionCallPrefab;
     public GameObject functionDefPrefab;
 
+    [Header("Debugging")]
+    public PlacementSystem SandboxMode;
+
     void Start()
     {
         pauseMenu.SetActive(true);
@@ -227,6 +230,11 @@ public class PlayerUIManager : MonoBehaviour
 
     public void ToggleBlockMenu()
     {
+        if(SandboxMode.enabled == true)
+        {
+            blockMenu.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+            return;
+        }
         toggleBlockMenu = !toggleBlockMenu;
         if (toggleBlockMenu)
         {
