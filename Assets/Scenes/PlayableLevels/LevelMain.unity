@@ -3737,7 +3737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &212046955
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12219,7 +12219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5521336260826798716, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702316304170501883, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: m_IsActive
@@ -12353,6 +12353,10 @@ PrefabInstance:
       propertyPath: inputActionAudio
       value: 
       objectReference: {fileID: 8300000, guid: 4585b016f635a9a998c04558e5941eae, type: 3}
+    - target: {fileID: 8297278869765511259, guid: 31950658326a059b18d3112adbe92c14, type: 3}
+      propertyPath: pauseMenuAction.m_UseReference
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8366972386668399889, guid: 31950658326a059b18d3112adbe92c14, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.26
@@ -17211,6 +17215,7 @@ MonoBehaviour:
   UserLevelSelector: {fileID: 2070420254}
   categorySelector: {fileID: 1301997813}
   SandBoxSelectorMenu: {fileID: 212046954}
+  EndScreen: {fileID: 2092715860}
   playGameButton: {fileID: 709862686}
   optionsButton: {fileID: 533983054}
   quitButton: {fileID: 2084341788}
@@ -23844,7 +23849,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1346554417 stripped
@@ -36993,7 +36998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2070420256
 RectTransform:
   m_ObjectHideFlags: 0

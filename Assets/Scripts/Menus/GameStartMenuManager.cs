@@ -18,6 +18,7 @@ public class GameStartMenu : MonoBehaviour
     public GameObject categorySelector;
     public GameObject SandBoxSelectorMenu;
     //public GameObject SaveConfirm;
+    public GameObject EndScreen;
 
     [Header("Start Menu Buttons")]
     public Button playGameButton;
@@ -90,6 +91,7 @@ public class GameStartMenu : MonoBehaviour
         UserLevelSelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         categorySelector.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         SandBoxSelectorMenu.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
+        EndScreen.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
         //SaveConfirm.LeanScale(Vector3.zero, animationSpeed).setEaseInOutCubic();
 
     }

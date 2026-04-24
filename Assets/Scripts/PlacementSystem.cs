@@ -137,6 +137,7 @@ public class PlacementSystem : MonoBehaviour
             {
                 HoverObject.GetComponent<TurtleMovement>().enabled = false;
                 Transform forwardArrow = transform.Find("ForwardArrow");
+                HoverObject.transform.localScale = scaleFactor.localScale;
 
                 HoverObject.GetComponent<TurtleMovement>().forwardArrow.gameObject.SetActive(true);
 
@@ -146,6 +147,17 @@ public class PlacementSystem : MonoBehaviour
                     forwardArrow.gameObject.SetActive(true);
                 }
                 else { print("Didnt find arrow"); }
+
+                Rigidbody rb = HoverObject.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    Destroy(rb);
+                    rb.isKinematic = true;
+                }
+            }
+            if (CycleCounter == 2)
+            {
+                HoverObject.transform.localScale = scaleFactor.localScale * 0.3f;
             }
         }
 
@@ -241,45 +253,46 @@ public class PlacementSystem : MonoBehaviour
             levelObjectsSize += 1;
             print("After instantiation");
 
-            if (temp.type == 1 && isTurtle == false)    //remove old turtle if new one is placed
+            if (temp.type == 1)    //remove old turtle if new one is placed
             {
                 print("Is Turtle");
                 TurtleRotation = new Vector3(0, Yaw * 90, 0);
+                temp.obj.transform.localScale = scaleFactor.localScale;
+
+                if(isTurtle == true)
+                {
+                    foreach (LevelObject t in levelObjects)
+                    {
+                        if (t.type == 1)
+                        {
+                            Destroy(t.obj);
+                            levelObjects.Remove(t);
+                            levelObjectsSize -= 1;
+                            break; //only one of these will be present. 
+                        }
+                    }
+                }
                 isTurtle = true;
             }
-            else if (temp.type == 1 && isTurtle == true)
-            {
-                TurtleRotation = new Vector3(0, Yaw * 90, 0);
-                foreach (LevelObject t in levelObjects)
-                {
-                    if(t.type == 1)
-                    {
-                        Destroy(t.obj);
-                        levelObjects.Remove(t);
-                        levelObjectsSize-=1;
-                        break; //only one of these will be present. 
-                    }
-                }
-            }
 
-            if (temp.type == 2 && isFlag == false)    //remove old flag if new one is placed
+            else if (temp.type == 2)    //remove old flag if new one is placed
             {
                 GoalRotation = new Vector3(0, Yaw * 90, 0);
-                isFlag = true;
-            }
-            else if (temp.type == 2 && isFlag == true)
-            {
-                GoalRotation = new Vector3(0, Yaw * 90, 0);
-                foreach (LevelObject t in levelObjects)
+                temp.obj.transform.localScale = scaleFactor.localScale*0.3f;
+                if (isFlag == true)
                 {
-                    if(t.type == 2)
+                    foreach (LevelObject t in levelObjects)
                     {
-                        Destroy(t.obj);
-                        levelObjects.Remove(t);
-                        levelObjectsSize-=1;
-                        break; //only one of thse will be present
+                        if (t.type == 2)
+                        {
+                            Destroy(t.obj);
+                            levelObjects.Remove(t);
+                            levelObjectsSize -= 1;
+                            break; //only one of thse will be present
+                        }
                     }
                 }
+                isFlag = true;
             }
         }
         MonoBehaviour.print(levelObjectsSize);
