@@ -26,7 +26,7 @@ Progression systems, achievements, unlockables, and easter eggs are all viable m
 
 ## Documentation
 
-Documentation for the scripts and assets in this project are available in the [Wiki](https://github.com/reckoncrafter/vrblocks/wiki).
+Documentation for the scripts and assets in this project are available in the [Wiki](https://github.com/Harriet04/vrblocks/wiki).
 
 ## Installation
 
