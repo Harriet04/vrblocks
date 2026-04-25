@@ -124,10 +124,12 @@ public class DataManager : MonoBehaviour
 
         else
         {
+            #if UNITY_EDITOR
             //Developer asset, save to Assets
             //The asset is created and saved to the system
             AssetDatabase.CreateAsset(dummyObject, "Assets/Map/SandboxLevels/" + dummyObject.name + ".asset");
             AssetDatabase.SaveAssets();
+            #endif
         }
 
         CreateMetaData(dummyObject.name);
@@ -163,6 +165,7 @@ public class DataManager : MonoBehaviour
 
         if (developerMode)
         {
+            #if UNITY_EDITOR
             //Convert it to sprite
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
 
@@ -177,6 +180,7 @@ public class DataManager : MonoBehaviour
 
             importer.SaveAndReimport();
             AssetDatabase.Refresh();
+            #endif
         }
 
 
@@ -191,12 +195,14 @@ public class DataManager : MonoBehaviour
         //developer-mode only
         if (developerMode)
         {
+            #if UNITY_EDITOR
             data.levelThumbnail = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath); ;
 
             //This only works in editor; we'll need a separate pipeline for players
             AssetDatabase.CreateAsset(data, "Assets/LevelData/MetaData/" + name + ".asset");
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+            #endif
         }
         //Save to persistent memory for player
         else

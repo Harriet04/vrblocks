@@ -4,7 +4,7 @@ using System.Drawing;
 using UnityEditor;
 using UnityEngine;
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(level_loader))]
 public class LevelLoaderMenu : Editor
 {
@@ -23,6 +23,7 @@ public class LevelLoaderMenu : Editor
         }
     }
 }
+#endif
 
 public class level_loader : MonoBehaviour
 {

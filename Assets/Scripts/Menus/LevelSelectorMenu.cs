@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(LevelSelectorMenu))]
 public class LevelSelectorGUI : Editor
 {
@@ -44,6 +45,7 @@ public class LevelSelectorGUI : Editor
         EditorUtility.SetDirty(menu);
     }
 }
+#endif
 
 public class LevelSelectorMenu : MonoBehaviour
 {
@@ -154,13 +156,14 @@ public class LevelSelectorMenu : MonoBehaviour
         UpdateDisplayView();
     }
 
+    /*
     private void Update()
     {
         string path = "Assets/Map/SandboxLevels/";
         var level = AssetDatabase.LoadAssetAtPath<MapBlockScriptableObject>(path);
         if (level != null)
             levelData.Add(level);
-    }
+    }*/
 
     public void SetMinMaxLevel(int minLevel, int maxLevel)
     {

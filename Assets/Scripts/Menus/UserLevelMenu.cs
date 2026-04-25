@@ -13,6 +13,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(UserLevelMenu))]
 public class UserLevelSelectorGUI : Editor
 {
@@ -47,6 +48,7 @@ public class UserLevelSelectorGUI : Editor
         EditorUtility.SetDirty(menu);
     }
 }
+#endif
 
 public class UserLevelMenu : MonoBehaviour
 {
@@ -263,6 +265,7 @@ public class UserLevelMenu : MonoBehaviour
         UpdateDisplayView();
     }
 
+    /*
     private void Update() //all mono prints have been comented to provide a less cluttered console at runtime (they are all just checkpoints for testing)
     {
         //MonoBehaviour.print("Updating user level list");
@@ -274,7 +277,7 @@ public class UserLevelMenu : MonoBehaviour
         foreach (string entry in fileEntries)
         {
             //MonoBehaviour.print(entry);
-            if (entry.EndsWith(".meta")) { /*MonoBehaviour.print("metadata skipped"); */}
+            if (entry.EndsWith(".meta")) { MonoBehaviour.print("metadata skipped"); }
             else {
                 //MonoBehaviour.print("Adding scriptable object");
                 levelList.Add(AssetDatabase.LoadAssetAtPath<MapBlockScriptableObject>(entry));
@@ -296,10 +299,11 @@ public class UserLevelMenu : MonoBehaviour
                     //MonoBehaviour.print("level not found, AddingNewEventArgs to list");
                     levelData.Add(level);//This method clears them after session ends, but will reload them on each start up
                 }
-                else { /*MonoBehaviour.print("Level found, skipping"); */}
+                else { /*MonoBehaviour.print("Level found, skipping"); }
             }
         }
     }
+    */
 
     public void SetMinMaxLevel(int minLevel, int maxLevel)
     {
