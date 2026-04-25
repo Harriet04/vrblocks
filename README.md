@@ -8,7 +8,7 @@ This project is intended as an educational tool to teach fundamental programming
 
 It draws inspiration from tools like Blockly and Scratch, while extending the metaphor of block-based programming to a fully 3D environment.
 
-The project began as our [development groups's](#development) senior capstone project at UNT. Since then, we've continued development at a slower but steady pace.
+The project began as the previous group, The Garbonzo Boys, senior capstone project at UNT. Since then, the project was overtaken by the [CS_Junkies](#Development)
 
 ### Principals
 
@@ -16,6 +16,8 @@ The project should be progressive, introducing simple constructs and functionali
 
 The project should be relevant to computer science. It may introduce concepts using toy examples, but ultimately it should
 teach practical and realistic examples that can be applied to real programs.
+
+The project should allow users to experiment in their environment to learn and challenge themselves. 
 
 The project should be fun. Programming is a complex, and often extremely dry subject. Introducing the concept to children and
 adult beginners in a way that is engaging, is perhaps a never-ending endeavor for computer science educators. This project
@@ -71,6 +73,13 @@ Click on the icon labeled "Install APK from file on computer" and select the APK
 Note: All screenshots were captured using a Meta Quest 2 headset connected via PC VR through Unity. They reflect a pre-release build current as of May 29, 2025.
 
 ## Development
+### The CS_Junkies Development Team
+
+- [Jack Coker](https://github.com/jackwcoker)
+- [Drew Daffern](https://github.com/drew-daffern)
+- [Jabari Freeman](https://github.com/MrDevus)
+- [Harriet Mangum](https://github.com/Harriet04)
+- [Nathaneal Pape](https://github.com/Shiverspike3)
 
 ### The Garbanzo Boys Development Team 
 
