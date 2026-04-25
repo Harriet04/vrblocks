@@ -64,11 +64,11 @@ Click on the icon labeled "Install APK from file on computer" and select the APK
 
 ## Screenshots
 
-![Turtle jumping screenshot](Images/vrblocks_jump_screenshot.png)
+![Main Room Screenshot](Images/VR_BLOCKS_MAIN_ROOM_SCREENSHOT.png)
 
-![Turtle moving in loop screenshot](Images/vrblocks_loop_screenshot.png)
+![Text Code Screenshot](Images/VR_BLOCKS_TEXT_CODE_SCREENSHOT.png)
 
-![Image of level completion screen](Images/vrblocks_victory_screenshot.png)
+![Sandbox Mode Screenshot](Images/VR_BLOCKS_SANDBOX_MODE_SCREENSHOT.png)
 
 Note: All screenshots were captured using a Meta Quest 2 headset connected via PC VR through Unity. They reflect a pre-release build current as of May 29, 2025.
 
