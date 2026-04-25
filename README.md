@@ -89,9 +89,6 @@ Note: All screenshots were captured using a Meta Quest 2 headset connected via P
 - [Johnathon Lawton](https://github.com/J1aw)
 - [Kevin Pham](https://github.com/KevinFham)
 
-### Other Contributors
-
-- None Yet!!
 
 ## Contact Us
 
